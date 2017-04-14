@@ -154,9 +154,9 @@ header{
 
 
 .toggle-theme{
-    position:absolute;
-    right: 5px;
-    top: 5px;
+    position: relative;
+    float: right;
+    padding:2px 5px;
     span{
         display: inline-block;
         cursor: pointer;

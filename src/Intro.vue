@@ -2,7 +2,7 @@
 <div>
     <div>
         <transition name="first" appear>
-            <h2 class="welcome">Welcome,</h2>
+            <h2 class="welcome">Welcome</h2>
         </transition>
         <transition name="hand">
             <i v-show="showHand" :class="icons[iconIndex]" class="fa fa-3x" aria-hidden="true"></i>
