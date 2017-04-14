@@ -51,6 +51,13 @@ html, body{
 }
 
 .section{
-	padding: 15px 0px
+	padding: 15px 0px;
+	
+	.section-title{
+		margin-bottom: 5px;
+	}
+	.section-subtitle{
+		margin-bottom: 10px;
+	}
 }
 </style>

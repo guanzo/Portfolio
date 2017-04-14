@@ -1,5 +1,7 @@
 # Portfolio
 
-> Website that showcases my work and provides social media links
+> Website that showcases my work 
 
-Built with Vue
+Built with Vue.
+
+See it at tinyurl.com/ericguan

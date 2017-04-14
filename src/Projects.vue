@@ -1,10 +1,16 @@
 <template>
     <div class="text-left section">
-        <h4>Projects</h4>
+        <h4 class="section-title">Projects</h4>
+        <div class="section-subtitle">
+            Applications developed for Aviall reside in their private intranet. Here are some screenshots.
+        </div>
         <div class="projects-container">
             <div v-for="project in projects" class="card-wrapper">
                 <div class=" card z-depth-1">
-                    <h6>{{ project.name }}</h6>
+                    <div class="card-header">
+                        <h6>{{ project.name }}</h6>
+                        <small>{{ project.description }}</small>
+                    </div>
                     <div class="img-container">
                         <img v-for="img in project.imgs" :src="'assets/images/'+img">
                     </div>
@@ -22,14 +28,17 @@ export default {
 			projects:[
                 {
                     name:'Relevance Engine',
+                    description:'News Aggregator',
                     imgs:['re_dashboard.png','re_docspace.png']
                 },
                 {
                     name:'New Business Generator',
+                    description:'Business Intelligence',
                     imgs:['nbg_customer.png','nbg_region.png']
                 },
                 {
                     name:'Blue Edge',
+                    description:'Predictive Analytics',
                     imgs:['be_profile.png','be_scenario.png']
                 }
             ]
@@ -43,10 +52,15 @@ export default {
 </style>
 
 <style scoped lang="less">
-
+@media (max-width: 550px) {
+    .projects-container{
+        flex-direction: column;
+    }
+}
 
 .projects-container{
     display: flex;
+    flex-wrap: wrap;
     justify-content: space-between;
     margin: 0px -15px;
 }
@@ -58,14 +72,24 @@ export default {
 
 .card{
     height:100%;
+    display: flex;
+    flex-direction: column;
+}
+
+.card-header{
+    padding:2px 4px;
+    margin-bottom: 1rem;
     h6{
-        padding:2px 4px;
+        margin-bottom: 0px;
     }
 }
 
 .img-container{
+    flex:1;
     display: flex;
+    flex-wrap: wrap;
     align-items: center;
+    justify-content: space-around;
     img{
         flex:1;
         margin:2px 4px;

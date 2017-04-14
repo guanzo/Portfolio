@@ -2,8 +2,8 @@
     <transition name="fade" appear>
         <div class="text-left section">
             
-            <h4>Technologies I enjoy</h4>
-            <div class="guess">
+            <h4 class="section-title">Technologies I enjoy</h4>
+            <div class="section-subtitle guess">
                 <span>Can you guess what they are?</span>
                 <div class="interactions">
                     <span @click="onShuffle">Shuffle</span> |
@@ -139,7 +139,6 @@ export default {
 
 .guess{
     position: relative;
-    top:-20px;
     display:flex;
     justify-content: space-between;
 }
