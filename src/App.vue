@@ -3,6 +3,7 @@
 	<appheader></appheader>
 	<div class="container">
     	<intro></intro>
+		<links></links>
 		<technologies></technologies>
 		<projects></projects>
 	</div>
@@ -12,6 +13,7 @@
 <script>
 import appheader from './Header.vue';
 import intro from './Intro.vue';
+import links from './Links.vue';
 import technologies from './Technologies.vue';
 import projects from './Projects.vue';
 
@@ -24,6 +26,7 @@ export default {
 	},
 	components:{
 		intro,
+		links,
 		technologies,
 		appheader,
 		projects

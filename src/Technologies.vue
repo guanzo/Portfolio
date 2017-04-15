@@ -152,20 +152,11 @@ export default {
     }
 }
 
-@media (max-width: 750px) {
-    .technologies{
-        justify-content: space-around;
-    }
-}
-
-.technology-move {
-  //transition: transform 1s;
-}
-
 .technologies, {
     display: flex;
     flex-wrap: wrap;
     align-items: center;
+    justify-content: center;
     text-align: center;
     font-size: 1.3rem;
     color: #333;
@@ -214,6 +205,11 @@ export default {
     }
 }
 
+@media (max-width: 750px) {
+    .technologies{
+        justify-content: space-around;
+    }
+}
 
 .jquery-joke{
     margin: 30px 0px;
