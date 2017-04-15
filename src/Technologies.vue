@@ -1,6 +1,6 @@
 <template>
     <transition name="fade" appear>
-        <div class="text-left section">
+        <div class="section">
             
             <h4 class="section-title">Technologies I enjoy</h4>
             <div class="section-subtitle guess">
@@ -25,7 +25,6 @@
             <p class="jquery-joke">
                 I am a recovering jQuery user. It's been {{ timeSincejQuery }} days since my last use.
             </p>
-            <p></p>
         </div>
     </transition>
 </template>
@@ -57,6 +56,12 @@ export default {
                     class:'',
                 },
                 {
+                    imgSrc:'assets/images/lodash.png', 
+                    name:'Lodash.js',
+                    text:'Useful for<br>any project',
+                    class:'',
+                },
+                {
                     imgSrc:'https://www.codeforest.net/wp-content/uploads/2013/05/backbone.png', 
                     name:'Backbone.js',
                     text:'My first framework',
@@ -82,7 +87,7 @@ export default {
                 },
                 {
                     imgSrc:'http://www.freeiconspng.com/uploads/sql-server-icon-png-1.png', 
-                    name:'SQL-Server',
+                    name:'SQL Server',
                     class:'',
                 },
                 {
@@ -93,7 +98,7 @@ export default {
                 },
                 {
                     imgSrc:'http://objectpartners.github.io/react-workshop/assets/img/flux-logo.png', 
-                    name:'Flux Architecture',
+                    name:'Flux',
                     text:'Vuex is my current go-to flux implementation',
                     class:'',
                 },
@@ -102,13 +107,10 @@ export default {
     },
     computed:{
         timeSincejQuery(){
-            var milliseconds = new Date() - new Date('3-1-2017');
+            var milliseconds = new Date() - new Date('3-1-2017'.replace(/-/g, "/"));
             var days = Math.round(milliseconds / (1000*60*60*24));
             return days;
         }
-    },
-    created(){
-        this.technologies = shuffle(this.technologies)
     },
     methods:{
         onReveal(){
@@ -212,7 +214,7 @@ export default {
 }
 
 .jquery-joke{
-    margin: 30px 0px;
+    margin: 30px 0px 0px 0px;
 }
 
 .fade-enter-active, .fade-leave-active {

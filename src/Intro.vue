@@ -1,5 +1,5 @@
 <template>
-<div>
+<div class="text-center">
     <div>
         <transition name="first" appear>
             <h2 class="welcome">Welcome</h2>
@@ -12,10 +12,9 @@
         <h2>my name is Eric Guan</h2>
     </transition>
     <transition name="third" appear>
-        <div class="text-left">
+        <div>
             <p>I'm a full stack web developer who loves creating dynamic web applications.
             <br>You can find me fiddling with data visualizations, experimenting with new web technologies, or just listening to my tunes.</p>
-            
         </div>
     </transition>
 </div>

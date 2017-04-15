@@ -1,5 +1,5 @@
 <template>
-    <div class="text-left section">
+    <div class="section">
         <h4 class="section-title">Projects</h4>
         <div class="section-subtitle">
             Applications developed for Aviall reside in their private intranet. Here are some screenshots.
@@ -74,10 +74,10 @@ export default {
     height:100%;
     display: flex;
     flex-direction: column;
+    padding: 5px;
 }
 
 .card-header{
-    padding:2px 4px;
     margin-bottom: 1rem;
     h6{
         margin-bottom: 0px;

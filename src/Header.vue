@@ -113,6 +113,7 @@ export default {
 */
 body{
     transition: background-color 10s ease-out, color 10s ease-out;
+    will-change: background-color;
 }
 body.light-theme{
     background: #fafafa;
@@ -123,8 +124,7 @@ body.dark-theme{
     background: #262626;
     color: white;
 
-    .technology{
-        //background: white;
+    .z-depth-1{
         box-shadow: 0 2px 2px 0 white, 0 1px 5px 0 white, 0 3px 1px -2px white;
     }
 }

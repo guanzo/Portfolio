@@ -46,6 +46,11 @@ html, body{
 	font-family: 'Raleway', sans-serif;
 	-webkit-font-smoothing: antialiased;
 	-moz-osx-font-smoothing: grayscale;
+
+	padding-bottom:50px;
+}
+
+.text-center{
 	text-align: center;
 }
 
