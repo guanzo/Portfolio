@@ -1,10 +1,11 @@
 <template>
     <transition name="fade" appear>
         <div class="section">
-            
-            <h4 class="section-title">Technologies I enjoy</h4>
+            <div>
+            <h4 class="section-title">Technologies</h4>
+            </div>
             <div class="section-subtitle guess">
-                <span>Can you guess what they are?</span>
+                <span>This is not a comprehensive list of all I know, but rather the ones I enjoy using.<br>Can you guess what they are?</span>
                 <div class="interactions">
                     <span @click="onShuffle">Shuffle</span> |
                     <span @mouseover="onReveal" @mouseout="onHide">Reveal</span>
@@ -14,7 +15,7 @@
             <transition-group tag="div" class="technologies">
                 <div class="technology z-depth-1" v-for="tech in technologies" :key="tech.name" :class="tech.class" 
                             @mouseover="tech.class = 'reveal'" @mouseout="tech.class = ''" >
-                    <img :src="tech.imgSrc" >
+                    <img :src="tech.imgSrc" :alt="tech.name" >
                     <div>
                         <b>{{ tech.name }}</b>
                         <span v-html="tech.text"></span>
@@ -32,7 +33,6 @@
 <script>
 //import shuffle from './lodash/shuffle'
 import shuffle from 'lodash/shuffle'
-import * as d3 from "d3";
 export default {
     data () {
         return {

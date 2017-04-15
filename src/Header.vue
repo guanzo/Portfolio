@@ -6,13 +6,11 @@
             <span ref="dark" :class="isLight ? '' : 'active'" @click="darkTheme">Dark</span>
             <span ref="indicator" class="indicator"></span>
         </div>
-        <svg class="matrix"></svg>
     </header>
 </template>
 
 <script>
 import Vue from 'vue'
-import * as d3 from "d3";
 
 export default {
 	data () {
@@ -32,7 +30,6 @@ export default {
             this.isLight = true;
             document.body.className = "light-theme"
             this.showActive();
-            //this.divideScreenIntoMatrix();
         },
         darkTheme(){
             if(!this.isLight)
@@ -40,49 +37,6 @@ export default {
             this.isLight = false;
             document.body.className = "dark-theme"
             this.showActive();
-            //this.divideScreenIntoMatrix();
-
-        },
-        divideScreenIntoMatrix(){
-            var w = window.innerWidth;
-            var h = window.innerHeight;
-            var size = 50;
-            var columns = Math.ceil(w/50);
-            var rows = Math.ceil(h/50);
-
-            var matrix = [];
-            for(let i=0; i<rows; i++) {
-                matrix[i] = Array(columns).fill(size);
-            }
-
-            let row = 0;
-            let count = 0;
-
-            d3.select('svg.matrix')
-                .selectAll('g')
-                    .data(matrix)
-                .enter().append('g')
-                .selectAll('rect')
-                    .data(d=>d)
-                .enter().append('rect')
-                .attr('class','square')
-                .attr('width',`${size}px`)
-                .attr('height',`${size}px`)
-                .attr("x", (d,i)=>i*50)
-                .attr("y", function(d, i){
-                    if(count > 0 && count % columns == 0){
-                        row++;
-                        count = 0;
-                    }
-                    count++;
-                    return row*size;
-                })
-            
-            d3.selectAll('.square')
-                .transition()
-                .duration(()=>Math.floor(Math.random() * 750) + 250 )
-                .delay(()=> Math.floor(Math.random() * 750) + 250 )
-                .style('opacity',0);
 
         },
         showActive(){
@@ -129,9 +83,6 @@ body.dark-theme{
     }
 }
 
-rect.square{
-    fill: white;
-}
 </style>
 
 <style scoped lang="less">
@@ -140,18 +91,6 @@ header{
     height:30px;
     margin-bottom:40px;
 }
-
-
-.matrix{
-    position: absolute;
-    top:0;
-    left:0;
-    height:100%;
-    width:100%;
-    z-index: -1;
-    pointer-events: none;
-}
-
 
 .toggle-theme{
     position: relative;
