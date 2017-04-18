@@ -1,11 +1,6 @@
 <template>
     <header>
-        <div ref="themeContainer" class="toggle-theme">
-            <span ref="light" :class="isLight ? 'active' : ''" @click="lightTheme">Light</span>
-            <span>/</span>
-            <span ref="dark" :class="isLight ? '' : 'active'" @click="darkTheme">Dark</span>
-            <span ref="indicator" class="indicator"></span>
-        </div>
+        
     </header>
 </template>
 

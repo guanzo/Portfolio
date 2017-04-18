@@ -80,6 +80,18 @@ export default {
                     class:'',
                 },
                 {
+                    imgSrc:'assets/images/grunt.png', 
+                    name:'Grunt',
+                    text:'',
+                    class:'',
+                },
+                {
+                    imgSrc:'assets/images/npm.png', 
+                    name:'npm',
+                    text:'Welcome to dependency hell',
+                    class:'',
+                },
+                {
                     imgSrc:'https://upload.wikimedia.org/wikipedia/commons/thumb/e/ea/Boostrap_logo.svg/2000px-Boostrap_logo.svg.png', 
                     name:'Bootstrap',
                     text:'',
@@ -136,7 +148,7 @@ export default {
 
 </style>
 
-<style scoped lang="less">
+<style lang="less" scoped>
 
 
 .guess{
@@ -188,7 +200,6 @@ export default {
             position: absolute;
             transform: translateY(-100%);
             will-change: transform;
-            left:0;
             height:100%;
             width:100%;
             background-color:rgba(255,255,255,0.75);
@@ -196,7 +207,6 @@ export default {
             display: flex;
             flex-direction: column;
             justify-content: center;
-            padding:5px;
         }
         >img{
             max-width: 125px;
