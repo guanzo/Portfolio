@@ -105,6 +105,12 @@ export default {
                     class:'',
                 },
                 {
+                    imgSrc:'https://git-scm.com/images/logos/logomark-orange@2x.png', 
+                    name:'git',
+                    text:'Essential for any application',
+                    class:'',
+                },
+                {
                     imgSrc:'https://upload.wikimedia.org/wikipedia/commons/thumb/e/ea/Boostrap_logo.svg/2000px-Boostrap_logo.svg.png', 
                     name:'Bootstrap',
                     text:'',
