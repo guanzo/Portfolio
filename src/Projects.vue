@@ -1,19 +1,18 @@
 <template>
     <div class="section">
-        <h4 class="section-title">Projects</h4>
-        <div class="section-subtitle">
-            Applications developed for Aviall reside in their private intranet. Here are some screenshots.
-        </div>
+        <h3 class="section-title">Projects</h3>
+        <p>
+            Applications developed for Aviall reside in their private intranet, so they're not publicly available. These 3 projects are single page apps that provide business insights for Aviall.
+        </p>
         <div class="projects-container">
             <div v-for="project in projects" class="card-wrapper">
-                <div class=" card z-depth-1">
+                <div class="card">
                     <div class="card-header">
-                        <h6>{{ project.name }}</h6>
-                        <small>{{ project.description }}</small>
+                        <h5 class="project-name">{{ project.name }}</h5>
+                        <span>{{ project.description }}</span>
                     </div>
-                    <div class="img-container">
-                        <img v-for="img in project.imgs" :src="'assets/images/'+img">
-                    </div>
+                    <img v-for="img in project.imgs" class="z-depth-1" :src="'assets/images/'+img">
+                    
                 </div>
             </div>
         </div>
@@ -27,9 +26,9 @@ export default {
 		return {
 			projects:[
                 {
-                    name:'Relevance Engine',
-                    description:'News Aggregator',
-                    imgs:['re_dashboard.png','re_docspace.png']
+                    name:'Blue Edge',
+                    description:'Predictive Analytics',
+                    imgs:['be_profile.png','be_scenario.png']
                 },
                 {
                     name:'New Business Generator',
@@ -37,10 +36,10 @@ export default {
                     imgs:['nbg_customer.png','nbg_region.png']
                 },
                 {
-                    name:'Blue Edge',
-                    description:'Predictive Analytics',
-                    imgs:['be_profile.png','be_scenario.png']
-                }
+                    name:'Relevance Engine',
+                    description:'News Aggregator - stay informed in the aviation industry',
+                    imgs:['re_dashboard.png','re_docspace.png']
+                },
             ]
 		}
 	},
@@ -51,15 +50,11 @@ export default {
 
 </style>
 
-<style scoped lang="less">
-@media (max-width: 550px) {
-    .projects-container{
-        flex-direction: column;
-    }
-}
+<style lang="less" scoped>
 
 .projects-container{
     display: flex;
+    flex-direction: column;
     flex-wrap: wrap;
     justify-content: space-between;
     margin: 0px -15px;
@@ -67,35 +62,32 @@ export default {
 
 .card-wrapper{
     flex:1;
-    padding:0px 15px;
+    padding:15px 15px;
+    margin:10px 0px;
 }
 
 .card{
     height:100%;
     display: flex;
     flex-direction: column;
-    padding: 5px;
+    align-items: left;
 }
 
 .card-header{
     margin-bottom: 1rem;
-    h6{
+    position: sticky;
+    top: 5px;
+    .project-name{
         margin-bottom: 0px;
     }
 }
 
-.img-container{
-    flex:1;
-    display: flex;
-    flex-wrap: wrap;
-    align-items: center;
-    justify-content: space-around;
-    img{
-        flex:1;
-        margin:2px 4px;
-        max-width:100px;
-        height:auto;
-    }
+img{
+    margin:2px 4px;
+    max-width:100%;
+    height:auto;
+    margin:10px 0px;
 }
+
 
 </style>

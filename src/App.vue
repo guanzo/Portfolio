@@ -42,6 +42,13 @@ html, body{
 	height: 100%;
 	width: 100%;
 }
+
+body{
+    background: #fafafa;
+	color: #2c3e50;
+}
+
+
 #app {
 	font-family: 'Raleway', sans-serif;
 	-webkit-font-smoothing: antialiased;
@@ -60,12 +67,8 @@ html, body{
 
 .section{
 	padding: 15px 0px;
-	
 	.section-title{
 		margin-bottom: 5px;
-	}
-	.section-subtitle{
-		margin-bottom: 10px;
 	}
 }
 </style>

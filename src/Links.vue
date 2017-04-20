@@ -1,6 +1,6 @@
 <template>
   <div class="section">
-    <h4 class="section-title">Links</h4>
+    <h3 class="section-title">Links</h3>
     <div class="link-container">
         <a v-for="link in links" :href="link.href" class="chip" target="_blank">
             <img :src="link.imgSrc">

@@ -60,15 +60,6 @@ export default {
 #37474f blue-grey darken-3
 #263238 blue-grey darken-4
 */
-body{
-    transition: background-color 10s ease-out, color 10s ease-out;
-    will-change: background-color;
-}
-body.light-theme{
-    background: #fafafa;
-	color: #2c3e50;
-}
-
 body.dark-theme{
     background: #262626;
     color: white;

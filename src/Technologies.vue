@@ -2,15 +2,22 @@
     <transition name="fade" appear>
         <div class="section">
             <div>
-            <h4 class="section-title">Technologies</h4>
+            <h3 class="section-title">Technologies</h3>
             </div>
-            <div class="section-subtitle guess">
-                <span>This is not a comprehensive list of all I know, but rather the ones I enjoy using.<br>Can you guess what they are?</span>
+                <p>I pride myself on being a versatile and competent programmer. Being proficient in Javascript, Java, and SQL means that
+                    I can contribute to the 3 major pillars of web development: frontend, backend, and the database.
+                </p>
+                <p>As the state of web development offloads more and more work onto the client, so has my focus increased on staying up to date on modern frontend practices. 
+                </p>
+                <p>My software toolset is ever increasing. The ones listed below are not representative of all that I know, just the ones I enjoy using. 
+                </p>
+                <p>
+                    Can you guess what they are by the logo?
+                </p>
                 <div class="interactions">
                     <span @click="onShuffle">Shuffle</span> |
                     <span @mouseover="onReveal" @mouseout="onHide">Reveal</span>
                 </div>
-            </div>
             
             <transition-group tag="div" class="technologies">
                 <div class="technology z-depth-1" v-for="tech in technologies" :key="tech.name" :class="tech.class" 
@@ -64,7 +71,7 @@ export default {
                 {
                     imgSrc:'https://www.codeforest.net/wp-content/uploads/2013/05/backbone.png', 
                     name:'Backbone.js',
-                    text:'My first framework',
+                    text:'My first javascript framework',
                     class:'',
                 },
                 {
@@ -80,9 +87,15 @@ export default {
                     class:'',
                 },
                 {
+                    imgSrc:'assets/images/leaflet.jpg', 
+                    name:'Leaflet.js',
+                    text:'Makes mapping a breeze',
+                    class:'',
+                },
+                {
                     imgSrc:'assets/images/grunt.png', 
                     name:'Grunt',
-                    text:'',
+                    text:'My first build tool',
                     class:'',
                 },
                 {
@@ -158,6 +171,7 @@ export default {
 }
 
 .interactions{
+    text-align:right;
     span{
         cursor: pointer;
     }
