@@ -1,43 +1,28 @@
 <template>
   <div id="app">
-	<appheader></appheader>
-	<div class="container">
-    	<intro></intro>
-		<links></links>
-		<technologies></technologies>
-		<projects></projects>
-	</div>
+	<navbar></navbar>
+	<transition name="fade-page">
+		<keep-alive>
+			<router-view></router-view>
+		</keep-alive>
+	</transition>
   </div>
 </template>
 
 <script>
-import appheader from './Header.vue';
-import intro from './Intro.vue';
-import links from './Links.vue';
-import technologies from './Technologies.vue';
-import projects from './Projects.vue';
-
+import navbar from './components/Navbar.vue';
 export default {
 	name: 'app',
-	data () {
-		return {
-			showLinks: false
-		}
-	},
 	components:{
-		intro,
-		links,
-		technologies,
-		appheader,
-		projects
+		navbar,
 	},
-	mounted(){
-		setTimeout(()=>this.showLinks = true, 6000)
-	}
 }
 </script>
 
 <style lang="less">
+
+@import '/assets/custom.less';
+
 html, body{
 	height: 100%;
 	width: 100%;
@@ -46,6 +31,7 @@ html, body{
 body{
     background: #fafafa;
 	color: #2c3e50;
+	overflow-y: scroll;
 }
 
 
@@ -53,8 +39,6 @@ body{
 	font-family: 'Raleway', sans-serif;
 	-webkit-font-smoothing: antialiased;
 	-moz-osx-font-smoothing: grayscale;
-
-	padding-bottom:50px;
 }
 
 .text-center{
@@ -70,5 +54,24 @@ body{
 	.section-title{
 		margin-bottom: 5px;
 	}
+}
+
+
+.fade-enter-active, .fade-leave-active {
+  transition: opacity .4s;
+}
+.fade-enter, .fade-leave-to {
+  opacity: 0
+}
+
+.fade-page-enter-active, .fade-page-leave-active {
+  transition: opacity .25s;
+}
+
+.fade-page-enter-active {
+  transition-delay: .25s;
+}
+.fade-page-enter, .fade-page-leave-active {
+  opacity: 0
 }
 </style>

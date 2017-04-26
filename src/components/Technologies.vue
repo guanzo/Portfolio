@@ -233,6 +233,7 @@ export default {
             height:auto;
             transition: 0.75s;
             will-change: filter;
+            background: white;
         }   
     }
 }
