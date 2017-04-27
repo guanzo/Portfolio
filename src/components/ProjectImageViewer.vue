@@ -63,6 +63,7 @@ export default {
 .carousel{
     transition: @projectTransitionSpeed;
     display: flex;
+    will-change: transform;
 }
 
 .transition-wrapper{
@@ -81,6 +82,7 @@ export default {
 img{
     max-width:99%;
     height:auto;
+    backface-visibility: hidden;
 }
 
 .up-leave-to, .down-enter{

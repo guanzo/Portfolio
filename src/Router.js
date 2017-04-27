@@ -8,10 +8,10 @@ Vue.use(VueRouter)
 const routes = [
   { path: '/home', component: HomePage },
   { path: '/projects', component: ProjectsPage },
-  { path: '/', component: HomePage },
+  { path: '/', redirect: '/home' },
 
 ]
-
+//not doing pushstate because i dont have a server to redirect to root.
 const router = new VueRouter({
     routes, // short for routes: routes
     linkActiveClass:'active'

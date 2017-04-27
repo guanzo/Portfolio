@@ -24,7 +24,7 @@ export default {
                 },
                 {
                     name:'LinkedIn',
-                    href:'https://www.linkedin.com/in/eric-guan-6a050547?trk=nav_responsive_tab_profile_pic',
+                    href:'https://www.linkedin.com/in/eric-guan-6a050547',
                     imgSrc:'assets/images/linkedin.png'
                 },
                 {

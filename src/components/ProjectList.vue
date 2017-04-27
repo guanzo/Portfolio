@@ -1,7 +1,7 @@
 <template>
     <div class="projects-list">
-        <project-box ref="projects" v-for="(project, index) in projects" @click.native.capture="onClick(index)"
-            :project="project" :class="index === selectedProjectIndex ? 'active':''" :key="project.name"></project-box>
+        <project-list-item ref="projects" v-for="(project, index) in projects" @click.native.capture="onClick(index)"
+            :project="project" :class="index === selectedProjectIndex ? 'active':''" :key="project.name"></project-list-item>
         
     </div>
 </template>
@@ -13,7 +13,7 @@
     Applications developed for Aviall reside in their private intranet, so they're not publicly available. These 3 projects are single page apps that provide business insights for Aviall.
 </p>
 */
-import projectBox from './ProjectBox.vue'
+import projectListItem from './ProjectListItem.vue'
 import { SELECT_PROJECT } from '../store.js'
 
 export default {
@@ -38,7 +38,7 @@ export default {
         },
     },
     components:{
-        'project-box': projectBox
+        'project-list-item': projectListItem
     }
 }
 </script>

@@ -2,8 +2,8 @@
     <nav>
         <div class="container">
             <ul>
-                <li><router-link to="/home">Home</router-link></li>
-                <li><router-link to="/projects">Projects</router-link></li>
+                <li><router-link to="home">Home</router-link></li>
+                <li><router-link to="projects">Projects</router-link></li>
             </ul>
         </div>
     </nav>

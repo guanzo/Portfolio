@@ -58,6 +58,9 @@ export default {
     background: white;
     cursor: pointer;
     transition: @projectTransitionSpeed;
+    &:hover{
+        border-color: @cadetblue;
+    }
 }
 
 .card-header{
@@ -80,6 +83,9 @@ export default {
         transition: @projectTransitionSpeed;
         box-shadow: 0px 0px 0px 1px #eee;
         backface-visibility: hidden;
+        &:hover{
+            border-color: @cadetblue-light;
+        }
     }
 }
 

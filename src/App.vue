@@ -34,8 +34,6 @@ body{
 	overflow-y: scroll;
 }
 
-
-
 #app {
 	font-family: 'Raleway', sans-serif;
 	-webkit-font-smoothing: antialiased;
