@@ -14,7 +14,7 @@ export default new Vuex.Store({
                 name:'Blue Edge',
                 description:'Predictive Analytics',
                 selectedImage:0,
-                imgs:['be_splash.png','be_profile.png','be_scenario.png']
+                imgs:['be_splash.png','be_profile.png','be_scenario.png'],
             },
             {
                 name:'New Business Generator',
@@ -32,7 +32,7 @@ export default new Vuex.Store({
         ],
         technologies:[
                 {
-                    imgSrc:'assets/images/htmlcssjs.png', 
+                    imgSrc:'assets/images/technologies/htmlcssjs.png', 
                     name:'HTML, CSS, JS',
                     text:'',
                     class:'',
@@ -50,7 +50,7 @@ export default new Vuex.Store({
                     class:'',
                 },
                 {
-                    imgSrc:'assets/images/lodash.png', 
+                    imgSrc:'assets/images/technologies/lodash.png', 
                     name:'Lodash.js',
                     text:'Useful for<br>any project',
                     class:'',
@@ -68,25 +68,25 @@ export default new Vuex.Store({
                     class:'',
                 },
                 {
-                    imgSrc:'assets/images/less.png', 
+                    imgSrc:'assets/images/technologies/less.png', 
                     name:'Less',
                     text:'Okay, this one is a gimme',
                     class:'',
                 },
                 {
-                    imgSrc:'assets/images/leaflet.jpg', 
+                    imgSrc:'assets/images/technologies/leaflet.jpg', 
                     name:'Leaflet.js',
                     text:'Makes mapping a breeze',
                     class:'',
                 },
                 {
-                    imgSrc:'assets/images/grunt.png', 
+                    imgSrc:'assets/images/technologies/grunt.png', 
                     name:'Grunt',
                     text:'My first build tool',
                     class:'',
                 },
                 {
-                    imgSrc:'assets/images/npm.png', 
+                    imgSrc:'assets/images/technologies/npm.png', 
                     name:'npm',
                     text:'Welcome to dependency hell',
                     class:'',
@@ -109,7 +109,7 @@ export default new Vuex.Store({
                     class:'',
                 },
                 {
-                    imgSrc:'assets/images/tomcat.png', 
+                    imgSrc:'assets/images/technologies/tomcat.png', 
                     name:'Apache Tomcat',
                     text:'I have 2 cats',
                     class:'',

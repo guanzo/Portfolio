@@ -7,7 +7,7 @@
             </div>
             <div class="img-container">
                 <img ref="images" v-for="(img, index) in project.imgs"  @click="onClick(index)" 
-                :class="project.selectedImage === index ? 'active':''" :src="'assets/images/'+img">
+                :class="project.selectedImage === index ? 'active':''" :src="'assets/images/projects/'+img">
             </div>
         </div>
     </div>
@@ -55,7 +55,7 @@ export default {
     height:100%;
     background: white;
     cursor: pointer;
-    transition: 0.65s;
+    transition: @projectTransitionSpeed;
 }
 
 .card-header{
@@ -75,7 +75,7 @@ export default {
         border: 3px solid transparent;
         max-height:50px;
         width:auto;
-        transition: 0.5s;
+        transition: @projectTransitionSpeed;
         box-shadow: 0px 0px 0px 1px #eee;
         backface-visibility: hidden;
     }
