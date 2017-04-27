@@ -1,12 +1,12 @@
 <template>
-  <div id="app">
+	<div id="app">
 	<navbar></navbar>
 	<transition name="fade-page">
 		<keep-alive>
 			<router-view></router-view>
 		</keep-alive>
 	</transition>
-  </div>
+	</div>
 </template>
 
 <script>
@@ -35,6 +35,7 @@ body{
 }
 
 
+
 #app {
 	font-family: 'Raleway', sans-serif;
 	-webkit-font-smoothing: antialiased;
@@ -50,12 +51,9 @@ body{
 }
 
 .section{
-	padding: 15px 0px;
-	.section-title{
-		margin-bottom: 5px;
-	}
+	padding-top: 1rem;
+	padding-bottom: 1rem;
 }
-
 
 .fade-enter-active, .fade-leave-active {
   transition: opacity .4s;
@@ -69,7 +67,7 @@ body{
 }
 
 .fade-page-enter-active {
-  transition-delay: .25s;
+  transition-delay: .30s;
 }
 .fade-page-enter, .fade-page-leave-active {
   opacity: 0

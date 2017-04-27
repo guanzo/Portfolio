@@ -39,7 +39,6 @@ body{
 	-webkit-font-smoothing: antialiased;
 	-moz-osx-font-smoothing: grayscale;
 
-	padding-bottom:50px;
 }
 
 .text-center{
@@ -50,10 +49,4 @@ body{
 	text-align: left;
 }
 
-.section{
-	padding: 15px 0px;
-	.section-title{
-		margin-bottom: 5px;
-	}
-}
 </style>

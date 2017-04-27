@@ -6,7 +6,7 @@
                 <span>{{ project.description }}</span>
             </div>
             <div class="img-container">
-                <img v-for="(img, index) in project.imgs"  @click="onClick(index)" 
+                <img ref="images" v-for="(img, index) in project.imgs"  @click="onClick(index)" 
                 :class="project.selectedImage === index ? 'active':''" :src="'assets/images/'+img">
             </div>
         </div>
@@ -15,13 +15,14 @@
 
 <script>
 //<img v-for="img in project.imgs" class="z-depth-1" :src="'assets/images/'+img">
-                    
+import { SELECT_IMAGE } from '../store.js'
+
 export default {
-    name:'project-view',
+    name:'project-box',
     props:['project'],//name desc 
     methods:{
         onClick(index){
-            this.$emit('selectImage',index)
+            this.$store.commit({ type: SELECT_IMAGE, index })
         }
     }
 }
@@ -36,28 +37,25 @@ export default {
 @import '/assets/custom.less';
 
 .card-wrapper{
-    flex:1;
-    padding:0px 15px;
-    margin-bottom: 10px;
+    padding: 5px;
 }
-
 
 .card-wrapper.active{
     .card{
-        border: 5px solid @cadetblue;
+        border: 5px solid @cadetblue-dark;
     }
     img.active{
-        border: 3px solid lightgrey;
+        border: 3px solid @cadetblue;
     }
 }
 
 .card{
-    border: 5px solid white;
+    border: 5px solid transparent;
+    padding: 5px;
     height:100%;
-    padding: 2px 6px;
     background: white;
     cursor: pointer;
-    transition: 0.5s;
+    transition: 0.65s;
 }
 
 .card-header{
@@ -69,14 +67,16 @@ export default {
 
 .img-container{
     display: flex;
+    flex-wrap: wrap;
     align-items: center;
     justify-content: space-around;
     margin-bottom: 10px;
     img{
+        border: 3px solid transparent;
         max-height:50px;
         width:auto;
         transition: 0.5s;
-        border: 3px solid white;
+        box-shadow: 0px 0px 0px 1px #eee;
         backface-visibility: hidden;
     }
 }

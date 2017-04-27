@@ -9,7 +9,7 @@
                 </p>
                 <p>As the state of web development offloads more and more work onto the client, so has my focus increased on staying up to date on modern frontend practices. 
                 </p>
-                <p>My software toolset is ever increasing. The ones listed below are not representative of all that I know, just the ones I enjoy using. 
+                <p>The technologies listed below are not representative of all that I know, just the ones I enjoy using. 
                 </p>
                 <p>
                     Can you guess what they are by the logo?
@@ -43,98 +43,8 @@ import shuffle from 'lodash/shuffle'
 export default {
     data () {
         return {
-            technologies:[
-                {
-                    imgSrc:'assets/images/htmlcssjs.png', 
-                    name:'HTML, CSS, JS',
-                    text:'',
-                    class:'',
-                },
-                {
-                    imgSrc:'https://avatars1.githubusercontent.com/u/1562726?v=3&s=400', 
-                    name:'D3.js',
-                    text:'Bring data to life. Limited only by your imagination, and some math.',
-                    class:'',
-                },
-                {
-                    imgSrc:'https://vuejs.org/images/logo.png', 
-                    name:'Vue.js',
-                    text:'Expressive.<br>Performant.<br>Simple. <br>Fun!',
-                    class:'',
-                },
-                {
-                    imgSrc:'assets/images/lodash.png', 
-                    name:'Lodash.js',
-                    text:'Useful for<br>any project',
-                    class:'',
-                },
-                {
-                    imgSrc:'https://www.codeforest.net/wp-content/uploads/2013/05/backbone.png', 
-                    name:'Backbone.js',
-                    text:'My first javascript framework',
-                    class:'',
-                },
-                {
-                    imgSrc:'https://zeroc.com/images/logos/languages/java-b48c6193e3.svg', 
-                    name:'Java',
-                    text:'It\'s not "cool" anymore, but still reliable!',
-                    class:'',
-                },
-                {
-                    imgSrc:'assets/images/less.png', 
-                    name:'Less',
-                    text:'Okay, this one is a gimme',
-                    class:'',
-                },
-                {
-                    imgSrc:'assets/images/leaflet.jpg', 
-                    name:'Leaflet.js',
-                    text:'Makes mapping a breeze',
-                    class:'',
-                },
-                {
-                    imgSrc:'assets/images/grunt.png', 
-                    name:'Grunt',
-                    text:'My first build tool',
-                    class:'',
-                },
-                {
-                    imgSrc:'assets/images/npm.png', 
-                    name:'npm',
-                    text:'Welcome to dependency hell',
-                    class:'',
-                },
-                {
-                    imgSrc:'https://git-scm.com/images/logos/logomark-orange@2x.png', 
-                    name:'git',
-                    text:'Essential for any application',
-                    class:'',
-                },
-                {
-                    imgSrc:'https://upload.wikimedia.org/wikipedia/commons/thumb/e/ea/Boostrap_logo.svg/2000px-Boostrap_logo.svg.png', 
-                    name:'Bootstrap',
-                    text:'',
-                    class:'',
-                },
-                {
-                    imgSrc:'http://www.freeiconspng.com/uploads/sql-server-icon-png-1.png', 
-                    name:'SQL Server',
-                    class:'',
-                },
-                {
-                    imgSrc:'assets/images/tomcat.png', 
-                    name:'Apache Tomcat',
-                    text:'I have 2 cats',
-                    class:'',
-                },
-                {
-                    imgSrc:'http://objectpartners.github.io/react-workshop/assets/img/flux-logo.png', 
-                    name:'Flux',
-                    text:'Vuex is my current go-to flux implementation',
-                    class:'',
-                },
-            ],
-        }   
+            technologies: this.$store.state.technologies
+        }
     },
     computed:{
         timeSincejQuery(){
