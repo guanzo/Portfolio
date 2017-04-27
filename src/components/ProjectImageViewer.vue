@@ -54,7 +54,8 @@ export default {
 @import '/assets/custom.less';
 
 .project-image-viewer{
-    padding: 0px 1rem;
+    margin: 0px 1rem;
+    margin-top: 5px;
     overflow: hidden;
     position: relative;
 }
@@ -78,27 +79,23 @@ export default {
 }
 
 img{
-    max-width:100%;
+    max-width:99%;
     height:auto;
 }
 
-.down-enter {
+.up-leave-to, .down-enter{
     transform: translateY(100%);
 }
-.down-leave-to {
-    position: absolute;
+.up-enter, .down-leave-to {
     transform: translateY(-100%);
-}
-
-.up-enter {
-    transform: translateY(-100%);
-}
-.up-leave-to {
-    position: absolute;
-    transform: translateY(100%);
 }
 
 .up-leave-to, .down-leave-to {
     position: absolute;
+    opacity:0;
+}
+
+.up-enter, .down-enter, {
+    opacity:0;
 }
 </style>

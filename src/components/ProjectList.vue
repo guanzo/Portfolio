@@ -1,7 +1,7 @@
 <template>
     <div class="projects-list">
         <project-box ref="projects" v-for="(project, index) in projects" @click.native.capture="onClick(index)"
-            :project="project" :class="index === selectedIndex ? 'active':''" :key="project.name"></project-box>
+            :project="project" :class="index === selectedProjectIndex ? 'active':''" :key="project.name"></project-box>
         
     </div>
 </template>
@@ -24,7 +24,7 @@ export default {
 		}
 	},
     computed:{
-        selectedIndex(){
+        selectedProjectIndex(){
             return this.$store.state.selectedProject;
         },
         activeProject(){
@@ -33,7 +33,8 @@ export default {
     },
     methods:{
         onClick(index){
-            this.$store.commit({ type: SELECT_PROJECT, index })
+            if(index !== this.selectedProjectIndex)
+                this.$store.commit({ type: SELECT_PROJECT, index })
         },
     },
     components:{

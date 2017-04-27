@@ -22,7 +22,9 @@ export default {
     props:['project'],//name desc 
     methods:{
         onClick(index){
-            this.$store.commit({ type: SELECT_IMAGE, index })
+            if(index !== this.project.selectedImage)
+                setTimeout(()=>this.$store.commit({ type: SELECT_IMAGE, index }),0)
+                //delaying this commit creates a cool slide effect when transitioning between projects
         }
     }
 }
