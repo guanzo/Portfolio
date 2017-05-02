@@ -1,5 +1,6 @@
 <template>
-    <div id="technologies" class="section container">
+    <div id="technologies">
+        <div class="app-section section container">
         <h3>Technologies</h3>
         <div class="tech-intro flow-text">
             <p>I pride myself on being a versatile and competent programmer. Being proficient in Javascript, Java, and SQL means that
@@ -30,7 +31,7 @@
                 </div>
             </div>
         </transition-group>
-        
+        </div>
     </div>
 </template>
 
@@ -78,8 +79,18 @@ export let scrollfire = 'hi'
 
 <style lang="less" scoped>
 
+@import '/assets/custom.less';
+
 @tech-size: 125px;
 @small-tech-size: 85px;
+
+#technologies{
+    background: @offwhite;
+}
+
+.app-section{
+    min-height: 100vh;
+}
 
 .guess{
     position: relative;

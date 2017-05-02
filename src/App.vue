@@ -39,7 +39,7 @@ html, body{
 }
 
 body{
-    background: #fafafa;
+    background: @offwhite;
 		color: #2c3e50;
 		overflow-y: scroll;
 }

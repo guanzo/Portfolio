@@ -1,24 +1,27 @@
 <template>
-    <div id="home" class="app-section section container center-align">
-        <transition name="intro" appear>
-            <div class="intro-text">
-                <h3>Welcome</h3>
-                <h3>my name is Eric Guan</h3>
-                <div class="flow-text">
-                    <p>I'm a full stack web developer who loves creating dynamic web applications.
-                    <br>You can find me creating data visualizations, experimenting with new web technologies, or just listening to my tunes.</p>
-                </div>
-            </div>
-        </transition>
-        <transition-group name="links" tag="div" class="links" appear>
-            <div v-for="link in links" :key="link.url" class="link">
-                <a :href="link.url" target="_blank">
-                    <div class="icon-wrapper z-depth-2">
-                        <i class="fa fa-4x" :class="link.icon"></i>
+    <div id="home" >
+        <stream></stream>
+        <div class="app-section section container center-align">
+            <transition name="intro" appear>
+                <div class="intro-text">
+                    <h3>Welcome to my home</h3>
+                    <h4>My name is Eric Guan</h4>
+                    <div class="flow-text">
+                        <p>I'm a full stack web developer who loves creating interactive web applications.
+                        <br>You can find me creating data visualizations, experimenting with new web technologies, or just listening to my tunes.</p>
                     </div>
-                </a>
-            </div>
-        </transition-group>
+                </div>
+            </transition>
+            <transition-group name="links" tag="div" class="links" appear>
+                <div v-for="link in links" :key="link.url" class="link">
+                    <a :href="link.url" target="_blank">
+                        <div class="icon-wrapper z-depth-2">
+                            <i class="fa fa-4x" :class="link.icon"></i>
+                        </div>
+                    </a>
+                </div>
+            </transition-group>
+        </div>
     </div>
 </template>
 
@@ -29,6 +32,7 @@
         <i v-if="showHand" :class="icons[iconIndex]" class="fa fa-3x" aria-hidden="true"></i>
     </transition>
 */
+import stream from './Stream.vue'
 export default {
     name:'intro-section',
     data () {
@@ -46,11 +50,14 @@ export default {
             setTimeout(()=>this.showHand = false, 1000)
 
         }, 1000)
+    },
+    components:{
+        stream
     }
 }
 </script>
 
-<style scoped lang="less">
+<style lang="less" scoped>
 
 @import '/assets/custom.less';
 
@@ -58,12 +65,30 @@ export default {
     height: calc(~'100vh - 64px');
 }
 
+#home{
+    position: relative;
+}
+
+svg{
+    height: calc(~'100vh - 64px');
+    width:100vw;
+    position: absolute;
+    opacity: 0.15;
+    z-index: -1;
+    stroke-opacity: 0;
+    position: fixed;
+}
+
+.intro-text{
+    /*padding:10px;
+    background: rgba(0,0,0,0.15);*/
+}
+
 .links{
     margin: 1em 0;
     display: flex;
     justify-content: space-around;
     flex-wrap: wrap;
-
 }
 
 .link{
