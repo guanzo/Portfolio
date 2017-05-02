@@ -2,10 +2,34 @@
 @primary-light:#FFAAAA;
 @primary-dark:#801515;
 
+@purple: #882D60;
+@purple-dark: #661141;
+
 @cadetblue: #669999;
 @cadetblue-light: #9BC2C2;
 @cadetblue-dark: #226666;
 
-@navheight: 64px;
-
 @projectTransitionSpeed: 0.75s;
+
+.section{
+    padding-left: 2rem;
+    padding-right: 2rem;
+}
+
+.fade-enter-active, .fade-leave-active {
+  transition: opacity .4s;
+}
+.fade-enter, .fade-leave-to {
+  opacity: 0
+}
+
+.fade-page-enter-active, .fade-page-leave-active {
+  transition: opacity .25s;
+}
+
+.fade-page-enter-active {
+  transition-delay: .30s;
+}
+.fade-page-enter, .fade-page-leave-active {
+  opacity: 0
+}

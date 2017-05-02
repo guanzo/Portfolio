@@ -43,20 +43,16 @@ export default {
 }
 </script>
 
-<style lang="less">
-
-</style>
 
 <style lang="less" scoped>
-
-@import '/assets/custom.less';
 
 
 .projects-list{
     flex:1;
     display: flex;
-    flex-direction: column;
     position: relative;
+    position: fixed;
+    bottom: 5px;
 }
 
 </style>

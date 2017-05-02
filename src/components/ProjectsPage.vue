@@ -1,7 +1,7 @@
 <template>
     <div class="container">
-        <project-list></project-list>
         <project-image-viewer class="project-viewer"></project-image-viewer>
+        <project-list></project-list>
     </div>
 </template>
 
@@ -46,24 +46,23 @@ export default {
 
 <style lang="less" scoped>
 
-@import '/assets/custom.less';
-
-
+//@import (reference) '/assets/custom.less';
 
 .container{
     width:100%;
     max-width: 100%;
     display: flex;
+    flex-direction: column;
 }
 
 .project-viewer{
-    width: 75%;
+    //width: 75%;
 }
 
 .projects-list{
     flex:1;
     display: flex;
-    flex-direction: column;
+    //flex-direction: column;
 }
 
 @media (max-width: 1000px) {

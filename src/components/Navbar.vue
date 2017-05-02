@@ -1,22 +1,51 @@
 <template>
-    <nav>
-        <div class="container">
-            <ul>
-                <li><router-link to="home">Home</router-link></li>
-                <li><router-link to="projects">Projects</router-link></li>
-            </ul>
-        </div>
-    </nav>
+    <div class="navbar-fixed">
+        <nav>
+            <div class="nav-wrapper">
+                <ul>
+                    <li v-for="link in links">
+                        <a :href="link.url" @click="onClick">{{ link.name}}</a>
+                    </li>
+                </ul>
+            </div>
+        </nav>
+    </div>
 </template>
 
 <script>
 import Vue from 'vue'
-
+import smoothScroll from 'smoothscroll-polyfill'
 export default {
 	data () {
 		return {
+            links: [
+                {
+                    name:'Home',
+                    url: '#home',
+                },
+                {
+                    name:'Technologies',
+                    url: '#technologies',
+                },
+                {
+                    name:'Projects',
+                    url: '#projects',
+                },
+            ]
 		}
 	},
+    created(){
+        smoothScroll.polyfill();
+    },
+    methods:{
+        onClick(e){
+            //e.preventDefault();
+            var anchor = e.currentTarget.getAttribute('href')
+            var node = document.querySelector(anchor);
+            var top = node.offsetTop - 64;
+            window.scroll({ top: top, behavior: 'smooth' });
+        }
+    }
 }
 </script>
 
@@ -25,42 +54,25 @@ export default {
 
 <style lang="less" scoped>
 
-@import '/assets/custom.less';
+@import (reference) '/assets/custom.less';
 
 nav{
     background: @primary;
-    background: linear-gradient(to right, @primary, #882D60);
-    box-shadow: 0 2px 2px 0 rgba(0,0,0,0.14), 0 1px 5px 0 rgba(0,0,0,0.12), 0 3px 1px -2px rgba(0,0,0,0.2);
-    height: 64px;
-    line-height: 64px;
+    background: linear-gradient(to right, @primary, @purple);
+    opacity: .95;
 }
-
-ul{
-    padding-left: 0;
-    margin: 0;
-    list-style-type: none;
-    
-}
-
-li{
-    list-style-type: none;
-    transition: background-color .3s;
-    float: left;
-    padding: 0;
-}
-
-a{
-    transition: background-color .3s;
-    color: white;
-    font-size: 2rem;
-    display: block;
-    padding: 0 15px;
-    cursor: pointer;
-    text-decoration: none;
-    &:hover, &.active{
-        background-color: rgba(0,0,0,0.15);
+.fa {
+    display: inherit !important;
+ }
+.external{
+    a:hover{
+        background-color: inherit;
+    }
+    .fa{
+        transition: 0.35s;
+        &:hover{
+            color: @primary-light;
+        }
     }
 }
-
-
 </style>

@@ -1,46 +1,44 @@
 <template>
-    <transition name="fade" appear>
-        <div class="section">
-            <div>
-            <h3 class="section-title">Technologies</h3>
-            </div>
-                <p>I pride myself on being a versatile and competent programmer. Being proficient in Javascript, Java, and SQL means that
-                    I can contribute to the 3 major pillars of web development: frontend, backend, and the database.
-                </p>
-                <p>As the state of web development offloads more and more work onto the client, so has my focus increased on staying up to date on modern frontend practices. 
-                </p>
-                <p>The technologies listed below are not representative of all that I know, just the ones I enjoy using. 
-                </p>
-                <p>
-                    Can you guess what they are by the logo?
-                </p>
-                <div class="interactions">
-                    <span @click="onShuffle">Shuffle</span> |
-                    <span @mouseover="onReveal" @mouseout="onHide">Reveal</span>
-                </div>
-            
-            <transition-group tag="div" class="technologies">
-                <div class="technology z-depth-1" v-for="tech in technologies" :key="tech.name" :class="tech.class" 
-                            @mouseover="tech.class = 'reveal'" @mouseout="tech.class = ''" >
-                    <img :src="tech.imgSrc" :alt="tech.name" >
-                    <div>
-                        <b>{{ tech.name }}</b>
-                        <span v-html="tech.text"></span>
-                    </div>
-                </div>
-            </transition-group>
-            
-            <p class="jquery-joke">
-                I am a recovering jQuery user. It's been {{ timeSincejQuery }} days since my last use.
+    <div id="technologies" class="section container">
+        <h3>Technologies</h3>
+        <div class="tech-intro flow-text">
+            <p>I pride myself on being a versatile and competent programmer. Being proficient in Javascript, Java, and SQL means that
+                I can contribute to the 3 major pillars of web development: frontend, backend, and the database.
+            </p>
+            <p>As the state of web development offloads more and more work onto the client, so has my focus increased on staying up to date on modern frontend practices. 
+            </p>
+            <p>The technologies listed below are not representative of all that I know, just the ones I enjoy using. 
+            </p>
+            <p>
+                Can you guess what they are by the logo?
             </p>
         </div>
-    </transition>
+            <div class="interactions">
+                <span @click="onShuffle">Shuffle</span> |
+                <span @mouseover="onReveal" @mouseout="onHide">Reveal</span>
+            </div>
+        
+        <transition-group tag="div" class="technology-list flow-text">
+            <div class="technology z-depth-1" v-for="tech in technologies" :key="tech.name" :class="tech.class" 
+                        @mouseover="tech.class = 'reveal'" @mouseout="tech.class = ''" >
+                <div class="img-wrapper">
+                    <img :style="tech.style" :src="tech.imgSrc" :alt="tech.name" >
+                </div>
+                <div class="description-overlay">
+                    <b>{{ tech.name }}</b>
+                    <span v-html="tech.text"></span>
+                </div>
+            </div>
+        </transition-group>
+        
+    </div>
 </template>
 
 <script>
 //import shuffle from './lodash/shuffle'
 import shuffle from 'lodash/shuffle'
 export default {
+    name:'technology-section',
     data () {
         return {
             technologies: this.$store.state.technologies
@@ -64,21 +62,24 @@ export default {
             this.technologies = shuffle(this.technologies)
         },
     },
-    
 }
+
+/*export let scrollfire = [
+    {select: '.tech-intro', offset: 200, callback: ()=>console.log('tech intro')},
+    {select: '.technology-list', offset: 200, callback: ()=>console.log('tech List intro')},
+]
+*/
+
+export let scrollfire = 'hi'
 
 
 </script>
 
-<style lang="less">
-.z-depth-1{
-    box-shadow: 0 2px 2px 0 rgba(0,0,0,0.14), 0 1px 5px 0 rgba(0,0,0,0.12), 0 3px 1px -2px rgba(0,0,0,0.2);
-}
-
-</style>
 
 <style lang="less" scoped>
 
+@tech-size: 125px;
+@small-tech-size: 85px;
 
 .guess{
     position: relative;
@@ -96,13 +97,13 @@ export default {
     }
 }
 
-.technologies, {
+.technology-list {
     display: flex;
     flex-wrap: wrap;
     align-items: center;
     justify-content: center;
     text-align: center;
-    font-size: 1.3rem;
+    font-size: 0.8rem;
     color: #333;
     .technology{
         position: relative;
@@ -111,51 +112,54 @@ export default {
         display: flex;
         align-items: center;
         justify-content: center;
+        background: white;
         transition: background 5s, box-shadow 0.75s, transform 1s;
         border-radius: 50%;
-        max-width: 125px;
-        max-height: 125px;
+        max-width: @small-tech-size;
+        max-height: @small-tech-size;
         padding: 5px;
         margin: 5px;
-        &:hover{
-            //box-shadow: 0px 0px white , 0px 0px white, 0px 0px white;
-        }
-        &.reveal > div{
+        &.reveal div.description-overlay{
             transform: translateY(0);
         }
-        &.reveal > img{
+        &.reveal img{
             filter: blur(3px);
-        }
-        >div{
-            position: absolute;
-            transform: translateY(-100%);
-            will-change: transform;
-            height:100%;
-            width:100%;
-            background-color:rgba(255,255,255,0.75);
-            transition: 0.75s;
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-        }
-        >img{
-            max-width: 125px;
-            height:auto;
-            transition: 0.75s;
-            will-change: filter;
-            background: white;
         }   
     }
 }
 
-@media (max-width: 750px) {
-    .technologies{
-        justify-content: space-around;
+@media (min-width: 400px){
+    .technology-list {
+        font-size: 0.9rem;
+        .technology{
+            max-width: @tech-size;
+            max-height: @tech-size;
+        }
     }
 }
-
-.jquery-joke{
-    margin: 30px 0px 0px 0px;
+div.description-overlay{
+    position: absolute;
+    transform: translateY(-100%);
+    will-change: transform;
+    height:100%;
+    width:100%;
+    background-color:rgba(255,255,255,0.75);
+    transition: 0.75s;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+.img-wrapper{
+    width: 100%;
+    height: 100%;
+    border-radius: 50%;
+    overflow: hidden;
+}
+img{
+    max-width: 100%;
+    height:auto;
+    transition: 0.75s;
+    will-change: filter;
 }
 
 .fade-enter-active, .fade-leave-active {

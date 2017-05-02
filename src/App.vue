@@ -1,22 +1,32 @@
 <template>
 	<div id="app">
-	<navbar></navbar>
-	<transition name="fade-page">
-		<keep-alive>
-			<router-view></router-view>
-		</keep-alive>
-	</transition>
+		<navbar></navbar>
+		<intro></intro>
+		<technologies></technologies>
+		<projects></projects>
 	</div>
 </template>
 
 <script>
 import navbar from './components/Navbar.vue';
+import intro from './components/Intro.vue';
+import technologies, {scrollfire} from './components/Technologies.vue';
+import projects from './components/Projects.vue'
+
 export default {
 	name: 'app',
 	components:{
 		navbar,
+		intro,
+		technologies,
+		projects
 	},
+	created(){
+	}
 }
+
+console.log(scrollfire)
+
 </script>
 
 <style lang="less">
@@ -30,8 +40,8 @@ html, body{
 
 body{
     background: #fafafa;
-	color: #2c3e50;
-	overflow-y: scroll;
+		color: #2c3e50;
+		overflow-y: scroll;
 }
 
 #app {
@@ -40,34 +50,6 @@ body{
 	-moz-osx-font-smoothing: grayscale;
 }
 
-.text-center{
-	text-align: center;
-}
 
-.text-left{
-	text-align: left;
-}
 
-.section{
-	padding-top: 1rem;
-	padding-bottom: 1rem;
-}
-
-.fade-enter-active, .fade-leave-active {
-  transition: opacity .4s;
-}
-.fade-enter, .fade-leave-to {
-  opacity: 0
-}
-
-.fade-page-enter-active, .fade-page-leave-active {
-  transition: opacity .25s;
-}
-
-.fade-page-enter-active {
-  transition-delay: .30s;
-}
-.fade-page-enter, .fade-page-leave-active {
-  opacity: 0
-}
 </style>

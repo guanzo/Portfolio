@@ -9,26 +9,39 @@ export const SELECT_IMAGE = 'SELECT_IMAGE';
 export default new Vuex.Store({
 	state: {
         selectedProject:0,
+        selectedImage:0,
         projects:[
             {
                 name:'Blue Edge',
                 description:'Predictive Analytics',
-                selectedImage:0,
                 imgs:['be_splash.png','be_profile.png','be_scenario.png'],
             },
             {
                 name:'New Business Generator',
                 description:'Business Intelligence',
-                selectedImage:0,
+                //selectedImage:0,
                 imgs:['nbg_customer.png','nbg_platform.png','nbg_region.png','nbg_choropleth.png']
             },
             {
                 name:'Relevance Engine',
                 description:'News Aggregator',
-                selectedImage:0,
+                //selectedImage:0,
                 imgs:['re_dashboard.png','re_docspace.png','re_cdd.png','re_email.png']
+            }
+        ],
+        links: [
+            {
+                url:'https://github.com/guanzo',
+                icon:'fa-github'
             },
-
+            {
+                url:'https://www.linkedin.com/in/eric-guan-6a050547',
+                icon:'fa-linkedin',
+            },
+            {
+                url:'http://stackoverflow.com/users/2498782/eric-guan',
+                icon:'fa-stack-overflow'
+            },
         ],
         technologies:[
                 {
@@ -36,6 +49,7 @@ export default new Vuex.Store({
                     name:'HTML, CSS, JS',
                     text:'',
                     class:'',
+                    style:'transform: translateY(10px);'
                 },
                 {
                     imgSrc:'https://avatars1.githubusercontent.com/u/1562726?v=3&s=400', 
@@ -48,6 +62,7 @@ export default new Vuex.Store({
                     name:'Vue.js',
                     text:'Expressive.<br>Performant.<br>Simple. <br>Fun!',
                     class:'',
+                    style:'transform: translateY(10px);'
                 },
                 {
                     imgSrc:'assets/images/technologies/lodash.png', 
@@ -104,7 +119,7 @@ export default new Vuex.Store({
                     class:'',
                 },
                 {
-                    imgSrc:'http://www.freeiconspng.com/uploads/sql-server-icon-png-1.png', 
+                    imgSrc:'assets/images/technologies/sql-server.png', 
                     name:'SQL Server',
                     class:'',
                 },
@@ -128,7 +143,7 @@ export default new Vuex.Store({
 			state.selectedProject = payload.index
 		},
         [SELECT_IMAGE] (state, payload){
-			state.projects[state.selectedProject].selectedImage = payload.index
+			state.selectedImage = payload.index
 		},
 	},
     getters:{
@@ -137,7 +152,17 @@ export default new Vuex.Store({
         },
         activeImage: (state, getters) => {
             let project = getters.activeProject
-            return project.imgs[project.selectedImage]
+            return project.imgs[state.selectedImage]
+        },
+        totalImageIndex: (state, getters) => {
+            let projects = state.projects;
+            let activeProject = getters.activeProject
+            let index = projects.indexOf(activeProject)
+            let totalIndex = 0;
+            for(let i=0; i<index; i++)
+                totalIndex += projects[i].imgs.length;
+            totalIndex += state.selectedImage;
+            return totalIndex;
         }
     }
 })

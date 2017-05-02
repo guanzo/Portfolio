@@ -5,7 +5,7 @@ import App from './App.vue'
 
 new Vue({
   el: '#app',
-  router,
+  //router,
 	store,
   render: h => h(App)
 })
