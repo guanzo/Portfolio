@@ -1,27 +1,38 @@
 <template>
-    <div id="home" >
-        <stream></stream>
-        <div class="app-section section container center-align">
-            <transition name="intro" appear>
-                <div class="intro-text">
-                    <h3>Welcome to my home</h3>
-                    <h4>My name is Eric Guan</h4>
-                    <div class="flow-text">
-                        <p>I'm a full stack web developer who loves creating interactive web applications.
-                        <br>You can find me creating data visualizations, experimenting with new web technologies, or just listening to my tunes.</p>
-                    </div>
-                </div>
-            </transition>
-            <transition-group name="links" tag="div" class="links" appear>
-                <div v-for="link in links" :key="link.url" class="link">
-                    <a :href="link.url" target="_blank">
-                        <div class="icon-wrapper z-depth-2">
-                            <i class="fa fa-4x" :class="link.icon"></i>
-                        </div>
-                    </a>
-                </div>
-            </transition-group>
+    <div id="home">
+        <div class="app-section container">
+                <svg viewBox="0 0 600 600">
+                    <defs>
+                        <linearGradient id="gradient" y2="1" x2="0">
+                            <stop offset="0" :stop-color="current.gradient[0]" />
+                            <stop offset="1" :stop-color="current.gradient[1]" />
+                        </linearGradient>
+                        <mask id="mask">
+							<transition name="intro-circle-fade" v-on:enter="enter" appear>
+							<circle ref="circle" r="45%" cx="50%" cy="50%" 
+								:style="current.style" :stroke-opacity="current.strokeOpacity" :stroke-dasharray="strokeDashArray">
+							</circle>
+							</transition>
+           					<transition name="intro-fade" appear>
+                            	<text class="glow" x="50%" y="50%" alignment-baseline="central" v-html="current.text"></text>
+							</transition>
+                        </mask>
+                    </defs>
+                    <rect width="100%" height="100%" mask="url(#mask)" fill="url(#gradient)"/>
+                </svg>
         </div>
+        
+        <svg class="global-defs">
+            <defs>
+                <filter id="glow">
+                    <feGaussianBlur stdDeviation="2" result="coloredBlur"></feGaussianBlur>
+                    <feMerge>
+                        <feMergeNode in="coloredBlur"></feMergeNode>
+                        <feMergeNode in="SourceGraphic"></feMergeNode>
+                    </feMerge>
+                </filter>
+            </defs>
+        </svg>
     </div>
 </template>
 
@@ -32,27 +43,95 @@
         <i v-if="showHand" :class="icons[iconIndex]" class="fa fa-3x" aria-hidden="true"></i>
     </transition>
 */
-import stream from './Stream.vue'
+import * as d3 from 'd3'
 export default {
     name:'intro-section',
     data () {
         return {
-            showHand: false,
-            icons:['fa-hand-peace-o','fa-hand-spock-o','fa-hand-paper-o'],
-            iconIndex: Math.floor(Math.random() * 3) + 0,
-            links: this.$store.state.links 
+            index: 0,
+            delay: 2500,
+			totalLength: 0,
+			transforms:[
+				{
+					text:'Hi, my name is Eric',
+					gradient: ['#d64759','#da7352'],//red/orange
+					dasharrayDivisor: 4,
+					strokeOpacity: 1,
+					style: {
+						transform: 'rotate(-45deg)'
+					}
+				},
+				{
+					text:"I'm a full stack developer",
+					gradient: ['#38aecc','#347fb9'],//blue
+					dasharrayDivisor: 4,
+					strokeOpacity: 1,
+					style: {
+						transform: 'rotate(-45deg)'
+					}
+				},
+				{
+					text:'I make interactive websites',
+					gradient: ['#FFFF96','#009E00'],//green
+					dasharrayDivisor: 4,
+					strokeOpacity: 1,
+					style: {
+						transform: 'rotate(-45deg)'
+					}
+				},
+				{
+					text:'Thanks for visiting',
+					gradient: ['#3A3897 ','#A3A1FF'],//purple
+					dasharrayDivisor: 4,
+					strokeOpacity: 1,
+					style: {
+						transform: 'rotate(-45deg)'
+					}
+				}
+			]
         }
     },
-    mounted(){
-        setTimeout(()=>{
-            this.showHand = true
-
-            setTimeout(()=>this.showHand = false, 1000)
-
-        }, 1000)
+    computed:{
+		current(){
+			return this.transforms[this.index]
+		},
+		strokeDashArray(){
+			return this.totalLength/this.current.dasharrayDivisor
+		},
     },
-    components:{
-        stream
+    mounted(){
+		this.totalLength = this.$refs.circle.getTotalLength();
+    },
+    methods:{
+        nextText(){
+            this.index++;
+            if(this.index + 1 < this.texts.length)
+                setTimeout(()=>this.nextText(), this.delay)
+        },
+		enter(circle){
+			d3.select(circle).classed('transition-ready',true)
+			//console.log(arguments)
+			/*var circle = d3.select(this.$refs.circle)
+			circle//.attr('stroke-opacity',0)
+				  .attr("stroke-dashoffset", this.totalLength)
+				  .classed('transition-ready',true)*/
+		},
+        afterEnter(){
+            var circle = d3.select(this.$refs.circle)
+			var totalLength = circle.node().getTotalLength();
+			//circle
+				//.attr("stroke-dasharray", totalLength/4)
+				//.attr("stroke-dashoffset", totalLength)
+				//.style('stroke-opacity',1)
+				/*.transition()
+					.duration(2000)
+					//.ease(d3.easePolyOut)
+					.attr("stroke-dashoffset", 0)
+					.style('stroke-opacity',1)
+					.on('end',()=>{
+						this.nextText();
+					})*/
+        }
     }
 }
 </script>
@@ -61,8 +140,14 @@ export default {
 
 @import '/assets/custom.less';
 
+@duration: 2.5s;
+
 .app-section{
-    height: calc(~'100vh - 64px');
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
 }
 
 #home{
@@ -70,108 +155,42 @@ export default {
 }
 
 svg{
-    height: calc(~'100vh - 64px');
-    width:100vw;
+    overflow: visible;
+    width: 75vmin;
+    height: 75vmin;
+	stop{
+		transition: @duration;
+	}
+}
+
+text{
+    fill: white;
+    text-anchor: middle;
+    font-size: 2.5rem;
+}
+
+circle{
+    stroke: white;
+	//stroke-opacity: 0;
+    stroke-width: 10px;
+    stroke-linecap: round;
+    //transform: rotate(-45deg);
+    transform-origin: 50% 50%;
+	&.transition-ready{
+		transition: @duration;
+	}
+}
+
+.glow{
+    filter: url('#glow');
+}
+
+svg.global-defs{
+    visibility: hidden;
+    pointer-events: none;
+    width:0px;
+    height:0px;
     position: absolute;
-    opacity: 0.15;
-    z-index: -1;
-    stroke-opacity: 0;
-    position: fixed;
-}
-
-.intro-text{
-    /*padding:10px;
-    background: rgba(0,0,0,0.15);*/
-}
-
-.links{
-    margin: 1em 0;
-    display: flex;
-    justify-content: space-around;
-    flex-wrap: wrap;
-}
-
-.link{
-    padding: 5px;
-    .icon-wrapper{
-        position: relative;
-        background: @primary, @purple;
-        background: linear-gradient(to left, @primary, @purple);
-        width:100px;
-        height:100px;
-        border-radius: 50%;
-        &:before{
-            transition: 0.5s;
-            content: '';
-            position: absolute;
-            z-index: 1;
-            background: white;
-            width:100%;
-            height:100%;
-            top: 50%;
-            left: 50%;
-            transform: translateX(-50%) translateY(-50%) scale(0);
-            border-radius: 50%;
-        }
-    }
-    .fa{
-        position: relative;
-        z-index: 2;
-        transition: 0.75s;
-        line-height: 100px;
-        color: white;
-        &:before{
-            backface-visibility: hidden;
-        }
-    }
-    .grower{
-        transform: scale(0.25);
-    }
-    &:hover{
-        .icon-wrapper:before{
-            transform: translateX(-50%) translateY(-50%) scale(.9);
-        }
-        .grower{
-            color: white;
-            //z-index: 5;
-        }
-        .fa{
-            color: @primary;
-            //transform: scale(1.15);
-        }
-    }
-}
-
-.hand-enter{
-    opacity: 0;
-}
-
-
-.intro-enter-active, .links-enter-active{
-    transition: 0.5s;
-}
-
-.links-enter-active{
-    transition-delay: 0.65s;
-}
-
-.intro-enter, .links-enter{
-    opacity: 0;
-    transform: rotateX(45deg) translateY(100px) scale(0.75);
-}
-
-.hand-enter-active{
-    transition: opacity 1.25s ease-out;
-}
-
-.hand-leave-active{
-    transition: opacity 2s cubic-bezier(0.950, 0.050, 0.795, 0.035), transform 1.5s cubic-bezier(0.660, -0.290, 0.000, 1.180);
-    transform-origin: bottom;
-}
-
-.hand-leave-to{
-    opacity: 0;
-    transform: translate(15px, -5px) rotate(40deg);
 }
 
 </style>

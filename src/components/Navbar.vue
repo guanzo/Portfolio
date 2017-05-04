@@ -39,11 +39,11 @@ export default {
     },
     methods:{
         onClick(e){
-            //e.preventDefault();
+            e.preventDefault();
             var anchor = e.currentTarget.getAttribute('href')
             var node = document.querySelector(anchor);
             var top = node.offsetTop - 64;
-            window.scroll({ top: top, behavior: 'smooth' });
+            window.scroll({ top , behavior: 'smooth' });
         }
     }
 }

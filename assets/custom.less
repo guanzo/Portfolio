@@ -2,36 +2,58 @@
 @primary-light:#FFAAAA;
 @primary-dark:#801515;
 
+@oxblood: #76323f;
+
 @purple: #882D60;
 @purple-dark: #661141;
 
 @cadetblue: #669999;
 @cadetblue-light: #9BC2C2;
+@cadetblue-lighter: #CFE4E4;
 @cadetblue-dark: #226666;
+
+
+@plaster: #cdcdcd;
+@linen: #e9e9e9;
+
+@blackboard: #565656;
+@charcoal: #373737;
+@charcoal-lighter: #A09F9F;
 
 @projectTransitionSpeed: 0.75s;
 
 @offwhite: #fafafa;
+@text-black: #2c3e50;
 
 .section{
-    padding-left: 2rem;
-    padding-right: 2rem;
+    padding-left: 0rem;
+    padding-right: 0rem;
 }
 
 .fade-enter-active, .fade-leave-active {
   transition: opacity .4s;
 }
-.fade-enter, .fade-leave-to {
+.fade-enter, .fade-leave-to, .intro-fade-enter, .intro-circle-fade-enter {
   opacity: 0
 }
 
-.fade-page-enter-active, .fade-page-leave-active {
-  transition: opacity .25s;
+.intro-fade-enter-active{
+    transition: 2s;
 }
 
-.fade-page-enter-active {
-  transition-delay: .30s;
+.intro-circle-fade-enter-active{
+    transition: opacity 2s ease 1.5s;
 }
-.fade-page-enter, .fade-page-leave-active {
-  opacity: 0
+
+.scrollfire-active{
+    transition: 0.5s;
+}
+
+.scrollfire-delay{
+    transition-delay: 0.5s;
+}
+
+.scrollfire{
+    opacity: 0;
+    transform: rotateX(45deg) translateY(100px) scale(0.75);
 }

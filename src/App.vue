@@ -1,9 +1,10 @@
 <template>
 	<div id="app">
-		<navbar></navbar>
+		<intro></intro>
+		<!--<navbar></navbar>
 		<intro></intro>
 		<technologies></technologies>
-		<projects></projects>
+		<projects></projects>-->
 	</div>
 </template>
 
@@ -21,11 +22,28 @@ export default {
 		technologies,
 		projects
 	},
-	created(){
+	mounted(){
+		//any element you want to scrollfire, just add "scrollfire" class
+		//and this function will take care of the rest
+		var options = []
+		$('.scrollfire').each(function(index){
+			let tempClass = 'scrollfire-'+index
+			$(this).addClass(tempClass);
+			options.push({ selector: '.'+tempClass, offset: -75, callback: scrollFireCallback })
+		})
+		Materialize.scrollFire(options)
 	}
 }
 
-console.log(scrollfire)
+function scrollFireCallback(el){
+    var $el = $(el)
+    $el.addClass('scrollfire-active')
+    $el.removeClass('scrollfire')
+    $el.one('transitionend',function(){
+        $el.off('transitionend')
+		$el.attr('class',(i,c)=>c.replace(/(^|\s)scrollfire\S+/g, ''))
+    })
+}
 
 </script>
 
@@ -39,9 +57,9 @@ html, body{
 }
 
 body{
-    background: @offwhite;
-		color: #2c3e50;
-		overflow-y: scroll;
+    background: @charcoal;
+	color: @offwhite;
+	overflow-y: scroll;
 }
 
 #app {

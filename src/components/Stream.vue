@@ -68,18 +68,18 @@ export default {
         }
 
         function transition() {
-        data.push(d3.transpose(d3.range(1).map(()=>bumps(m, k))));
-        data.shift();
-        
-        layers = stack(data.slice())
-        let stream = d3.selectAll("path")
-            .data(layers)
-                .transition()
-            .ease(d3.easeLinear)
-            .duration(duration)
-            .attr("d", area);
+            data.push(d3.transpose(d3.range(1).map(()=>bumps(m, k))));
+            data.shift();
             
-        setTimeout(transition, duration)
+            layers = stack(data.slice())
+            let stream = d3.selectAll("path")
+                .data(layers)
+                    .transition()
+                .ease(d3.easeLinear)
+                .duration(duration)
+                .attr("d", area);
+                
+            setTimeout(transition, duration)
         }
 
         transition();
@@ -109,5 +109,6 @@ export default {
 </script>
 
 <style>
+
 
 </style>

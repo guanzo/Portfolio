@@ -1,11 +1,11 @@
 import Vue from 'vue'
 import VueRouter from 'vue-router'
-import HomePage from './components/HomePage.vue'
+import App from './App.vue'
 
 Vue.use(VueRouter)
 
 const routes = [
-  { path: '/home', component: HomePage },
+  { path: '/home', component: App },
   { path: '/', redirect: '/home' },
 
 ]

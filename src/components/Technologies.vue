@@ -2,7 +2,7 @@
     <div id="technologies">
         <div class="app-section section container">
         <h3>Technologies</h3>
-        <div class="tech-intro flow-text">
+        <div class="tech-intro flow-text scrollfire">
             <p>I pride myself on being a versatile and competent programmer. Being proficient in Javascript, Java, and SQL means that
                 I can contribute to the 3 major pillars of web development: frontend, backend, and the database.
             </p>
@@ -14,12 +14,12 @@
                 Can you guess what they are by the logo?
             </p>
         </div>
-            <div class="interactions">
-                <span @click="onShuffle">Shuffle</span> |
-                <span @mouseover="onReveal" @mouseout="onHide">Reveal</span>
-            </div>
+        <div class="interactions">
+            <span @click="onShuffle">Shuffle</span> |
+            <span @mouseover="onReveal" @mouseout="onHide">Reveal</span>
+        </div>
         
-        <transition-group tag="div" class="technology-list flow-text">
+        <transition-group tag="div" class="technology-list flow-text scrollfire">
             <div class="technology z-depth-1" v-for="tech in technologies" :key="tech.name" :class="tech.class" 
                         @mouseover="tech.class = 'reveal'" @mouseout="tech.class = ''" >
                 <div class="img-wrapper">
@@ -61,18 +61,9 @@ export default {
         },
         onShuffle(){
             this.technologies = shuffle(this.technologies)
-        },
+        }
     },
 }
-
-/*export let scrollfire = [
-    {select: '.tech-intro', offset: 200, callback: ()=>console.log('tech intro')},
-    {select: '.technology-list', offset: 200, callback: ()=>console.log('tech List intro')},
-]
-*/
-
-export let scrollfire = 'hi'
-
 
 </script>
 
@@ -86,6 +77,7 @@ export let scrollfire = 'hi'
 
 #technologies{
     background: @offwhite;
+    padding-bottom: 5rem;
 }
 
 .app-section{
@@ -124,14 +116,14 @@ export let scrollfire = 'hi'
         align-items: center;
         justify-content: center;
         background: white;
-        transition: background 5s, box-shadow 0.75s, transform 1s;
+        transition: box-shadow 0.75s, transform 1s;
         border-radius: 50%;
         max-width: @small-tech-size;
         max-height: @small-tech-size;
         padding: 5px;
         margin: 5px;
         &.reveal div.description-overlay{
-            transform: translateY(0);
+            opacity: 1;
         }
         &.reveal img{
             filter: blur(3px);
@@ -141,7 +133,7 @@ export let scrollfire = 'hi'
 
 @media (min-width: 400px){
     .technology-list {
-        font-size: 0.9rem;
+        font-size: 0.85rem;
         .technology{
             max-width: @tech-size;
             max-height: @tech-size;
@@ -150,12 +142,14 @@ export let scrollfire = 'hi'
 }
 div.description-overlay{
     position: absolute;
-    transform: translateY(-100%);
-    will-change: transform;
+    opacity: 0;
     height:100%;
     width:100%;
     background-color:rgba(255,255,255,0.75);
     transition: 0.75s;
+    padding: 5px;
+    border-radius: 50%;
+    //border: 5px solid @charcoal;
     display: flex;
     flex-direction: column;
     justify-content: center;

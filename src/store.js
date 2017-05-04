@@ -10,22 +10,36 @@ export default new Vuex.Store({
 	state: {
         selectedProject:0,
         selectedImage:0,
+        navbarBackground:'',
+        organizations:[
+
+        ],
         projects:[
             {
                 name:'Blue Edge',
-                description:'Predictive Analytics',
+                tagline:'Predictive Analytics',
+                startDate: 'April 2017',
+                background:'linear-gradient(to right, #007dcc , #005C97)',
+                color:'white',
+                selectedImage:0,
                 imgs:['be_splash.png','be_profile.png','be_scenario.png'],
             },
             {
                 name:'New Business Generator',
-                description:'Business Intelligence',
-                //selectedImage:0,
+                tag:'Business Intelligence',
+                startDate: 'March 2016',
+                background:'linear-gradient(to bottom, #354835 , #779377)',
+                color:'white',
+                tagline:0,
                 imgs:['nbg_customer.png','nbg_platform.png','nbg_region.png','nbg_choropleth.png']
             },
             {
                 name:'Relevance Engine',
-                description:'News Aggregator',
-                //selectedImage:0,
+                tag:'News Aggregator',
+                startDate: 'May 2015',
+                background:'linear-gradient(to right, #02488e , #118bef)',
+                color:'white',
+                tagline:0,
                 imgs:['re_dashboard.png','re_docspace.png','re_cdd.png','re_email.png']
             }
         ],
@@ -136,7 +150,7 @@ export default new Vuex.Store({
                     class:'',
                 },
 
-        ]
+        ],
     },
 	mutations:{
 		[SELECT_PROJECT] (state, payload){
@@ -166,4 +180,3 @@ export default new Vuex.Store({
         }
     }
 })
-
