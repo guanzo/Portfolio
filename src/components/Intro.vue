@@ -1,25 +1,25 @@
 <template>
     <div id="home">
         <div class="app-section container">
-                <svg viewBox="0 0 600 600">
-                    <defs>
-                        <linearGradient id="gradient" y2="1" x2="0">
-                            <stop offset="0" :stop-color="current.gradient[0]" />
-                            <stop offset="1" :stop-color="current.gradient[1]" />
-                        </linearGradient>
-                        <mask id="mask">
-							<transition name="intro-circle-fade" v-on:enter="enter" appear>
-							<circle ref="circle" r="45%" cx="50%" cy="50%" 
-								:style="current.style" :stroke-opacity="current.strokeOpacity" :stroke-dasharray="strokeDashArray">
-							</circle>
-							</transition>
-           					<transition name="intro-fade" appear>
-                            	<text class="glow" x="50%" y="50%" alignment-baseline="central" v-html="current.text"></text>
-							</transition>
-                        </mask>
-                    </defs>
-                    <rect width="100%" height="100%" mask="url(#mask)" fill="url(#gradient)"/>
-                </svg>
+			<svg viewBox="0 0 600 600">
+				<defs>
+					<linearGradient id="gradient" y2="1" x2="0">
+						<stop offset="0" :stop-color="current.gradient[0]" />
+						<stop offset="1" :stop-color="current.gradient[1]" />
+					</linearGradient>
+					<mask id="mask">
+						<transition name="intro-circle" appear>
+						<circle ref="circle" r="45%" cx="50%" cy="50%" 
+						:stroke-dasharray="strokeDashArray" :class="current.class" :style="current.style">
+						</circle>
+						</transition>
+						<transition :name="current.textTransition" appear>
+							<text class="glow" x="50%" y="50%" alignment-baseline="central" v-html="current.text" :key="current.text"></text>
+						</transition>
+					</mask>
+				</defs>
+				<rect width="100%" height="100%" mask="url(#mask)" fill="url(#gradient)"/>
+			</svg>
         </div>
         
         <svg class="global-defs">
@@ -37,101 +37,75 @@
 </template>
 
 <script>
-/*
 
-    <transition name="hand">
-        <i v-if="showHand" :class="icons[iconIndex]" class="fa fa-3x" aria-hidden="true"></i>
-    </transition>
-*/
 import * as d3 from 'd3'
+
 export default {
     name:'intro-section',
     data () {
         return {
             index: 0,
-            delay: 2500,
-			totalLength: 0,
-			transforms:[
+			delay: 2500,
+			slides:[
 				{
 					text:'Hi, my name is Eric',
 					gradient: ['#d64759','#da7352'],//red/orange
-					dasharrayDivisor: 4,
-					strokeOpacity: 1,
-					style: {
-						transform: 'rotate(-45deg)'
-					}
 				},
 				{
 					text:"I'm a full stack developer",
 					gradient: ['#38aecc','#347fb9'],//blue
-					dasharrayDivisor: 4,
-					strokeOpacity: 1,
-					style: {
-						transform: 'rotate(-45deg)'
-					}
 				},
 				{
 					text:'I make interactive websites',
 					gradient: ['#FFFF96','#009E00'],//green
-					dasharrayDivisor: 4,
-					strokeOpacity: 1,
-					style: {
-						transform: 'rotate(-45deg)'
-					}
 				},
 				{
 					text:'Thanks for visiting',
 					gradient: ['#3A3897 ','#A3A1FF'],//purple
-					dasharrayDivisor: 4,
-					strokeOpacity: 1,
-					style: {
-						transform: 'rotate(-45deg)'
-					}
 				}
 			]
         }
     },
     computed:{
 		current(){
-			return this.transforms[this.index]
-		},
-		strokeDashArray(){
-			return this.totalLength/this.current.dasharrayDivisor
+			return this.slides[this.index]
 		},
     },
     mounted(){
-		this.totalLength = this.$refs.circle.getTotalLength();
+		
+		//setTimeout(()=>this.nextText(), this.current.duration)
     },
     methods:{
         nextText(){
             this.index++;
-            if(this.index + 1 < this.texts.length)
-                setTimeout(()=>this.nextText(), this.delay)
+            if(this.index + 1 < this.transforms.length)
+                setTimeout(()=>this.nextText(), this.current.duration)
         },
-		enter(circle){
-			d3.select(circle).classed('transition-ready',true)
-			//console.log(arguments)
-			/*var circle = d3.select(this.$refs.circle)
-			circle//.attr('stroke-opacity',0)
-				  .attr("stroke-dashoffset", this.totalLength)
-				  .classed('transition-ready',true)*/
+		circlePath(cx, cy, r){
+			return 'M '+cx+' '+cy+' m -'+r+', 0 a '+r+','+r+' 0 1,0 '+(r*2)+',0 a '+r+','+r+' 0 1,0 -'+(r*2)+',0';
 		},
-        afterEnter(){
-            var circle = d3.select(this.$refs.circle)
-			var totalLength = circle.node().getTotalLength();
-			//circle
-				//.attr("stroke-dasharray", totalLength/4)
-				//.attr("stroke-dashoffset", totalLength)
-				//.style('stroke-opacity',1)
-				/*.transition()
-					.duration(2000)
-					//.ease(d3.easePolyOut)
-					.attr("stroke-dashoffset", 0)
-					.style('stroke-opacity',1)
-					.on('end',()=>{
-						this.nextText();
-					})*/
-        }
+		describeArc(x, y, radius, startAngle, endAngle){
+
+			var start = this.polarToCartesian(x, y, radius, endAngle);
+			var end = this.polarToCartesian(x, y, radius, startAngle);
+
+			var largeArcFlag = endAngle - startAngle <= 180 ? "0" : "1";
+
+			var d = [
+				"M", start.x, start.y, 
+				"A", radius, radius, 0, largeArcFlag, 0, end.x, end.y
+			].join(" ");
+
+			return d;       
+		},
+		polarToCartesian(centerX, centerY, radius, angleInDegrees) {
+			var angleInRadians = (angleInDegrees-90) * Math.PI / 180.0;
+
+			return {
+				x: centerX + (radius * Math.cos(angleInRadians)),
+				y: centerY + (radius * Math.sin(angleInRadians))
+			};
+		},
     }
 }
 </script>
@@ -167,18 +141,6 @@ text{
     fill: white;
     text-anchor: middle;
     font-size: 2.5rem;
-}
-
-circle{
-    stroke: white;
-	//stroke-opacity: 0;
-    stroke-width: 10px;
-    stroke-linecap: round;
-    //transform: rotate(-45deg);
-    transform-origin: 50% 50%;
-	&.transition-ready{
-		transition: @duration;
-	}
 }
 
 .glow{
