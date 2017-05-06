@@ -1,21 +1,23 @@
 <template>
     <div id="home">
-		<svg>
+		<svg class="intro">
 			<g v-for="(slide,i) in slides" v-if="i <= index" >
+				<defs>
+					<linearGradient :id="'gradient'+i" y2="1" x2="0">
+						<stop offset=".1" :stop-color="slides[i].gradient[0]" />
+						<stop offset=".9" :stop-color="slides[i].gradient[1]" />
+					</linearGradient>
+					<mask :id="'mask'+i" class="masks">
+						<path :d="slide.d" :style="slide.style"></path>
+					</mask>
+				</defs>
+
 				<svg viewBox="0 0 1000 500" preserveAspectRatio="none">
-					<defs>
-						<linearGradient :id="'gradient'+i" y2="1" x2="0">
-							<stop offset=".1" :stop-color="slides[i].gradient[0]" />
-							<stop offset=".9" :stop-color="slides[i].gradient[1]" />
-						</linearGradient>
-						<mask :id="'mask'+i" class="masks">
-							<path :d="slide.d" :style="slide.style"></path>
-						</mask>
-					</defs>
 					<rect width="100%" height="100%" :mask="`url(#mask${i})`" :fill="`url(#gradient${i})`"/>
 				</svg>
+
 				<svg viewBox="0 0 1000 500" preserveAspectRatio="xMidYMid meet">
-					<text class="glow" x="50%" y="50%" :mask="`url(#mask${i})`" alignment-baseline="central" v-html="slide.text"></text>
+					<text :style="slide.textStyle" class="glow" x="50%" y="50%" :mask="`url(#mask${i})`" alignment-baseline="central" v-html="slide.text"></text>
 				</svg>
 			</g>
 		</svg>
@@ -31,10 +33,19 @@
                 </filter>
             </defs>
         </svg>
+		<svg v-visible="showUI" class="scroll-down" viewBox="0 0 100 100">
+			<g>
+				<circle r="30" cx="50%" cy="50%"></circle>
+				<polyline points="35,38 50,50 65,38"></polyline>
+				<polyline points="35,55 50,67 65,55"></polyline>
+			</g>
+		</svg>
     </div>
 </template>
 
 <script>
+import * as d3 from 'd3'
+
 export default {
     name:'intro-section',
     data () {
@@ -56,6 +67,8 @@ export default {
         return {
             index: 0,
 			duration: 3000,
+			carat:'35,40 50,52.5 65,40',
+			showUI: false,
 			slides:[
 				{
 					text:'Hi, my name is Eric',
@@ -83,17 +96,24 @@ export default {
 				},
 				{
 					text:'Thanks for visiting',
-					gradient: ['#3A3897 ','#A3A1FF'],//purple
+					gradient: ['#A3A1FF ','#3A3897'],//purple
 					d: waveToLeft,
 					style:{
 						'animation-name':'wave-to-left',
+					},
+					textStyle:{
+						'animation-name':'last-slide',
 					}
 				}
 			]
         }
     },
+	computed:{
+
+	},
     mounted(){
 		setTimeout(()=>this.next(), this.duration)
+		setTimeout(()=>this.reveal(), this.duration/2)
     },
     methods:{
         next(){
@@ -101,8 +121,25 @@ export default {
             if(this.index + 1 < this.slides.length)
                 setTimeout(()=>this.next(), this.duration)
         },
+		reveal(){
+			this.showUI = true;
+			d3.select('.scroll-down g').selectAll('*')
+				.attr('stroke-dasharray',function(){return this.getTotalLength()})
+				.attr('stroke-dashoffset',function(){return this.getTotalLength()})
+				.transition()
+				.duration(750)
+				.delay((d,i)=>i*200)
+				.attr("stroke-dashoffset", 0)
+		}
 		
     }
+}
+
+
+function tweenDash() {
+	var l = this.getTotalLength(),
+		i = d3.interpolateString("0," + l, l + "," + l);
+	return function(t) { return i(t); };
 }
 </script>
 
@@ -124,21 +161,51 @@ export default {
     overflow: hidden;
 }
 
-svg{
+.scroll-down {
+	position: absolute;
+	left:50%;
+	bottom: 0;
+	height:90px;
+	width:90px;
+	transform: translateX(-50%);
+
+	polyline, circle{
+		stroke: @offwhite;
+	}
+	polyline{
+		fill:none;
+		stroke-width: 1.5px;
+		pointer-events: none;
+	}
+	circle{
+		fill:transparent;
+		stroke-width: 2.5px;
+		cursor: pointer;
+		transition: fill 0.5s;
+		&:hover{
+			fill: rgba(0,0,0,0.2);
+		}
+	}
+}
+
+svg.intro{
 	width: 100vw;
 	height: 100vh;
 	pointer-events: none;
 }
 
 text{
-    fill: white;
+    fill: @offwhite;
     text-anchor: middle;
 	font-weight: bold;
     font-size: 3rem;
+	animation-duration: 4s;
+	animation-timing-function: ease-in;
+	animation-fill-mode: forwards;
 }
 
 .masks path{
-	fill: white;
+	fill: @offwhite;
 	will-change: transform;
 	animation-duration: @duration;
 	animation-fill-mode: forwards;
@@ -172,4 +239,18 @@ svg.global-defs{
 		transform: translateX(-50%);
 	}
 }
+
+@keyframes last-slide {
+	0%{
+		opacity: 0;
+	}
+	50%{
+		opacity: 0;
+	}
+	100%{
+		opacity: 1;
+	}
+}
+
+
 </style>
