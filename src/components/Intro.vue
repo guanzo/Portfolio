@@ -167,6 +167,7 @@ function tweenDash() {
 
 .root{
     height: 100vh;
+	font-family: 'Raleway', sans-serif;
 }
 
 

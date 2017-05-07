@@ -63,6 +63,8 @@ function scrollFireCallback(el){
 html, body{
 	height: 100%;
 	width: 100%;
+	-webkit-font-smoothing: antialiased;
+	-moz-osx-font-smoothing: grayscale;
 }
 
 body{
@@ -72,9 +74,6 @@ body{
 }
 
 #app {
-	font-family: 'Raleway', sans-serif;
-	-webkit-font-smoothing: antialiased;
-	-moz-osx-font-smoothing: grayscale;
 	overflow-x: hidden;
 }
 
