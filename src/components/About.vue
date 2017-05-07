@@ -84,14 +84,16 @@ h2{
 }
 
 .img-wrapper{
-    padding: 0px 0px 1.5rem 1.5rem;
+    margin: 0px 0px .5rem .5rem;
     float: right;
     text-align: center;
-    max-width: 50%;
+    width: 25%;
+    min-width: 125px;
     img{
         width: 100%;
         min-width:125px;
         height: auto;
+        max-height:200px;
     }
 }
 
