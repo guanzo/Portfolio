@@ -25,9 +25,10 @@
 @offwhite: #fafafa;
 @text-black: #2c3e50;
 
-.section{
-    padding-left: 0rem;
-    padding-right: 0rem;
+.app-section{
+    min-height: 100vh;
+    padding: 2rem 0rem;
+    position: relative;
 }
 
 .fade-enter-active, .fade-leave-active {
@@ -45,7 +46,16 @@
     transition-delay: 0.5s;
 }
 
-.scrollfire{
+.scrollfire-to-top{
     opacity: 0;
     transform: rotateX(45deg) translateY(100px) scale(0.75);
+}
+
+.scrollfire-to-left{
+    opacity: 0;
+    transform: translateX(100px);
+}
+.scrollfire-to-right{
+    opacity: 0;
+    transform: translateX(-100px);
 }

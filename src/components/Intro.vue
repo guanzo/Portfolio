@@ -1,5 +1,5 @@
 <template>
-    <div id="home">
+    <div class="root">
 		<svg class="intro">
 			<g v-for="(slide,i) in slides" v-if="i <= index" >
 				<defs>
@@ -8,7 +8,7 @@
 						<stop offset=".9" :stop-color="slides[i].gradient[1]" />
 					</linearGradient>
 					<mask :id="'mask'+i" class="masks">
-						<path :d="slide.d" :style="slide.style"></path>
+						<path :d="slide.d" :transform="slide.transform" ></path>
 					</mask>
 				</defs>
 
@@ -35,9 +35,10 @@
         </svg>
 		<svg v-visible="showUI" class="scroll-down" viewBox="0 0 100 100">
 			<g>
-				<circle r="30" cx="50%" cy="50%"></circle>
-				<polyline points="35,38 50,50 65,38"></polyline>
-				<polyline points="35,55 50,67 65,55"></polyline>
+				<!--<circle r="30" cx="50%" cy="50%"></circle>-->
+				<path class="circle" :d="circlePath(50,50,30)"></path>
+				<path d="M35 38 L 50 50 L 65 38"></path>
+				<path d="M35 55 L 50 67 L 65 55"></path>
 			</g>
 		</svg>
     </div>
@@ -67,40 +68,35 @@ export default {
         return {
             index: 0,
 			duration: 3000,
-			carat:'35,40 50,52.5 65,40',
 			showUI: false,
 			slides:[
 				{
-					text:'Hi, my name is Eric',
+					text:"Hi, my name is Eric",
 					gradient: ['#da7352','#d64759'],//red/orange
 					d: waveToRight,
-					style:{
-						'animation-name':'wave-to-right',
-					}
+					transform:'translate(-2000,0)',
+					transformTo:'translate(0,0)'
 				},
 				{
 					text:"I'm a full stack developer",
 					gradient:['#38aecc','#2E3192'],
 					d: waveToLeft,
-					style:{
-						'animation-name':'wave-to-left',
-					}
+					transform:'translate(1000,0)',
+					transformTo:'translate(-1000,0)'
 				},
 				{
 					text:'I create web applications',
 					gradient: ['#12B05B','#005A2A'],
 					d: waveToRight,
-					style:{
-						'animation-name':'wave-to-right',
-					}
+					transform:'translate(-2000,0)',
+					transformTo:'translate(0,0)'
 				},
 				{
 					text:'Thanks for visiting',
 					gradient: ['#A3A1FF ','#3A3897'],//purple
 					d: waveToLeft,
-					style:{
-						'animation-name':'wave-to-left',
-					},
+					transform:'translate(2000,0)',
+					transformTo:'translate(-1000,0)',
 					textStyle:{
 						'animation-name':'last-slide',
 					}
@@ -109,27 +105,47 @@ export default {
         }
     },
 	computed:{
-
+		currentSlide(){
+			return this.slides[this.index]
+		}
 	},
     mounted(){
+		this.slideMask();
 		setTimeout(()=>this.next(), this.duration)
-		setTimeout(()=>this.reveal(), this.duration/2)
+		setTimeout(()=>this.reveal(), 2000)
     },
     methods:{
         next(){
             this.index++;
+			this.slideMask();
             if(this.index + 1 < this.slides.length)
                 setTimeout(()=>this.next(), this.duration)
         },
+		slideMask(){
+			let slide = this.currentSlide;
+			var duration = this.duration;
+            var interpolator = d3.interpolateString(slide.transform, slide.transformTo)
+            var t = d3.timer((elapsed)=>{
+                var normalizedTime = Math.min(elapsed,duration)/duration
+                var easedTime = d3.easeCubicInOut(normalizedTime);
+                slide.transform = interpolator(easedTime);
+				
+                if (elapsed > duration) 
+                    t.stop();
+            });
+		},
 		reveal(){
 			this.showUI = true;
-			d3.select('.scroll-down g').selectAll('*')
+			d3.select('.scroll-down g').selectAll('path')
 				.attr('stroke-dasharray',function(){return this.getTotalLength()})
 				.attr('stroke-dashoffset',function(){return this.getTotalLength()})
 				.transition()
 				.duration(750)
 				.delay((d,i)=>i*200)
 				.attr("stroke-dashoffset", 0)
+		},
+		circlePath(cx, cy, r){
+			return 'M '+cx+' '+cy+' m -'+r+', 0 a '+r+','+r+' 0 1,0 '+(r*2)+',0 a '+r+','+r+' 0 1,0 -'+(r*2)+',0';
 		}
 		
     }
@@ -149,36 +165,30 @@ function tweenDash() {
 
 @duration: 3s;
 
-.app-section{
-    //height: 100vh;
-    //display: flex;
-    //justify-content: center;
-    //align-items: center;
-    //text-align: center;
+.root{
+    height: 100vh;
 }
 
-#home{
-    overflow: hidden;
-}
 
 .scroll-down {
 	position: absolute;
 	left:50%;
 	bottom: 0;
-	height:90px;
-	width:90px;
+	height:80px;
+	width:80px;
 	transform: translateX(-50%);
 
-	polyline, circle{
+	path, .circle{
 		stroke: @offwhite;
 	}
-	polyline{
+	path{
 		fill:none;
 		stroke-width: 1.5px;
 		pointer-events: none;
 	}
-	circle{
+	.circle{
 		fill:transparent;
+		pointer-events: fill;
 		stroke-width: 2.5px;
 		cursor: pointer;
 		transition: fill 0.5s;
@@ -189,8 +199,8 @@ function tweenDash() {
 }
 
 svg.intro{
-	width: 100vw;
-	height: 100vh;
+	width:100%;
+	height:100vh;
 	pointer-events: none;
 }
 
@@ -205,7 +215,7 @@ text{
 }
 
 .masks path{
-	fill: @offwhite;
+	fill: white;
 	will-change: transform;
 	animation-duration: @duration;
 	animation-fill-mode: forwards;
@@ -223,28 +233,12 @@ svg.global-defs{
     position: absolute;
 }
 
-@keyframes wave-to-right {
-	from{
-		transform: translateX(-100%);
-	}
-	to{
-		transform: translateX(0%);
-	}
-}
-@keyframes wave-to-left {
-	from{
-		transform: translateX(50%);
-	}
-	to{
-		transform: translateX(-50%);
-	}
-}
 
 @keyframes last-slide {
 	0%{
 		opacity: 0;
 	}
-	50%{
+	60%{
 		opacity: 0;
 	}
 	100%{

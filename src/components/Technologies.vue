@@ -80,9 +80,6 @@ export default {
     padding-bottom: 5rem;
 }
 
-.app-section{
-    min-height: 100vh;
-}
 
 .guess{
     position: relative;
