@@ -2,10 +2,11 @@
 	<div id="app">
 		<intro></intro>
 		<about></about>
+		<technologies></technologies>
 		<!--<navbar></navbar>
 		<intro></intro>
-		<technologies></technologies>
 		<projects></projects>-->
+		<iconCredits></iconCredits>
 	</div>
 </template>
 
@@ -15,6 +16,8 @@ import intro from './components/Intro.vue';
 import about from './components/About.vue'
 import technologies, {scrollfire} from './components/Technologies.vue';
 import projects from './components/Projects.vue'
+import iconCredits from './components/IconCredit.vue'
+import smoothScroll from 'smoothscroll-polyfill'
 
 export default {
 	name: 'app',
@@ -23,24 +26,55 @@ export default {
 		intro,
 		about,
 		technologies,
-		projects
+		projects,
+		iconCredits
+	},
+	created(){
+		smoothScroll.polyfill();
+
 	},
 	mounted(){
-		//any element you want to scrollfire, just add "scrollfire" class
-		//and this function will take care of the rest
-		var options = []
-		var regex = new RegExp('scrollfire')
-		$('*[class*="scrollfire"]').each(function(index){
-			var $this = $(this);
-			let scrollfireType = $this.prop('class').split(' ').find(c=>regex.test(c))
-			let tempClass = 'scrollfire-'+index
-			$this.addClass(tempClass);
-			$this.attr('data-scrollfire-type',scrollfireType)
-			let offset = scrollfireType === 'scrollfire-to-top' ? -75 : 150;
-			options.push({ selector: '.'+tempClass, offset, callback: scrollFireCallback })
+		this.$nextTick(()=>{
+			this.setScrollFires();
+
+			var links = this.$el.querySelectorAll('a')
+			Array.from(links).forEach(link=>{
+				link.addEventListener('click',this.onClickAnchor)
+			})
 		})
-		Materialize.scrollFire(options)
+	},
+	methods:{
+        onClickAnchor(e){
+			e.preventDefault();
+            var anchor = e.currentTarget.getAttribute('href')
+            var node = document.querySelector(anchor);
+            var top = node.offsetTop;
+            window.scroll({ top , behavior: 'smooth' });
+        },
+		setScrollFires(){
+			//available scrollfire classes in custom.less file
+			//add ONLY ONE of these classes to any element
+			var options = []
+			var regex = new RegExp('scrollfire')
+			let defaultOffset = 200;
+			$('[class*="scrollfire"]').each(function(index){
+				var $this = $(this);
+				let scrollfireType = $this.attr('class').split(' ').find(c=>regex.test(c))
+				let tempClass = 'scrollfire-'+index
+				$this.addClass(tempClass);
+				$this.attr('data-scrollfire-type',scrollfireType)
+				let customOffset = $this.data('scrollfire-offset')
+				let offset = customOffset ? customOffset : defaultOffset;
+
+				if(scrollfireType === 'scrollfire-to-top')
+					offset -= 75; //offset the translateY
+
+				options.push({ selector: '.'+tempClass, offset, callback: scrollFireCallback })
+			})
+			Materialize.scrollFire(options)
+		}
 	}
+
 }
 
 function scrollFireCallback(el){

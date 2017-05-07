@@ -1,20 +1,11 @@
 <template>
-    <div class="navbar-fixed">
-        <nav>
-            <div class="nav-wrapper">
-                <ul>
-                    <li v-for="link in links">
-                        <a :href="link.url" @click="onClick">{{ link.name}}</a>
-                    </li>
-                </ul>
-            </div>
-        </nav>
+    <div>
+        HELLO
     </div>
 </template>
 
 <script>
 import Vue from 'vue'
-import smoothScroll from 'smoothscroll-polyfill'
 export default {
 	data () {
 		return {
@@ -35,16 +26,16 @@ export default {
 		}
 	},
     created(){
-        smoothScroll.polyfill();
+        //smoothScroll.polyfill();
     },
     methods:{
-        onClick(e){
+        /*onClick(e){
             e.preventDefault();
             var anchor = e.currentTarget.getAttribute('href')
             var node = document.querySelector(anchor);
             var top = node.offsetTop - 64;
             window.scroll({ top , behavior: 'smooth' });
-        }
+        }*/
     }
 }
 </script>

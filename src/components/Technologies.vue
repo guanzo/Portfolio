@@ -1,36 +1,36 @@
 <template>
     <div id="technologies">
-        <div class="app-section section container">
-        <h3>Technologies</h3>
-        <div class="tech-intro flow-text scrollfire">
-            <p>I pride myself on being a versatile and competent programmer. Being proficient in Javascript, Java, and SQL means that
-                I can contribute to the 3 major pillars of web development: frontend, backend, and the database.
-            </p>
-            <p>As the state of web development offloads more and more work onto the client, so has my focus increased on staying up to date on modern frontend practices. 
-            </p>
-            <p>The technologies listed below are not representative of all that I know, just the ones I enjoy using. 
-            </p>
-            <p>
-                Can you guess what they are by the logo?
-            </p>
-        </div>
-        <div class="interactions">
-            <span @click="onShuffle">Shuffle</span> |
-            <span @mouseover="onReveal" @mouseout="onHide">Reveal</span>
-        </div>
-        
-        <transition-group tag="div" class="technology-list flow-text scrollfire">
-            <div class="technology z-depth-1" v-for="tech in technologies" :key="tech.name" :class="tech.class" 
-                        @mouseover="tech.class = 'reveal'" @mouseout="tech.class = ''" >
-                <div class="img-wrapper">
-                    <img :style="tech.style" :src="tech.imgSrc" :alt="tech.name" >
-                </div>
-                <div class="description-overlay">
-                    <b>{{ tech.name }}</b>
-                    <span v-html="tech.text"></span>
-                </div>
+        <div class="app-section container">
+            <h3>Technologies</h3>
+            <div class="tech-intro flow-text scrollfire">
+                <p>I pride myself on being a versatile and competent programmer. Being proficient in Javascript, Java, and SQL means that
+                    I can contribute to the 3 major pillars of web development: frontend, backend, and the database.
+                </p>
+                <p>As the state of web development offloads more and more work onto the client, so has my focus increased on staying up to date on modern frontend practices. 
+                </p>
+                <p>The technologies listed below are not representative of all that I know, just the ones I enjoy using. 
+                </p>
+                <p>
+                    Can you guess what they are by the logo?
+                </p>
             </div>
-        </transition-group>
+            <div class="interactions">
+                <span @click="onShuffle">Shuffle</span> |
+                <span @mouseover="onReveal" @mouseout="onHide">Reveal</span>
+            </div>
+            
+            <transition-group tag="div" class="technology-list flow-text scrollfire">
+                <div class="technology z-depth-1" v-for="tech in technologies" :key="tech.name" :class="tech.class" 
+                            @mouseover="tech.class = 'reveal'" @mouseout="tech.class = ''" >
+                    <div class="img-wrapper">
+                        <img :style="tech.style" :src="tech.imgSrc" :alt="tech.name" >
+                    </div>
+                    <div class="description-overlay">
+                        <b>{{ tech.name }}</b>
+                        <span v-html="tech.text"></span>
+                    </div>
+                </div>
+            </transition-group>
         </div>
     </div>
 </template>
@@ -76,8 +76,9 @@ export default {
 @small-tech-size: 85px;
 
 #technologies{
-    background: @offwhite;
-    padding-bottom: 5rem;
+    background: @linen;
+    color: #333;
+    //padding-bottom: 5rem;
 }
 
 

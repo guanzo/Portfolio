@@ -6,9 +6,41 @@ import VueVisible from 'vue-visible';
  
 Vue.use(VueVisible);
 
+/*
+I've decided to have a little robot butler i can interact with around the page.
+Just for some flavor. Everytime we talk, i'll show these 2 image components.
+Register globally so i don't have to import all the time.
+*/
+
+Vue.component('man',{
+  render(createElement){
+    return createElement(
+      'img',
+      {
+        attrs:{
+          src:'assets/images/man.svg'
+        }
+      }
+    )
+  }
+})
+
+Vue.component('robot',{
+  render(createElement){
+    return createElement(
+      'img',
+      {
+        attrs:{
+          src:'assets/images/robot.svg'
+        }
+      }
+    )
+  }
+})
+
 new Vue({
   el: '#app',
   //router,
 	store,
-  render: h => h(App)
+  render: h => h(App),
 })

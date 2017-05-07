@@ -8,7 +8,7 @@
 						<stop offset=".9" :stop-color="slides[i].gradient[1]" />
 					</linearGradient>
 					<mask :id="'mask'+i" class="masks">
-						<path :d="slide.d" :transform="slide.transform" ></path>
+						<path :d="slide.d" :transform="slide.transform"></path>
 					</mask>
 				</defs>
 
@@ -33,14 +33,15 @@
                 </filter>
             </defs>
         </svg>
-		<svg v-visible="showUI" class="scroll-down" viewBox="0 0 100 100">
-			<g>
-				<!--<circle r="30" cx="50%" cy="50%"></circle>-->
-				<path class="circle" :d="circlePath(50,50,30)"></path>
-				<path d="M35 38 L 50 50 L 65 38"></path>
-				<path d="M35 55 L 50 67 L 65 55"></path>
-			</g>
-		</svg>
+		<a href="#about" @click="onClick">
+			<svg v-visible="showUI" class="scroll-down" viewBox="0 0 100 100">
+				<g>
+					<path class="circle" :d="circlePath(50,50,45)"></path>
+					<path d="M30 35 L 50 50 L 70 35"></path>
+					<path d="M30 55 L 50 70 L 70 55"></path>
+				</g>
+			</svg>
+		</a>
     </div>
 </template>
 
@@ -95,7 +96,7 @@ export default {
 					text:'Thanks for visiting',
 					gradient: ['#A3A1FF ','#3A3897'],//purple
 					d: waveToLeft,
-					transform:'translate(2000,0)',
+					transform:'translate(1000,0)',
 					transformTo:'translate(-1000,0)',
 					textStyle:{
 						'animation-name':'last-slide',
@@ -146,6 +147,13 @@ export default {
 		},
 		circlePath(cx, cy, r){
 			return 'M '+cx+' '+cy+' m -'+r+', 0 a '+r+','+r+' 0 1,0 '+(r*2)+',0 a '+r+','+r+' 0 1,0 -'+(r*2)+',0';
+		},
+		onClick(e){
+			e.preventDefault();
+            var anchor = e.currentTarget.getAttribute('href')
+            var node = document.querySelector(anchor);
+            var top = node.offsetTop;
+            window.scroll({ top , behavior: 'smooth' });
 		}
 		
     }
@@ -174,24 +182,24 @@ function tweenDash() {
 .scroll-down {
 	position: absolute;
 	left:50%;
-	bottom: 0;
-	height:80px;
-	width:80px;
+	bottom: 5px;
 	transform: translateX(-50%);
+	display: inline-block;
+	height:60px;
+	width:60px;
 
 	path, .circle{
 		stroke: @offwhite;
 	}
 	path{
 		fill:none;
-		stroke-width: 1.5px;
+		stroke-width: 5px;
 		pointer-events: none;
 	}
 	.circle{
 		fill:transparent;
 		pointer-events: fill;
 		stroke-width: 2.5px;
-		cursor: pointer;
 		transition: fill 0.5s;
 		&:hover{
 			fill: rgba(0,0,0,0.2);
