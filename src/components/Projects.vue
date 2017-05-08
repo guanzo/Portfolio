@@ -1,12 +1,9 @@
 <template>
-    <div id="projects" >
-        <div class="container section">
+    <div id="projects">
+        <div class="app-section container">
             <h3>Projects</h3>
         </div>
-        <template v-for="project in projects" >
-            <project-section :project="project"></project-section>
-            <div class="project-divider"></div>
-        </template>
+        <span class="wip">Work in Progress</span>
     </div>
 </template>
 
@@ -33,8 +30,7 @@ export default {
 @import '/assets/custom.less';
 
 #projects{
-    background: @charcoal;
-    color: white;
+    position: relative;
 }
 
 .project-divider{

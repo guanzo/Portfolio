@@ -5,12 +5,16 @@ Vue.use(Vuex)
 
 export const SELECT_PROJECT = 'SELECT_PROJECT';
 export const SELECT_IMAGE = 'SELECT_IMAGE';
+export const TAKE_CANDY = 'TAKE_CANDY';
+export const OFFER_CANDY = 'OFFER_CANDY';
 
 export default new Vuex.Store({
 	state: {
         selectedProject:0,
         selectedImage:0,
         navbarBackground:'',
+        candyTaken: false,
+        candyOffered: false,
         organizations:[
 
         ],
@@ -138,6 +142,12 @@ export default new Vuex.Store({
                     class:'',
                 },
                 {
+                    imgSrc:'assets/images/robot.svg', 
+                    name:'ABR',
+                    text:'A somewhat reliable robot butler.',
+                    class:'',
+                },
+                {
                     imgSrc:'assets/images/technologies/tomcat.png', 
                     name:'Apache Tomcat',
                     text:'I have 2 cats',
@@ -159,6 +169,12 @@ export default new Vuex.Store({
         [SELECT_IMAGE] (state, payload){
 			state.selectedImage = payload.index
 		},
+        [TAKE_CANDY] (state){
+            state.candyTaken = true;
+        },
+        [OFFER_CANDY] (state){
+            state.candyOffered = true;
+        }
 	},
     getters:{
         activeProject: state => {

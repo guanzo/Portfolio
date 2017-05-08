@@ -1,26 +1,23 @@
 <template>
-    <div id="technologies">
+    <div id="technologies" class="app-section-offwhite">
         <div class="app-section container">
-            <h3>Technologies</h3>
-            <div class="tech-intro flow-text scrollfire">
+            <h3 class="scrollfire-to-right">Technologies</h3>
+            <div class="tech-intro flow-text scrollfire-to-top">
                 <p>I pride myself on being a versatile and competent programmer. Being proficient in Javascript, Java, and SQL means that
-                    I can contribute to the 3 major pillars of web development: frontend, backend, and the database.
+                    I can contribute to the 3 major pillars of web development: <b>frontend</b>, <b>backend</b>, and the <b>database</b>.
                 </p>
-                <p>As the state of web development offloads more and more work onto the client, so has my focus increased on staying up to date on modern frontend practices. 
+                <p>As the state of web development trends more towards complex frontends, 
+                    so has my focus increased on staying up to date on modern frontend practices. 
                 </p>
-                <p>The technologies listed below are not representative of all that I know, just the ones I enjoy using. 
-                </p>
-                <p>
-                    Can you guess what they are by the logo?
-                </p>
+                <p>Can you guess the technologies below by the logo?</p>
             </div>
             <div class="interactions">
                 <span @click="onShuffle">Shuffle</span> |
                 <span @mouseover="onReveal" @mouseout="onHide">Reveal</span>
             </div>
             
-            <transition-group tag="div" class="technology-list flow-text scrollfire">
-                <div class="technology z-depth-1" v-for="tech in technologies" :key="tech.name" :class="tech.class" 
+            <transition-group tag="div" class="technology-list flow-text scrollfire-to-top">
+                <div class="technology z-depth-2" v-for="tech in technologies" :key="tech.name" :class="tech.class" 
                             @mouseover="tech.class = 'reveal'" @mouseout="tech.class = ''" >
                     <div class="img-wrapper">
                         <img :style="tech.style" :src="tech.imgSrc" :alt="tech.name" >
@@ -31,6 +28,7 @@
                     </div>
                 </div>
             </transition-group>
+            <dialogue :script="script"></dialogue>
         </div>
     </div>
 </template>
@@ -38,11 +36,28 @@
 <script>
 //import shuffle from './lodash/shuffle'
 import shuffle from 'lodash/shuffle'
+import dialogue from './Dialogue.vue'
 export default {
     name:'technology-section',
     data () {
         return {
-            technologies: this.$store.state.technologies
+            technologies: this.$store.state.technologies,
+            script:[
+                {speaker:'robot', lines:["But sire! You know more than that!!"]},
+                {speaker:'man', lines:[
+                    "Well.. yes. I know jQuery,  GWT, and a bunch of other stuff.",
+                    "The thing is, web developers inevitably end up with a massive figurative toolbox.",
+                    "It's not feasible to list every single item, nor would it be appropriate.",
+                    `As it is, I choose to list the tools I most enjoy using, in the hopes that I can find a job I love, 
+                    instead of a job that I can do.`,
+                    'Thanks for your concern though, ABR. I appreciate it.'
+                    ]},
+                {speaker:'robot', lines:["Y-yes SIRE!"]},
+                {speaker:'man', lines:["How's my project gallery coming along?"]},
+                {speaker:'robot', lines:["All done"]},
+                {speaker:'man', lines:["Excellent. Onwards! Err, I mean downwards!"]},
+                {speaker:'robot', lines:["Haha"]},
+            ]
         }
     },
     computed:{
@@ -63,6 +78,9 @@ export default {
             this.technologies = shuffle(this.technologies)
         }
     },
+    components:{
+        dialogue
+    }
 }
 
 </script>
@@ -74,13 +92,6 @@ export default {
 
 @tech-size: 125px;
 @small-tech-size: 85px;
-
-#technologies{
-    background: @linen;
-    color: #333;
-    //padding-bottom: 5rem;
-}
-
 
 .guess{
     position: relative;
@@ -160,6 +171,7 @@ div.description-overlay{
 }
 img{
     max-width: 100%;
+    width: 100%;
     height:auto;
     transition: 0.75s;
     will-change: filter;

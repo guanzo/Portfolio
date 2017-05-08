@@ -3,9 +3,10 @@ import Vue from 'vue'
 import store from './store.js'
 import App from './App.vue'
 import VueVisible from 'vue-visible';
- 
-Vue.use(VueVisible);
+import VueWaypoint from 'vue-waypoint';
 
+Vue.use(VueVisible);
+Vue.use(VueWaypoint)
 /*
 I've decided to have a little robot butler i can interact with around the page.
 Just for some flavor. Everytime we talk, i'll show these 2 image components.

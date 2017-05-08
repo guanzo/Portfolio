@@ -23,12 +23,17 @@
 @projectTransitionSpeed: 0.75s;
 
 @offwhite: #fafafa;
-@text-black: #2c3e50;
+@black: #333;
 
 .app-section{
     min-height: 100vh;
     padding: 2rem 0rem;
     position: relative;
+}
+
+.app-section-offwhite{
+    background: @linen;
+    color: @black;
 }
 
 .fade-enter-active, .fade-leave-active {
@@ -58,4 +63,23 @@
 .scrollfire-to-right{
     opacity: 0;
     transform: translateX(-100px);
+}
+
+.scrollfire-exit-to-left{
+    transform: translateX(-100px);
+}
+
+.clearfix {
+    &::after {
+        display: block;
+        content: "";
+        clear: both;
+    }
+}
+
+
+.wip{
+    position: absolute;
+    bottom: 0;
+	left: 0;
 }

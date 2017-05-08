@@ -3,9 +3,9 @@
 		<intro></intro>
 		<about></about>
 		<technologies></technologies>
+		<projects></projects>
 		<!--<navbar></navbar>
-		<intro></intro>
-		<projects></projects>-->
+		<intro></intro>-->
 		<iconCredits></iconCredits>
 	</div>
 </template>
@@ -13,7 +13,7 @@
 <script>
 import navbar from './components/Navbar.vue';
 import intro from './components/Intro.vue';
-import about from './components/About.vue'
+import about from './components/About/About.vue'
 import technologies, {scrollfire} from './components/Technologies.vue';
 import projects from './components/Projects.vue'
 import iconCredits from './components/IconCredit.vue'
