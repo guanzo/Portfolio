@@ -154,7 +154,7 @@ export default new Vuex.Store({
                     class:'',
                 },
                 {
-                    imgSrc:'http://objectpartners.github.io/react-workshop/assets/img/flux-logo.png', 
+                    imgSrc:'assets/images/technologies/flux-logo.png', 
                     name:'Flux',
                     text:'Vuex is my current go-to flux implementation',
                     class:'',

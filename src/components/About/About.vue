@@ -73,16 +73,11 @@ export default{
         return {
             birthYear: 1991,
             script:[
-                {
-                    speaker:'man', 
-                    lines:[
-                        "I'm home! Man they really need to give more rice..",
-                        "Hi there! I hope my robot butler hasn't been too troublesome",
-                        "Oh one moment please.. ABR?"
-                    ]
-                },
-                {speaker:'robot', lines:["Yes sire?"]},
-                {speaker:'man', lines:["Did the Guest see the intro? The one with the rolling waves of color?"]},
+                {speaker:'man', lines:["I'm home! Man they really need to give more rice..", 
+                    "Hi there! I hope my robot butler hasn't been too troublesome. Let me s-",]},
+                {speaker:'robot', lines:["Welcome home sire!"]},
+                {speaker:'man', lines:["*Sigh*","What did I say about interruptions..",
+                            "Anyways, did the Guest see the intro? The one with the rolling waves of color?"]},
                 {speaker:'robot', lines:["Yes sire!"]},
                 {speaker:'man', lines:["Well? Did they like it? I spent a lot of time on it, making it work cross browser and such."]},
                 {speaker:'robot', lines:["I think so sire!"]},
@@ -94,7 +89,7 @@ export default{
                 {speaker:'robot', lines:["Will that be all?"]},
                 {speaker:'man', lines:["Prepare my projects gallery for a showing"]},
                 {speaker:'robot', lines:["Yes sire"]},
-                {speaker:'man', lines:["So sorry about that! He's a bit of a yes man. Now let's get going..."]},
+                {speaker:'man', lines:["So sorry about that! He's an older model.. Now let's get going."]},
             ]
         }
     },

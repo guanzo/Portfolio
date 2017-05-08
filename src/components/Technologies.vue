@@ -9,7 +9,7 @@
                 <p>As the state of web development trends more towards complex frontends, 
                     so has my focus increased on staying up to date on modern frontend practices. 
                 </p>
-                <p>Can you guess the technologies below by the logo?</p>
+                <p>Can you guess the technology by the logo?</p>
             </div>
             <div class="interactions">
                 <span @click="onShuffle">Shuffle</span> |
