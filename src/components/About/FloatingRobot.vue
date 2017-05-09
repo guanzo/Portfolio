@@ -84,7 +84,7 @@ svg{
     max-width: 125px;
     height:auto;
     float:left;
-    margin: 0px 10px 10px 0px;
+    padding: 0px 10px 10px 0px;
 }
 
 .robot-body{

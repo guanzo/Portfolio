@@ -14,9 +14,20 @@
 </template>
 
 <script>
-//any time man talks, robot talks or both.
+/*
+any time man talks, robot talks or both.
+triggered by scrollfire
+text stays on page
+
+data structure is array of obj.
+obj = {
+    speaker: String. 'man' | 'robot'
+    lines: Array of strings
+}
+
+*/
 export default {
-    name:'dialogue',
+    name:'persistent-dialogue',
     props:['script'],
     methods:{
         getSpeakerClass(speaker){
@@ -29,21 +40,10 @@ export default {
 }
 </script>
 
-<style lang="less">
+<style lang="less" scoped>
 
-@speech-bg: rgba(255,255,255,0.2);
+@import '/assets/custom.less';
 
-.robot-text{
-    text-transform: uppercase;
-}
-
-.speech-bubble{
-    box-shadow: 0.2em 0 0 @speech-bg, -0.2em 0 0 @speech-bg;
-    background-color: @speech-bg;
-    border-radius: 5px;
-    -webkit-box-decoration-break: clone;
-    box-decoration-break: clone;
-}
 
 .dialogue-section {
     display: flex;
@@ -59,8 +59,11 @@ export default {
             margin-top: 1em;
         }
     }   
-    img{
+    .speech-portrait{
+        //for w/e reason i need all 3 widths
+        width:50px;
         max-width: 50px;
+        min-width: 50px;
         height: auto;
         margin-top: 0.65em;
         margin-right: 1em;

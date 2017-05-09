@@ -5,16 +5,18 @@ Vue.use(Vuex)
 
 export const SELECT_PROJECT = 'SELECT_PROJECT';
 export const SELECT_IMAGE = 'SELECT_IMAGE';
-export const TAKE_CANDY = 'TAKE_CANDY';
-export const OFFER_CANDY = 'OFFER_CANDY';
+export const CHANGE_HAIR_COLOR = 'CHANGE_HAIR_COLOR'
+export const CHANGE_TIE_COLOR = 'CHANGE_TIE_COLOR'
 
 export default new Vuex.Store({
 	state: {
         selectedProject:0,
         selectedImage:0,
         navbarBackground:'',
-        candyTaken: false,
-        candyOffered: false,
+        portraitStyle:{
+            hair: '#795548',
+            tie: '#F1543F',
+        },
         organizations:[
 
         ],
@@ -60,6 +62,10 @@ export default new Vuex.Store({
                 url:'http://stackoverflow.com/users/2498782/eric-guan',
                 icon:'fa-stack-overflow'
             },
+            {
+                url:'http://codepen.io/guanzo/',
+                icon:'fa-codepen'
+            }
         ],
         technologies:[
                 {
@@ -67,7 +73,6 @@ export default new Vuex.Store({
                     name:'HTML, CSS, JS',
                     text:'',
                     class:'',
-                    style:'transform: translateY(10px);'
                 },
                 {
                     imgSrc:'https://avatars1.githubusercontent.com/u/1562726?v=3&s=400', 
@@ -80,7 +85,6 @@ export default new Vuex.Store({
                     name:'Vue.js',
                     text:'Expressive.<br>Performant.<br>Simple. <br>Fun!',
                     class:'',
-                    style:'transform: translateY(10px);'
                 },
                 {
                     imgSrc:'assets/images/technologies/lodash.png', 
@@ -169,11 +173,11 @@ export default new Vuex.Store({
         [SELECT_IMAGE] (state, payload){
 			state.selectedImage = payload.index
 		},
-        [TAKE_CANDY] (state){
-            state.candyTaken = true;
+        [CHANGE_HAIR_COLOR] (state){
+            state.portraitStyle.hair = 'black'
         },
-        [OFFER_CANDY] (state){
-            state.candyOffered = true;
+        [CHANGE_TIE_COLOR] (state){
+            state.portraitStyle.tie = 'blue'
         }
 	},
     getters:{
@@ -184,15 +188,5 @@ export default new Vuex.Store({
             let project = getters.activeProject
             return project.imgs[state.selectedImage]
         },
-        totalImageIndex: (state, getters) => {
-            let projects = state.projects;
-            let activeProject = getters.activeProject
-            let index = projects.indexOf(activeProject)
-            let totalIndex = 0;
-            for(let i=0; i<index; i++)
-                totalIndex += projects[i].imgs.length;
-            totalIndex += state.selectedImage;
-            return totalIndex;
-        }
     }
 })

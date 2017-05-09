@@ -20,7 +20,7 @@
                 <div class="technology z-depth-2" v-for="tech in technologies" :key="tech.name" :class="tech.class" 
                             @mouseover="tech.class = 'reveal'" @mouseout="tech.class = ''" >
                     <div class="img-wrapper">
-                        <img :style="tech.style" :src="tech.imgSrc" :alt="tech.name" >
+                        <img :src="tech.imgSrc" :alt="tech.name" >
                     </div>
                     <div class="description-overlay">
                         <b>{{ tech.name }}</b>
@@ -28,7 +28,7 @@
                     </div>
                 </div>
             </transition-group>
-            <dialogue :script="script"></dialogue>
+            <persistent-dialogue :script="script"></persistent-dialogue>
         </div>
     </div>
 </template>
@@ -36,7 +36,8 @@
 <script>
 //import shuffle from './lodash/shuffle'
 import shuffle from 'lodash/shuffle'
-import dialogue from './Dialogue.vue'
+import persistentDialogue from './DialoguePersistent.vue'
+import {CHANGE_HAIR_COLOR, CHANGE_TIE_COLOR} from '../store.js'
 export default {
     name:'technology-section',
     data () {
@@ -56,8 +57,8 @@ export default {
                 {speaker:'man', lines:["How's my project gallery coming along?"]},
                 {speaker:'robot', lines:["All done"]},
                 {speaker:'man', lines:["Excellent. Onwards! Err, I mean downwards!"]},
-                {speaker:'robot', lines:["Haha"]},
-            ]
+                {speaker:'robot', lines:["Haha. Jolly good sire"]},
+            ],
         }
     },
     computed:{
@@ -76,10 +77,16 @@ export default {
         },
         onShuffle(){
             this.technologies = shuffle(this.technologies)
+        },
+        changeHairColor(){
+            this.$store.commit(CHANGE_HAIR_COLOR)
+        },
+        changeTieColor(){
+            this.$store.commit(CHANGE_TIE_COLOR)
         }
     },
     components:{
-        dialogue
+        'persistent-dialogue':persistentDialogue,
     }
 }
 
@@ -158,7 +165,6 @@ div.description-overlay{
     transition: 0.75s;
     padding: 5px;
     border-radius: 50%;
-    //border: 5px solid @charcoal;
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -172,6 +178,7 @@ div.description-overlay{
 img{
     max-width: 100%;
     width: 100%;
+    border-radius: 50%;
     height:auto;
     transition: 0.75s;
     will-change: filter;

@@ -3,16 +3,25 @@
         <div class="container app-section">
             <div class="robot-intro robot-text flow-text">
                 <p class="clearfix">
-                    <floatingRobot class="scrollfire-to-right" />
-                    <span class="speech-bubble scrollfire-appear">
-                        Welcome Guest! I am the Sire's automated butler robot, or <b>ABR</b> Robot.
-                        He's not in at the moment. Allow me to introduce him.
+                    <floating-robot class="scrollfire-to-right" />
+                    <span class="scrollfire-appear">
+                        <span class="speech-bubble">
+                            Welcome Guest! 
+                        </span>
+                        <br>
+                        <span class="speech-bubble">
+                            I am the Sire's automated butler robot, or <b>ABR</b> Robot.
+                        </span>
+                        <br>
+                        <span class="speech-bubble">
+                            He's not in at the moment. Allow me to make an introduction.
+                        </span>
                     </span>
                 </p>
             </div>
             <div class="section">
                 <div class="scrollfire-to-left img-wrapper">
-                    <man />
+                    <portrait />
                     <div>ABR rendition</div>
                 </div>
 
@@ -55,16 +64,17 @@
                         </p>
                     </div>
                 </div>
-                <dialogue :script="script"></dialogue>
+                <persistent-dialogue :script="script"></persistent-dialogue>
             </div>
         </div>
     </div>
 </template>
 
 <script>
+import portrait from './Portrait.vue'
 import {OFFER_CANDY} from '../../store.js'
 import floatingRobot from './FloatingRobot.vue'
-import dialogue from '../Dialogue.vue'
+import persistentDialogue from '../DialoguePersistent.vue'
 import {mapState} from 'vuex'
 
 export default{
@@ -76,7 +86,7 @@ export default{
                 {speaker:'man', lines:["I'm home! Man they really need to give more rice..", 
                     "Hi there! I hope my robot butler hasn't been too troublesome. Let me s-",]},
                 {speaker:'robot', lines:["Welcome home sire!"]},
-                {speaker:'man', lines:["*Sigh*","What did I say about interruptions..",
+                {speaker:'man', lines:["*sigh*","What did I say about interruptions..",
                             "Anyways, did the Guest see the intro? The one with the rolling waves of color?"]},
                 {speaker:'robot', lines:["Yes sire!"]},
                 {speaker:'man', lines:["Well? Did they like it? I spent a lot of time on it, making it work cross browser and such."]},
@@ -113,8 +123,9 @@ export default{
         }
     },
     components:{
-        floatingRobot,
-        dialogue
+        'floating-robot':floatingRobot,
+        'persistent-dialogue':persistentDialogue,
+        portrait
     }
 }
 
@@ -147,11 +158,6 @@ export default{
 .alert{
     padding: 0px 3px;
     border-radius: 4px;
-}
-
-.sire-found{
-    margin-top: 75px;
-    margin-bottom: 100px;
 }
 
 .redacted{

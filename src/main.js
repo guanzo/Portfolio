@@ -14,29 +14,37 @@ Register globally so i don't have to import all the time.
 */
 
 Vue.component('man',{
-  render(createElement){
-    return createElement(
-      'img',
-      {
-        attrs:{
-          src:'assets/images/man.svg'
-        }
-      }
-    )
-  }
+	render(createElement){
+		return createElement(
+			'svg',{
+				attrs:{
+					class:'speech-portrait',
+					width:'50',
+					height:'50'
+				}
+			}, [
+				createElement('use',{
+					attrs: {
+					'xlink:href':'#man-svg'
+					}
+				})
+			]
+		)
+	}
 })
 
 Vue.component('robot',{
-  render(createElement){
-    return createElement(
-      'img',
-      {
-        attrs:{
-          src:'assets/images/robot.svg'
-        }
-      }
-    )
-  }
+	render(createElement){
+		return createElement(
+		'img',
+			{
+				attrs:{
+					class:'speech-portrait',
+					src:'assets/images/robot.svg'
+				}
+			}
+		)
+	}
 })
 
 new Vue({

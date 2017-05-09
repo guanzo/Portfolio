@@ -1,3 +1,5 @@
+@import 'scrollfire.less';
+
 @primary: #AA3939;
 @primary-light:#FFAAAA;
 @primary-dark:#801515;
@@ -43,32 +45,6 @@
   opacity: 0
 }
 
-.scrollfire-active{
-    transition: 0.5s;
-}
-
-.scrollfire-appear{
-    opacity: 0;
-}
-
-.scrollfire-to-top{
-    opacity: 0;
-    transform: rotateX(45deg) translateY(75px) scale(0.75);
-}
-
-.scrollfire-to-left{
-    opacity: 0;
-    transform: translateX(100px);
-}
-.scrollfire-to-right{
-    opacity: 0;
-    transform: translateX(-100px);
-}
-
-.scrollfire-exit-to-left{
-    transform: translateX(-100px);
-}
-
 .clearfix {
     &::after {
         display: block;
@@ -77,6 +53,20 @@
     }
 }
 
+
+@speech-bg: rgba(255,255,255,0.2);
+
+.robot-text{
+    text-transform: uppercase;
+}
+
+.speech-bubble{
+    box-shadow: 0.2em 0 0 @speech-bg, -0.2em 0 0 @speech-bg;
+    background-color: @speech-bg;
+    border-radius: 5px;
+    -webkit-box-decoration-break: clone;
+    box-decoration-break: clone;
+}
 
 .wip{
     position: absolute;
