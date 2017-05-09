@@ -2,22 +2,14 @@
     <div id="about">
         <div class="container app-section">
             <div class="robot-intro robot-text flow-text">
-                <p class="clearfix">
                     <floating-robot class="scrollfire-to-right" />
                     <span class="scrollfire-appear">
-                        <span class="speech-bubble">
-                            Welcome Guest! 
-                        </span>
+                        <span class="speech-bubble">Welcome Guest!</span>
                         <br>
-                        <span class="speech-bubble">
-                            I am the Sire's automated butler robot, or <b>ABR</b> Robot.
-                        </span>
+                        <span class="speech-bubble">I am the Sire's automated butler robot, or <b>ABR</b> Robot.</span>
                         <br>
-                        <span class="speech-bubble">
-                            He's not in at the moment. Allow me to make an introduction.
-                        </span>
+                        <span class="speech-bubble">He's not in at the moment. Allow me to make an introduction.</span>
                     </span>
-                </p>
             </div>
             <div class="section">
                 <div class="scrollfire-to-left img-wrapper">
@@ -90,11 +82,11 @@ export default{
                             "Anyways, did the Guest see the intro? The one with the rolling waves of color?"]},
                 {speaker:'robot', lines:["Yes sire!"]},
                 {speaker:'man', lines:["Well? Did they like it? I spent a lot of time on it, making it work cross browser and such."]},
-                {speaker:'robot', lines:["I think so sire!"]},
+                {speaker:'robot', lines:["...","I think so sire!"]},
                 {speaker:'man', lines:["Good, good","Also, don't give out my location to strangers"]},
                 {speaker:'robot', lines:["Yes sire",'my deepest apologies sire']},
-                {speaker:'man', lines:["This isn't the first time you've done this","What if a recruiter had found me?"]},
-                {speaker:'robot', lines:["...","You would have been offered a job?"]},
+                {speaker:'man', lines:["This isn't the first time you've done this","What if someone kidnapped me?"]},
+                {speaker:'robot', lines:["Based on your location and time of day, as well as your net worth, there was a 0.54% chance of being abducted. I consi-"]},
                 {speaker:'man', lines:["Nevermind"]},
                 {speaker:'robot', lines:["Will that be all?"]},
                 {speaker:'man', lines:["Prepare my projects gallery for a showing"]},
@@ -153,6 +145,10 @@ export default{
 
 .trademark{
     font-size: 0.75rem;
+}
+
+.sire-found{
+    margin:50px 0px;
 }
 
 .alert{

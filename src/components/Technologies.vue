@@ -49,7 +49,7 @@ export default {
                     "Well.. yes. I know jQuery,  GWT, and a bunch of other stuff.",
                     "The thing is, web developers inevitably end up with a massive figurative toolbox.",
                     "It's not feasible to list every single item, nor would it be appropriate.",
-                    `As it is, I choose to list the tools I most enjoy using, in the hopes that I can find a job I love, 
+                    `As it is, I choose to list the tools I most enjoy using, in the hopes that I can find a job I want to do, 
                     instead of a job that I can do.`,
                     'Thanks for your concern though, ABR. I appreciate it.'
                     ]},

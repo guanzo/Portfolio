@@ -1,5 +1,5 @@
 <template>
-    <div id="projects">
+    <div id="projects" :class="{'lights-off': !lightsOn}">
         <div class="app-section container">
             <v-waypoint @waypoint-in="inHandler"></v-waypoint>
             <h3>Projects</h3>
@@ -35,10 +35,11 @@ export default {
            this.startDialogue = true
         },
         turnLightsOn(){
-            return new Promise(function(resolve,reject){
+            return new Promise((resolve,reject)=>{
                 console.log('turning lights on in 2 seconds')
 
                 setTimeout(()=>{
+                    this.lightsOn = true
                     console.log('lights turned on')
                     resolve();
                 },2000)
@@ -56,8 +57,27 @@ export default {
 
 @import '/assets/custom.less';
 
+.lights-transition(){
+    transition: 3s;
+}
+
 #projects{
     position: relative;
+    background: @charcoal;
+    .lights-transition;
+}
+
+h3{
+    .lights-transition;
+}
+
+.lights-off{
+    &#projects{
+        background:#0F0F0F
+    }
+    h3{
+        opacity: 0;
+    }
 }
 
 .project-divider{
