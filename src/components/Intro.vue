@@ -17,7 +17,7 @@
 				</svg>
 
 				<svg viewBox="0 0 1000 500" preserveAspectRatio="xMidYMid meet">
-					<text :style="slide.textStyle" class="glow" x="50%" y="50%" :mask="`url(#mask${i})`" alignment-baseline="central" v-html="slide.text"></text>
+					<text :style="slide.textStyle" class="glow":mask="`url(#mask${i})`" x="50%" y="50%"  alignment-baseline="central" v-html="slide.text"></text>
 				</svg>
 			</g>
 		</svg>
@@ -33,8 +33,8 @@
                 </filter>
             </defs>
         </svg>
-		<a href="#about" @click="onClick">
-			<svg v-visible="showUI" class="scroll-down" viewBox="0 0 100 100">
+		<a href="#about" class="scroll-down"  @click="onClick">
+			<svg v-visible="showUI" viewBox="0 0 100 100">
 				<g>
 					<path class="circle" :d="circlePath(50,50,45)"></path>
 					<path d="M30 35 L 50 50 L 70 35"></path>
@@ -220,14 +220,11 @@ text{
     font-size: 3rem;
 	animation-duration: 4s;
 	animation-timing-function: ease-in;
-	animation-fill-mode: forwards;
 }
 
 .masks path{
 	fill: white;
 	will-change: transform;
-	animation-duration: @duration;
-	animation-fill-mode: forwards;
 }
 
 .glow{
@@ -236,7 +233,6 @@ text{
 
 svg.global-defs{
     visibility: hidden;
-    pointer-events: none;
     width:0px;
     height:0px;
     position: absolute;

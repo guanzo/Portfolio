@@ -43,11 +43,11 @@ import Promise from 'bluebird'
 
 export default {
     name:'dynamic-dialogue',
-    props:['script'],
+    props:['script','startDialogue'],
     data(){
         return {
             index: -1,
-            delay: 2000
+            duration: 2000
         }
     },
     computed:{
@@ -70,18 +70,25 @@ export default {
     created(){
 
     },
-    mounted(){
-        //this.next()
-        Promise.each(this.script,(obj)=>{
-            if(isFunction(obj))
-                return obj().then(this.nextLine)
-            else
-                return this.createPromise(obj,obj.delay)
-        });
+    watch:{
+        startDialogue(){
+            this.initiate();
+        }
     },
     methods:{
-        createPromise(obj, ms = this.delay){
-            return Promise.delay(ms, obj).then(this.nextLine)
+        initiate(){
+            Promise.each(this.script,(obj)=>{
+                if(isFunction(obj))
+                    return obj().then(this.nextLine)
+                else
+                    return this.createPromise(obj,obj.duration)
+            });
+        },
+        createPromise(obj, ms = this.duration){
+            return new Promise((resolve,reject)=>{
+                this.nextLine()
+                setTimeout(resolve, ms)
+            })
         },
         nextLine(){
             this.index++;

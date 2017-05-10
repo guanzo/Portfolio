@@ -86,7 +86,7 @@ export default{
                 {speaker:'man', lines:["Good, good","Also, don't give out my location to strangers"]},
                 {speaker:'robot', lines:["Yes sire",'my deepest apologies sire']},
                 {speaker:'man', lines:["This isn't the first time you've done this","What if someone kidnapped me?"]},
-                {speaker:'robot', lines:["Based on your location and time of day, as well as your net worth, there was a 0.54% chance of being abducted. I consi-"]},
+                {speaker:'robot', lines:["Based on your location, the time of day, and mostly your estimated ransom value, there was a 0.054% chance of being abducted. I consi-"]},
                 {speaker:'man', lines:["Nevermind"]},
                 {speaker:'robot', lines:["Will that be all?"]},
                 {speaker:'man', lines:["Prepare my projects gallery for a showing"]},

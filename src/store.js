@@ -37,7 +37,7 @@ export default new Vuex.Store({
                 background:'linear-gradient(to bottom, #354835 , #779377)',
                 color:'white',
                 tagline:0,
-                imgs:['nbg_customer.png','nbg_platform.png','nbg_region.png','nbg_choropleth.png']
+                imgs:['nbg_choropleth.png','nbg_customer.png','nbg_platform.png','nbg_region.png']
             },
             {
                 name:'Relevance Engine',

@@ -18,10 +18,10 @@ Vue.component('man',{
 		return createElement(
 			'svg',{
 				attrs:{
-					class:'speech-portrait',
+					class:'speech-portrait z-depth-1 circle',
 					width:'50',
 					height:'50'
-				}
+				},
 			}, [
 				createElement('use',{
 					attrs: {
