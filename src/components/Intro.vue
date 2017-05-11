@@ -95,7 +95,7 @@ export default {
 		window.addEventListener('resize',throttle(this.setCanvasSize,100))
     },
     methods:{
-        draw(){
+        draw(){// i have to save before clip & restore after clip b/c canvas clips are additive
 			var {ctx, index, startTime, interpolator,duration,width,height} = this;
             var elapsed = new Date() - startTime;
 			var normalizedTime = Math.min(elapsed,duration)/duration
@@ -106,15 +106,16 @@ export default {
 				ctx.fillStyle='#373737'
 				ctx.fillRect(0,0,width,height)
 			}else
-				this.background(index-1)
+				this.setBackground(index-1)
 			
 			ctx.save();
-
+			
 			if(index%2 == 0)
 				this.animateClipToRight(interpolatedWidth)
 			else
 				this.animateClipToLeft(interpolatedWidth)
-			this.background(index)
+
+			this.setBackground(index)
 			ctx.restore()
 			
 			if(elapsed < duration)
@@ -132,13 +133,13 @@ export default {
 			var rectTopRight = currentOrigin + width
 			var curveBotRight = rectTopRight + width
 			ctx.beginPath()
-			ctx.moveTo(currentOrigin,0)
-			ctx.lineTo(rectTopRight, 0)
-			//cubic-bezier(0.645, 0.045, 0.355, 1) cubicInOut
-			ctx.bezierCurveTo(rectTopRight + x(.645), y(0.045), 
-							  rectTopRight + x(0.355), y(1),
-							  curveBotRight,height);
-			ctx.lineTo(currentOrigin, height)
+				ctx.moveTo(currentOrigin,0)
+				ctx.lineTo(rectTopRight, 0)
+				//cubic-bezier(0.645, 0.045, 0.355, 1) cubicInOut
+				ctx.bezierCurveTo(rectTopRight + x(.645), y(0.045), 
+								rectTopRight + x(0.355), y(1),
+								curveBotRight,height);
+				ctx.lineTo(currentOrigin, height)
 			ctx.clip();
 		},
 		animateClipToLeft(interpolatedWidth){
@@ -150,18 +151,18 @@ export default {
   			var rectTopRight = rectTopLeft + width
 
 			ctx.beginPath()
-			ctx.moveTo(currentOrigin,height)
-  			ctx.bezierCurveTo(currentOrigin + x(.645), y(.955),//1 - 0.045
-								currentOrigin + x(0.355), y(0),//1 - 1
-								rectTopLeft,0);
-			ctx.lineTo(rectTopRight, 0)
-			ctx.lineTo(rectTopRight, height)
+				ctx.moveTo(currentOrigin,height)
+				ctx.bezierCurveTo(currentOrigin + x(.645), y(.955),//1 - 0.045
+									currentOrigin + x(0.355), y(0),//1 - 1
+									rectTopLeft,0);
+				ctx.lineTo(rectTopRight, 0)
+				ctx.lineTo(rectTopRight, height)
 			ctx.clip();
 		},
-		background(index){
+		setBackground(index){
 			var {ctx, width,height,midX,midY} = this;
 			var slide = this.slides[index]
-			var gradient = ctx.createLinearGradient(midX,0,midY,height)
+			var gradient = ctx.createLinearGradient(midX,0,midX,height)
 			gradient.addColorStop(.1, slide.gradient[0]);
 			gradient.addColorStop(.9, slide.gradient[1]);
 			
@@ -204,12 +205,6 @@ export default {
     }
 }
 
-
-function tweenDash() {
-	var l = this.getTotalLength(),
-		i = d3.interpolateString("0," + l, l + "," + l);
-	return function(t) { return i(t); };
-}
 </script>
 
 <style lang="less" scoped>
