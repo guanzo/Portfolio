@@ -13,7 +13,7 @@
             </div>
             <div class="section">
                 <div class="scrollfire-to-left img-wrapper">
-                    <portrait />
+                    <man-portrait />
                     <div>ABR rendition</div>
                 </div>
 
@@ -63,7 +63,7 @@
 </template>
 
 <script>
-import portrait from './Portrait.vue'
+import manPortrait from './ManPortrait.vue'
 import {OFFER_CANDY} from '../../store.js'
 import floatingRobot from './FloatingRobot.vue'
 import persistentDialogue from '../DialoguePersistent.vue'
@@ -117,7 +117,7 @@ export default{
     components:{
         'floating-robot':floatingRobot,
         'persistent-dialogue':persistentDialogue,
-        portrait
+        'man-portrait':manPortrait
     }
 }
 

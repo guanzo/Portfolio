@@ -98,10 +98,10 @@ export default {
                 var rotatedPortrait = this.$refs.portrait[0]
                 var portraitBbox = rotatedPortrait.getBoundingClientRect()
 
-                var x = portraitBbox.left - robotBbox.left
-                var y = portraitBbox.top - robotBbox.top
+                var x = Math.round(portraitBbox.left - robotBbox.left)
+                var y = Math.round(portraitBbox.top - robotBbox.top)
                 var translate = `translate(${x}px,${y}px)`
-
+                
                 d3.select(robot)
                     .transition()
                     .duration(1000)

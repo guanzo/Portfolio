@@ -23,20 +23,17 @@
 
 <script>
 /*any time man talks, robot talks or both.
-2 portraits are persistent
-
-obj = {
-    speaker: String. 'man' | 'robot'
-    line: String
-}
+2 portraits are persistent, new speech text replaces old speech text
 
 BASIC RULES:
 -Always has man and robot
 -Parent component controls when conversation starts, mainly by a scrollfire/waypoint
--Text will fade out after x seconds.
--New text replaces old text in same speech bubble
--script can have a function, instead of speaker/line.
+-script is array of 
+    -object with speaker, their line, and an optional duration
+        (which gets converted into a promise with default duration)
+    -a function that returns a promise
 
+-Then call promises sequentially, synchronously
 */
 import isFunction from 'lodash/isFunction'
 import Promise from 'bluebird'
@@ -66,9 +63,6 @@ export default {
             else
                 return ''
         }
-    },
-    created(){
-
     },
     watch:{
         startDialogue(){
