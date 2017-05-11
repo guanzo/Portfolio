@@ -175,8 +175,10 @@ export default {
 			ctx.textAlign="center"
 			ctx.fillStyle='white'
 			ctx.font=this.getFont();
-			ctx.shadowColor="white"
-			ctx.shadowBlur="5"
+			ctx.shadowColor="#333"
+			ctx.shadowOffsetX = 2; 
+			ctx.shadowOffsetY = 2; 
+			ctx.shadowBlur="2"
 			ctx.fillText(slide.text,midX,midY);
 		},
 		setCanvasSize(){
@@ -188,10 +190,10 @@ export default {
 		},
 		getFont(){
 			//my monitor = 1900, okayish fontsize = 70: 70/1900 ~= 4
-			var ratio = 0.04;   // calc ratio
+			var ratio = 0.04;
 			var canvas = this.$refs.canvas
-			var size = canvas.width * ratio;   // get font size based on current width
-			return 'bold '+(size|0) + 'px Raleway'; // set font
+			var size = canvas.width * ratio;
+			return (size|0) + 'px Raleway';
 		},
 		reveal(){
 			this.showUI = true;
