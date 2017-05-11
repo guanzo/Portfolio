@@ -1,6 +1,6 @@
 <template>
     <div class="root">
-		<canvas ref="canvas"></canvas>
+		<canvas ref="canvas">This browser does not support HTML5 Canvas.</canvas>
 		<a href="#about" class="scroll-down"  @click="onClick">
 			<svg v-visible="showUI" viewBox="0 0 100 100">
 				<g>
@@ -39,9 +39,9 @@ export default {
 			width:0,
 			height:0,
 			ctx:null,
-			interpolator:null,
 			startTime:0,
 			showUI: false,
+			introIsDone:false,
 			slides:[
 				{
 					text:"Hi, my name is Eric",
@@ -77,13 +77,15 @@ export default {
 		},
 		yScale(){
 			return d3.scaleLinear().range([0,this.height])
+		},
+		interpolator(){
+			return d3.interpolateNumber(0,this.width)
 		}
 	},
     mounted(){
 		Vue.nextTick(()=>{
 			this.setCanvasSize();
 			var canvas = this.$refs.canvas
-			this.interpolator = d3.interpolateNumber(0,this.width)
 			this.ctx = canvas.getContext('2d')
 			this.startTime = new Date()
 
@@ -124,7 +126,8 @@ export default {
 				this.index++;
 				this.startTime = new Date()
 				requestAnimationFrame(this.draw)
-			}
+			}else
+				this.introIsDone = true
         },
 		animateClipToRight(interpolatedWidth){
 			var {ctx, clipToRightStartOrigin, width,height,xScale:x, yScale:y} = this;
@@ -171,15 +174,24 @@ export default {
 			
 			ctx.textAlign="center"
 			ctx.fillStyle='white'
-			ctx.font="bold 60px Raleway";
+			ctx.font=this.getFont();
 			ctx.shadowColor="white"
-			ctx.shadowBlur="10"
+			ctx.shadowBlur="5"
 			ctx.fillText(slide.text,midX,midY);
 		},
 		setCanvasSize(){
+			if(this.introIsDone)
+				return;
 			var canvas = this.$refs.canvas
 			this.width = canvas.width = window.innerWidth;
 			this.height = canvas.height = window.innerHeight
+		},
+		getFont(){
+			//my monitor = 1900, okayish fontsize = 70: 70/1900 ~= 4
+			var ratio = 0.04;   // calc ratio
+			var canvas = this.$refs.canvas
+			var size = canvas.width * ratio;   // get font size based on current width
+			return 'bold '+(size|0) + 'px Raleway'; // set font
 		},
 		reveal(){
 			this.showUI = true;

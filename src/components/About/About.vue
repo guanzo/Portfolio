@@ -36,8 +36,7 @@
                 </p>
                 <p class="disclaimer scrollfire-to-top">
                     <span class="alert red darken-3">WARNING</span> 
-                    Sire has been known to "get in the zone". Approach with extreme caution.
-                    Avoid intermittent interruptions and asking questions that have already been answered.
+                    Sire has been known to "get in the zone". Avoid intermittent interruptions and asking questions that have already been answered.
                     Sire can be temporarily pacified with medium roast coffee, Dr. Pepper<span class="trademark">&reg;</span>,
                     or a red lollipop.
                     Failure to follow these procedures may result in a factory reset.
@@ -45,7 +44,7 @@
                     <div class="sire-found">
                         <p class="scrollfire-to-top">
                             <span class="alert yellow darken-3">ALERT</span>
-                            <span>Sire has been located... Sire is behind you. Please rotate your body.</span>
+                            <span>Sire has been located... Sire is behind you.</span>
                         </p>
                         <p class="scrollfire-to-top">
                             <span v-if="candyTaken && !candyOffered">
