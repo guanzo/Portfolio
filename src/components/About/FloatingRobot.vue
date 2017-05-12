@@ -46,12 +46,17 @@
             <circle cx="153" r="3.2" cy="204"/>
         </g>
         <path d="m69.6 314c0 2.4-1.6 4-4 4h-32c-2.4 0-4-1.6-4-4s1.6-4 4-4h32c2.4 0 4 1 4 4z" fill="#00FFF2"/>
-        <circle cx="457" r="40.8" cy="305" fill="#0B6382"/>
-        <g fill="#00233F">
-            <path d="m457 265c-22.4 0-40.8 18.4-40.8 40.8s18.4 40.8 40.8 40.8"/>
-            <circle cx="457" r="9.6" cy="247"/>
+        
+        <g class="right-arm">
+            <circle cx="457" r="40.8" cy="305" fill="#0B6382"/>
+            <g fill="#00233F">
+                <path d="m457 265c-22.4 0-40.8 18.4-40.8 40.8s18.4 40.8 40.8 40.8"/>
+                <circle cx="457" r="9.6" cy="247"/>
+            </g>
+            <polyline points="454 238 454 198 430 198 430 166 414 166" fill="#16D8D8"/>
+            <path d="m478 314c0-2.4-1.6-4-4-4h-32c-2.4 0-4 1.6-4 4s1.6 4 4 4h32c2 0 4-2 4-4z" fill="#00FFF2"/>
         </g>
-        <polyline points="454 238 454 198 430 198 430 166 414 166" fill="#16D8D8"/>
+        
         <ellipse rx="40" transform="matrix(-.0789 .997 -.997 -.0789 652 -182)" ry="13.6" cy="210" cx="410" fill="#0B7F9E"/>
         <ellipse rx="24" transform="matrix(-.0788 .997 -.997 -.0788 656 -186)" ry="5.6" cy="210" cx="414" fill="#0B6382"/>
         <g fill="#16D8D8">
@@ -59,7 +64,6 @@
             <circle cx="367" r="3.2" cy="207"/>
             <circle cx="354" r="3.2" cy="204"/>
         </g>
-        <path d="m478 314c0-2.4-1.6-4-4-4h-32c-2.4 0-4 1.6-4 4s1.6 4 4 4h32c2 0 4-2 4-4z" fill="#00FFF2"/>
         </g>
         <!-- shadow -->
         <ellipse rx="104" ry="12" cy="495" cx="254" fill="#91C6C2"/>
@@ -72,7 +76,9 @@
 //one time floating animation for the very first robot image
 
 export default {
+    mounted(){
 
+    }
 }
 
 </script>
@@ -91,6 +97,20 @@ svg{
     animation: float 4s ease-in-out infinite;
 }
 
+.right-arm{
+    transform-origin: 10% 10%;
+    animation: wave 1s ease 2 alternate 1.75s;
+}
+
+@keyframes wave{
+    0% {
+		transform: rotate(0deg)
+	}
+	100% {
+		transform: rotate(-140deg)
+	}
+}
+
 @keyframes float{
     0% {
 		transform: translatey(15px);
@@ -102,5 +122,6 @@ svg{
 		transform: translatey(15px);
 	}
 }
+
 
 </style>

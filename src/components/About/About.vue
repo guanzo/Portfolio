@@ -1,9 +1,11 @@
 <template>
-    <div id="about">
-        <div class="container app-section">
+    <div id="about" class="app-section">
+        <v-waypoint :position="'fill'" @waypoint="waypoint"></v-waypoint>
+        <div class="container">
+            <div class="app-section-title scrollfire-appear">The Entrance Hall</div>
             <div class="robot-intro robot-text flow-text">
-                    <floating-robot class="scrollfire-to-right" />
-                    <span class="scrollfire-appear">
+                    <floating-robot class="scrollfire-to-right" data-scrollfire-delay="1000" />
+                    <span class="scrollfire-appear" data-scrollfire-delay="1500">
                         <span class="speech-bubble">Welcome Guest!</span>
                         <br>
                         <span class="speech-bubble">I am the Sire's automated butler robot, or <b>ABR</b> Robot.</span>
@@ -12,23 +14,27 @@
                     </span>
             </div>
             <div class="section">
-                <div class="scrollfire-to-left img-wrapper">
-                    <man-portrait />
-                    <div>ABR rendition</div>
-                </div>
+                <div class="clearfix">
+                    <div class="scrollfire-to-left img-wrapper"  data-scrollfire-delay="1000">
+                        <man-portrait />
+                        <div>ABR rendition</div>
+                    </div>
 
-                <div class="scrollfire-to-right">
-                    <span>Name</span>
-                    <div class="name">Eric Guan</div>
-                    <ul class="flow-text">
-                        <li>Age: {{ ageInYears }}</li>
-                        <li>Gender: Male</li>
-                        <li>Height: 5'9"</li>
-                        <li>Weight: <span class="alert black">REDACTED</span></li>
-                        <li>Location: Chapel Hill, North Carolina</li>
-                        <li>Title: Software Developer</li>
-                    </ul>
+                    <div class="scrollfire-to-right"  data-scrollfire-delay="1000" >
+                        <span>Name</span>
+                        <div class="name">Eric Guan</div>
+                        <ul class="flow-text">
+                            <li>Age: {{ ageInYears }}</li>
+                            <li>Gender: Male</li>
+                            <li>Height: 5'9"</li>
+                            <li>Weight: <span class="alert grey darken-4">REDACTED</span></li>
+                            <li>Location: Chapel Hill, North Carolina</li>
+                            <li>Title: Software Developer</li>
+                        </ul>
+                    </div>
                 </div>
+                <links />
+
                 <div class="robot-text flow-text">
                 <p class="scrollfire-to-top">
                     As of <b>{{ lastSeenTime }}</b>, Sire was last seen at a Chipotle&trade;.
@@ -63,26 +69,26 @@
 
 <script>
 import manPortrait from './ManPortrait.vue'
+import links from '../Links.vue'
 import {OFFER_CANDY} from '../../store.js'
 import floatingRobot from './FloatingRobot.vue'
 import persistentDialogue from '../DialoguePersistent.vue'
+import waypoint from '../../waypoint.js'
 import {mapState} from 'vuex'
 
 export default{
     name:'about',
+    mixins:[waypoint],
     data(){
         return {
+            gradientIndex:0,
             birthYear: 1991,
             script:[
                 {speaker:'man', lines:["I'm home! Man they really need to give more rice..", 
                     "Hi there! I hope my robot butler hasn't been too troublesome. Let me s-",]},
                 {speaker:'robot', lines:["Welcome home sire!"]},
-                {speaker:'man', lines:["*sigh*","What did I say about interruptions..",
-                            "Anyways, did the Guest see the intro? The one with the rolling waves of color?"]},
-                {speaker:'robot', lines:["Yes sire!"]},
-                {speaker:'man', lines:["Well? Did they like it? I spent a lot of time on it, making it work cross browser and such."]},
-                {speaker:'robot', lines:["...","I think so sire!"]},
-                {speaker:'man', lines:["Good, good","Also, don't give out my location to strangers"]},
+                {speaker:'man', lines:["What did I say about interruptions..",
+                                        "Also you need to stop giving out my location"]},
                 {speaker:'robot', lines:["Yes sire",'my deepest apologies sire']},
                 {speaker:'man', lines:["This isn't the first time you've done this","What if someone kidnapped me?"]},
                 {speaker:'robot', lines:["Based on your location, the time of day, and mostly your estimated ransom value, there was a 0.054% chance of being abducted. I consi-"]},
@@ -116,7 +122,8 @@ export default{
     components:{
         'floating-robot':floatingRobot,
         'persistent-dialogue':persistentDialogue,
-        'man-portrait':manPortrait
+        'man-portrait':manPortrait,
+        links
     }
 }
 
@@ -130,8 +137,8 @@ export default{
 }
 
 .robot-intro{
-    padding-top: 3rem;
-    padding-bottom: 6rem;
+    padding-top: 20vh;
+    padding-bottom: 20vh;
 }
 
 .disclaimer{

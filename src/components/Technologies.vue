@@ -1,7 +1,8 @@
 <template>
-    <div id="technologies" class="app-section-offwhite">
-        <div class="app-section container">
-            <h3 class="scrollfire-to-right">Technologies</h3>
+    <div id="technologies" class="app-section">
+        <v-waypoint :position="'fill'" @waypoint="waypoint"></v-waypoint>
+        <div class="container">
+            <div class="app-section-title scrollfire-to-right">The Toolshed</div>
             <div class="tech-intro flow-text scrollfire-to-top">
                 <p>I pride myself on being a versatile and competent programmer. Being proficient in Javascript, Java, and SQL means that
                     I can contribute to the 3 major pillars of web development: <b>frontend</b>, <b>backend</b>, and the <b>database</b>.
@@ -29,6 +30,7 @@
                 </div>
             </transition-group>
             <persistent-dialogue :script="script"></persistent-dialogue>
+            
         </div>
     </div>
 </template>
@@ -38,10 +40,14 @@
 import shuffle from 'lodash/shuffle'
 import persistentDialogue from './DialoguePersistent.vue'
 import {CHANGE_HAIR_COLOR, CHANGE_TIE_COLOR} from '../store.js'
+import waypoint from '../waypoint.js'
+
 export default {
     name:'technology-section',
+    mixins:[waypoint],
     data () {
         return {
+            gradientIndex: 1,
             technologies: this.$store.state.technologies,
             script:[
                 {speaker:'robot', lines:["But sire! You know more than that!!"]},

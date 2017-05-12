@@ -1,6 +1,6 @@
 <template>
     <transition name="portrait">
-        <div v-if="index >= 0" class="dialogue flow-text">
+        <div class="dialogue flow-text">
             <div class="man-text dialogue-section">
                 <man />
                 <div class="lines">
@@ -43,7 +43,7 @@ export default {
     props:['script','startDialogue'],
     data(){
         return {
-            index: -1,
+            index: 0,
             duration: 2000
         }
     },
@@ -66,6 +66,7 @@ export default {
     },
     watch:{
         startDialogue(){
+            console.log('init')
             this.initiate();
         }
     },

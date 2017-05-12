@@ -7,16 +7,21 @@ export const SELECT_PROJECT = 'SELECT_PROJECT';
 export const SELECT_IMAGE = 'SELECT_IMAGE';
 export const CHANGE_HAIR_COLOR = 'CHANGE_HAIR_COLOR'
 export const CHANGE_TIE_COLOR = 'CHANGE_TIE_COLOR'
+export const CHANGE_BACKGROUND = 'CHANGE_BACKGROUND'
+export const CHANGE_PROJECTS_BACKGROUND = 'CHANGE_PROJECTS_BACKGROUND'
 
 export default new Vuex.Store({
 	state: {
+        scrollfireBelowTitleDelay:1000,
         selectedProject:0,
         selectedImage:0,
         navbarBackground:'',
-        portraitStyle:{
-            hair: '#795548',
-            tie: '#F1543F',
-        },
+        gradientIndex: 0,
+        gradients:[
+            ['#da7352','#d64759'],//red/orange
+            ['#38aecc','#2E3192'],//blue
+            ['#030303','#1f1f1f'],///black, replaced by green during projects intro
+        ],
         organizations:[
 
         ],
@@ -52,19 +57,19 @@ export default new Vuex.Store({
         links: [
             {
                 url:'https://github.com/guanzo',
-                icon:'fa-github'
+                iconClass:'fa-github'
             },
             {
                 url:'https://www.linkedin.com/in/eric-guan-6a050547',
-                icon:'fa-linkedin',
+                iconClass:'fa-linkedin',
             },
             {
                 url:'http://stackoverflow.com/users/2498782/eric-guan',
-                icon:'fa-stack-overflow'
+                iconClass:'fa-stack-overflow'
             },
             {
                 url:'http://codepen.io/guanzo/',
-                icon:'fa-codepen'
+                iconClass:'fa-codepen'
             }
         ],
         technologies:[
@@ -167,6 +172,12 @@ export default new Vuex.Store({
         ],
     },
 	mutations:{
+        [CHANGE_BACKGROUND] (state, payload){
+            state.gradientIndex = payload.gradientIndex
+        },
+        [CHANGE_PROJECTS_BACKGROUND] (state, {gradientIndex, gradient}){
+            state.gradients.splice(gradientIndex, 1, gradient)
+        },
 		[SELECT_PROJECT] (state, payload){
 			state.selectedProject = payload.index
 		},
@@ -181,6 +192,15 @@ export default new Vuex.Store({
         }
 	},
     getters:{
+        defaultGradient: state => {
+            return state.gradients[0]
+        },
+        currentGradient: state => {
+            return state.gradients[state.gradientIndex]
+        },
+        gradient: state => index => {
+            return state.gradients[index]
+        },
         activeProject: state => {
             return state.projects[state.selectedProject]
         },
