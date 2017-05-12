@@ -128,7 +128,7 @@ export default {
     justify-content: space-around;
     flex-wrap: wrap;
     position: relative;
-    z-index: 10;
+    z-index: 5;
 }
 
 .portrait-wrapper{

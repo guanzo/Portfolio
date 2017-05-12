@@ -93,7 +93,7 @@ export default {
 			//add ONLY ONE of these classes to any element
 			var options = []
 			var regex = new RegExp('scrollfire')
-			let defaultOffset = 200;
+			let defaultOffset = 100;
 			$('[class*="scrollfire"]').each(function(index){
 				var $this = $(this);
 				let scrollfireType = $this.attr('class').split(' ').find(c=>regex.test(c))
