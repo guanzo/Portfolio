@@ -42,7 +42,7 @@ export default {
 
 <style lang="less" scoped>
 
-@import '/assets/custom.less';
+@import '/public/less/custom.less';
 
 
 .dialogue-section {

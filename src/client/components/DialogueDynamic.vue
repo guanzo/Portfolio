@@ -66,8 +66,7 @@ export default {
     },
     watch:{
         startDialogue(){
-            console.log('init')
-            this.initiate();
+            this.initiate()
         }
     },
     methods:{
@@ -76,12 +75,11 @@ export default {
                 if(isFunction(obj))
                     return obj().then(this.nextLine)
                 else
-                    return this.createPromise(obj,obj.duration)
+                    return this.createPromise(obj.duration).then(this.nextLine)
             });
         },
-        createPromise(obj, ms = this.duration){
-            return new Promise((resolve,reject)=>{
-                this.nextLine()
+        createPromise(ms = this.duration){
+            return new Promise(resolve=>{
                 setTimeout(resolve, ms)
             })
         },
@@ -95,7 +93,7 @@ export default {
 <style lang="less" scoped>
 
 
-@import '/assets/custom.less';
+@import '/public/less/custom.less';
 
 
 .dialogue-section {

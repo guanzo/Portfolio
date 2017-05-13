@@ -132,7 +132,7 @@ function scrollFireCallback(el){
 
 <style lang="less">
 
-@import '/assets/custom.less';
+@import '/public/less/custom.less';
 
 html, body{
 	height: 100%;

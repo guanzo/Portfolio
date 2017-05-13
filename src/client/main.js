@@ -40,7 +40,7 @@ Vue.component('robot',{
 			{
 				attrs:{
 					class:'speech-portrait',
-					src:'assets/images/robot.svg'
+					src:'/images/robot.svg'
 				}
 			}
 		)

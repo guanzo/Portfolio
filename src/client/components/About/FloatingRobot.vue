@@ -69,13 +69,26 @@
         <ellipse rx="104" ry="12" cy="495" cx="254" fill="#91C6C2"/>
         </svg>
 
+
+<!--<div class="robot-intro robot-text flow-text">
+                    <floating-robot class="scrollfire-to-right" data-scrollfire-delay="1000" />
+                    <span class="scrollfire-appear" data-scrollfire-delay="1500">
+                        <span class="speech-bubble">Welcome Guest!</span>
+                        <br>
+                        <span class="speech-bubble">I am the Sire's automated butler robot, or <b>ABR</b> Robot.</span>
+                        <br>
+                        <span class="speech-bubble">He's not in at the moment. Allow me to make an introduction.</span>
+                    </span>
+            </div>-->
+
 </template>
 
 <script>
 
-//one time floating animation for the very first robot image
+//floating animation + dialogue for beginning and end
 
 export default {
+    props:['script'],
     mounted(){
 
     }
@@ -99,15 +112,28 @@ svg{
 
 .right-arm{
     transform-origin: 10% 10%;
-    animation: wave 1s ease 2 alternate 1.75s;
+    animation: wave 3s ease 1.75s;
 }
 
 @keyframes wave{
     0% {
 		transform: rotate(0deg)
 	}
-	100% {
-		transform: rotate(-140deg)
+    55%{
+        transform: rotate(-125deg)
+    }
+    65%{
+        transform: rotate(-140deg)
+    }
+    70%{
+        transform: rotate(-125deg)
+    }
+    80%{
+        transform: rotate(-140deg)
+    }
+
+	0% {
+		transform: rotate(0deg)
 	}
 }
 

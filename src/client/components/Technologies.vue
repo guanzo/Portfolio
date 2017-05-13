@@ -39,7 +39,6 @@
 //import shuffle from './lodash/shuffle'
 import shuffle from 'lodash/shuffle'
 import persistentDialogue from './DialoguePersistent.vue'
-import {CHANGE_HAIR_COLOR, CHANGE_TIE_COLOR} from '../store.js'
 import waypoint from '../waypoint.js'
 
 export default {
@@ -83,12 +82,6 @@ export default {
         },
         onShuffle(){
             this.technologies = shuffle(this.technologies)
-        },
-        changeHairColor(){
-            this.$store.commit(CHANGE_HAIR_COLOR)
-        },
-        changeTieColor(){
-            this.$store.commit(CHANGE_TIE_COLOR)
         }
     },
     components:{
@@ -101,7 +94,7 @@ export default {
 
 <style lang="less" scoped>
 
-@import '/assets/custom.less';
+@import '/public/less/custom.less';
 
 @tech-size: 125px;
 @small-tech-size: 85px;

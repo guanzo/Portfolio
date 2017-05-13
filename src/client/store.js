@@ -5,8 +5,6 @@ Vue.use(Vuex)
 
 export const SELECT_PROJECT = 'SELECT_PROJECT';
 export const SELECT_IMAGE = 'SELECT_IMAGE';
-export const CHANGE_HAIR_COLOR = 'CHANGE_HAIR_COLOR'
-export const CHANGE_TIE_COLOR = 'CHANGE_TIE_COLOR'
 export const CHANGE_BACKGROUND = 'CHANGE_BACKGROUND'
 export const CHANGE_PROJECTS_BACKGROUND = 'CHANGE_PROJECTS_BACKGROUND'
 
@@ -20,7 +18,7 @@ export default new Vuex.Store({
         gradients:[
             ['#da7352','#d64759'],//red/orange
             ['#38aecc','#2E3192'],//blue
-            ['#030303','#1f1f1f'],///black, replaced by green during projects intro
+            ['#030303','#030303'],///black, replaced by green during projects intro
         ],
         organizations:[
 
@@ -74,7 +72,7 @@ export default new Vuex.Store({
         ],
         technologies:[
                 {
-                    imgSrc:'assets/images/technologies/htmlcssjs.png', 
+                    imgSrc:'/images/technologies/htmlcssjs.png', 
                     name:'HTML, CSS, JS',
                     text:'',
                     class:'',
@@ -92,7 +90,7 @@ export default new Vuex.Store({
                     class:'',
                 },
                 {
-                    imgSrc:'assets/images/technologies/lodash.png', 
+                    imgSrc:'/images/technologies/lodash.png', 
                     name:'Lodash.js',
                     text:'Useful for<br>any project',
                     class:'',
@@ -110,25 +108,25 @@ export default new Vuex.Store({
                     class:'',
                 },
                 {
-                    imgSrc:'assets/images/technologies/less.png', 
+                    imgSrc:'/images/technologies/less.png', 
                     name:'Less',
                     text:'Okay, this one is a gimme',
                     class:'',
                 },
                 {
-                    imgSrc:'assets/images/technologies/leaflet.jpg', 
+                    imgSrc:'/images/technologies/leaflet.jpg', 
                     name:'Leaflet.js',
                     text:'Makes mapping a breeze',
                     class:'',
                 },
                 {
-                    imgSrc:'assets/images/technologies/grunt.png', 
+                    imgSrc:'/images/technologies/grunt.png', 
                     name:'Grunt',
                     text:'My first build tool',
                     class:'',
                 },
                 {
-                    imgSrc:'assets/images/technologies/npm.png', 
+                    imgSrc:'/images/technologies/npm.png', 
                     name:'npm',
                     text:'Welcome to dependency hell',
                     class:'',
@@ -146,24 +144,24 @@ export default new Vuex.Store({
                     class:'',
                 },
                 {
-                    imgSrc:'assets/images/technologies/sql-server.png', 
+                    imgSrc:'/images/technologies/sql-server.png', 
                     name:'SQL Server',
                     class:'',
                 },
                 {
-                    imgSrc:'assets/images/robot.svg', 
+                    imgSrc:'/images/robot.svg', 
                     name:'ABR',
                     text:'A somewhat reliable robot butler.',
                     class:'',
                 },
                 {
-                    imgSrc:'assets/images/technologies/tomcat.png', 
+                    imgSrc:'/images/technologies/tomcat.png', 
                     name:'Apache Tomcat',
                     text:'I have 2 cats',
                     class:'',
                 },
                 {
-                    imgSrc:'assets/images/technologies/flux-logo.png', 
+                    imgSrc:'/images/technologies/flux-logo.png', 
                     name:'Flux',
                     text:'Vuex is my current go-to flux implementation',
                     class:'',
@@ -183,13 +181,7 @@ export default new Vuex.Store({
 		},
         [SELECT_IMAGE] (state, payload){
 			state.selectedImage = payload.index
-		},
-        [CHANGE_HAIR_COLOR] (state){
-            state.portraitStyle.hair = 'black'
-        },
-        [CHANGE_TIE_COLOR] (state){
-            state.portraitStyle.tie = 'blue'
-        }
+		}
 	},
     getters:{
         defaultGradient: state => {

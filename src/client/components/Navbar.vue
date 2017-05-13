@@ -45,7 +45,7 @@ export default {
 
 <style lang="less" scoped>
 
-@import (reference) '/assets/custom.less';
+@import (reference) '/public/less/custom.less';
 
 nav{
     background: @primary;
