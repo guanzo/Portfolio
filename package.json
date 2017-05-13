@@ -4,10 +4,14 @@
   "author": "Eric Guan",
   "private": true,
   "scripts": {
-    "watchify": "watchify -vd -p browserify-hmr -e src/client/main.js -o public/dist/build.js",
+    "delete-bundle": "del-cli public/dist/bundle.*.js",
+    "watchify": "watchify -vd -p browserify-hmr -e src/client/main.js -o public/dist/bundle.js",
     "server": "nodemon src/server/app.js --ignore public/ --ignore src/client/",
+    "predev": "npm run delete-bundle && node predev.js",
     "dev": "npm-run-all --parallel watchify server",
-    "build": "cross-env NODE_ENV=production browserify -g envify src/client/main.js | uglifyjs -c warnings=false -m > public/dist/build.js"
+    "prebuild": "npm run delete-bundle",
+    "build": "cross-env NODE_ENV=production browserify -g envify src/client/main.js | uglifyjs -c warnings=false -m > public/dist/bundle.js",
+    "postbuild": "node postbuild.js"
   },
   "dependencies": {
     "bluebird": "^3.5.0",
@@ -31,10 +35,12 @@
     "browserify-hmr": "^0.3.1",
     "cross-env": "^1.0.6",
     "envify": "^3.4.1",
+    "hash-files": "^1.1.1",
     "http-server": "^0.9.0",
     "less": "^2.7.2",
     "nodemon": "^1.11.0",
     "npm-run-all": "^2.1.2",
+    "replace-in-file": "^2.5.0",
     "uglify-js": "^2.5.0",
     "vueify": "^9.1.0",
     "watchify": "^3.4.0"
