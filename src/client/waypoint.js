@@ -4,13 +4,15 @@ export default {
     methods:{
         waypoint({y},direction){
 
+            var el = this.$el;
             var gradientIndex = this.gradientIndex
 
-            if(direction === 'out' && y === 'down')
+            if(direction === 'out' && y === 'down'){
                 gradientIndex++
-            else if(direction === 'out' && y === 'up')
+                
+            }else if(direction === 'out' && y === 'up')
                 gradientIndex--
-
+            
             this.$store.commit(CHANGE_BACKGROUND, { gradientIndex })
         },
     }

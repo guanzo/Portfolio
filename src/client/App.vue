@@ -1,12 +1,14 @@
 <template>
-	<div id="app" :style="background">
-		<about></about>
-		<technologies></technologies>
-		<projects></projects>
-		<guestbook></guestbook>
-		<!--<navbar></navbar>
-		<intro></intro>-->
-		<iconCredits></iconCredits>
+	<div id="app" :style="background" >
+		<template v-visible="isLoaded">
+			<about></about>
+			<technologies></technologies>
+			<projects></projects>
+			<guestbook></guestbook>
+			<!--<navbar></navbar>
+			<intro></intro>-->
+			<iconCredits></iconCredits>
+		</template>
 	</div>
 </template>
 
@@ -18,12 +20,33 @@ import projects from './components/Projects.vue'
 import guestbook from './components/Guestbook.vue'
 import iconCredits from './components/IconCredit.vue'
 import smoothScroll from 'smoothscroll-polyfill'
+import throttle from 'lodash/throttle'
 import {easeCubicInOut,interpolate} from 'd3'
+import {CHANGE_BACKGROUND} from './store.js'
+
+//import jQuery from 'jquery'
+
+;(function($, win) {
+  $.fn.inViewport = function(cb) {
+     return this.each(function(i,el) {
+       let fn = throttle(function(){
+         var elH = $(el).outerHeight(),
+             H = $(win).height(),
+             r = el.getBoundingClientRect(), t=r.top, b=r.bottom;
+         return cb.call(el, Math.max(0, t>0? Math.min(elH, H-t) : (b<H?b:H)),i);  
+       },250)
+       fn();
+       $(win).on("resize scroll", fn);
+     });
+  };
+}(jQuery, window));
+
 export default {
 	name: 'app',
 	data(){
-		var g = this.$store.getters.defaultGradient
+		var g = this.$store.getters.currentGradient
 		return {
+			isLoaded:false,
 			color1: g[0],
 			color2: g[1],
 			duration: 1500,
@@ -45,6 +68,18 @@ export default {
 
 	},
 	mounted(){
+		window.onload = ()=>{
+			//console.log(arguments)
+			this.isLoaded = true
+			this.$store.state.waypointsAreActive = true
+		};
+		var self = this;
+		$('#app > .app-section').inViewport(function( pixelsOnScreen, index ){
+			var isMoreThanHalf = pixelsOnScreen >= window.innerHeight/2;
+			if(isMoreThanHalf && self.$store.state.gradientIndex !== index)
+				self.$store.commit(CHANGE_BACKGROUND, { index })
+		});
+
 		this.$nextTick(()=>{
 			this.setScrollFires();
 
@@ -66,6 +101,8 @@ export default {
 	},
 	watch:{
 		currentGradient(newGradient, oldGradient){
+			console.log(newGradient)
+			console.log(oldGradient)
 			this.startTime = new Date();
 			this.interpolator1 = interpolate(oldGradient[0],newGradient[0])
 			this.interpolator2 = interpolate(oldGradient[1],newGradient[1])

@@ -1,6 +1,6 @@
 <template>
     <div id="projects" class="app-section" :class="{'lights-off': !lightsOn}">
-        <v-waypoint :position="'fill'" @waypoint="waypoint"></v-waypoint>
+        <v-waypoint :active="waypointsAreActive" :position="'fill'" @waypoint="waypoint"></v-waypoint>
         <div class="container">
             <v-waypoint :position="'top' "@waypoint="start"></v-waypoint>
             <h2 class="app-section-title scrollfire-to-right">The Gallery</h2>
@@ -61,6 +61,9 @@ export default {
         portraits(){
             return this.projects.map(project=>project.imgs[0])
         },
+        waypointsAreActive(){
+            return this.$store.state.waypointsAreActive
+        }
     },
     methods:{
         start(){

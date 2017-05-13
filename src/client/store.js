@@ -8,13 +8,14 @@ export const SELECT_IMAGE = 'SELECT_IMAGE';
 export const CHANGE_BACKGROUND = 'CHANGE_BACKGROUND'
 export const CHANGE_PROJECTS_BACKGROUND = 'CHANGE_PROJECTS_BACKGROUND'
 
-export default new Vuex.Store({
+let store = new Vuex.Store({
 	state: {
         scrollfireBelowTitleDelay:1000,
         selectedProject:0,
         selectedImage:0,
         navbarBackground:'',
         gradientIndex: 0,
+        waypointsAreActive:false,
         gradients:[
             ['#da7352','#d64759'],//red/orange
             ['#38aecc','#2E3192'],//blue
@@ -172,7 +173,7 @@ export default new Vuex.Store({
     },
 	mutations:{
         [CHANGE_BACKGROUND] (state, payload){
-            state.gradientIndex = payload.gradientIndex
+            state.gradientIndex = payload.index
         },
         [CHANGE_PROJECTS_BACKGROUND] (state, {gradientIndex, gradient}){
             state.gradients.splice(gradientIndex, 1, gradient)
@@ -203,3 +204,5 @@ export default new Vuex.Store({
         },
     }
 })
+
+export default store;
