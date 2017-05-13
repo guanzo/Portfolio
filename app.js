@@ -8,7 +8,6 @@ var app = express()
 
 app.use(express.static('public'))
 
-// 4. Listen on port 8080
-app.listen(8080, function(){
-   console.log('Server is running on port 8080...');
+app.listen(80, function(){
+   console.log('Server is running on port 80...');
 });

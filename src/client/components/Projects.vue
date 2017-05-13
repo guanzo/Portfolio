@@ -4,6 +4,8 @@
         <div class="container">
             <v-waypoint :position="'top' "@waypoint="start"></v-waypoint>
             <h2 class="app-section-title scrollfire-to-right">The Gallery</h2>
+            <sup class="under-construction">under construction</sup>
+
             <dynamic-dialogue :script="script" :startDialogue="startDialogue"></dynamic-dialogue>
 
             <div class="portraits">
@@ -13,7 +15,6 @@
                 </div>
             </div>
         </div>
-        <span class="wip">Work in Progress</span>
     </div>
 </template>
 
@@ -26,10 +27,6 @@ import * as d3 from 'd3'
 import {CHANGE_PROJECTS_BACKGROUND} from '../store.js'
 import waypoint from '../waypoint.js'
 
-/**
- * Skewed portrait is always the first one, so ppl on mobile can see ABR fix it 
- */
-
 export default {
     name:'projects',
     mixins:[waypoint],
@@ -41,25 +38,22 @@ export default {
             startDialogue:false,
             lightsOn: false,
             lightsDuration: 2000,
-            /*script:[
-                {speaker:'man', line:"Lights please, ABR"},
-                {speaker:'robot', line: "*clap clap*",duration: 1250},
-                this.turnLightsOn,
-                {speaker:'man', line:"Welcome... to the gallery"},
-                {speaker:'man', line:"...", duration: 1000},
-                this.fixRotatedPortrait,
-                {speaker:'robot', line:"so sorry sire"},
-               ]*/
             script:[
                 {speaker:'man', line:"", duration: 1000},
-                {speaker:'man', line:"Lights please, ABR"},
+                {speaker:'man', line:"Lights please, Egg"},
                 {speaker:'robot', line: "*clap clap*",duration: 1250},
                 this.turnLightsOn,
                 {speaker:'man', line:"Welcome... to the gallery"},
                 {speaker:'man', line:"...", duration: 1000},
                 this.fixRotatedPortrait,
                 {speaker:'robot', line:"so sorry sire"},
-                {speaker:'man', line:"Please Guest, feel free to browse around."},
+                {speaker:'robot', line:"it won't happen again"},
+                {speaker:'man', line:"It happens everytime.."},
+                {speaker:'man', line:"Please Guest, feel free to browse around.", duration: 4000},
+                {speaker:'man', line:"Egg, remind me why I haven't recycled you yet?", duration: 2500},
+                {speaker:'robot', line:"I was a gift from your mother"},
+                {speaker:'man', line:"Right..."},
+                {speaker:'man', line:""},
                ]
 		}
 	},

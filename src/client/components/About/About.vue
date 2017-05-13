@@ -6,18 +6,17 @@
             <div class="robot-intro robot-text flow-text">
                     <floating-robot class="scrollfire-to-right" data-scrollfire-delay="1000" />
                     <span class="scrollfire-appear" data-scrollfire-delay="1500">
-                        <span class="speech-bubble">Welcome Guest!</span>
-                        <br>
-                        <span class="speech-bubble">I am the Sire's automated butler robot, or <b>ABR</b> Robot.</span>
-                        <br>
-                        <span class="speech-bubble">He's not in at the moment. Allow me to make an introduction.</span>
+                        <template v-for="line in robotIntro">
+                            <span class="speech-bubble" v-html="line"></span>
+                            <br>
+                        </template>
                     </span>
             </div>
             <div class="section">
                 <div class="clearfix">
                     <div class="scrollfire-to-left img-wrapper"  data-scrollfire-delay="1000">
                         <man-portrait />
-                        <div>ABR rendition</div>
+                        <div>Egg rendition</div>
                     </div>
 
                     <div class="scrollfire-to-right"  data-scrollfire-delay="1000" >
@@ -83,18 +82,25 @@ export default{
         return {
             gradientIndex:0,
             birthYear: 1991,
+            robotIntro:[
+                'Welcome Guest, to <b>Guanzo manor</b>!',
+                "I am the estates caretaker, you may call me <b>Egg</b>",
+                "Please excuse the construction, the Sire always has new ideas.",
+                "He's not in at the moment. Allow me to make an introduction."
+            ],
             script:[
                 {speaker:'man', lines:["I'm home! Man they really need to give more rice..", 
                     "Hi there! I hope my robot butler hasn't been too troublesome. Let me s-",]},
                 {speaker:'robot', lines:["Welcome home sire!"]},
-                {speaker:'man', lines:["What did I say about interruptions..",
+                {speaker:'man', lines:["Hi Egg.",
+                                        "What did I say about interruptions..",
                                         "Also you need to stop giving out my location"]},
                 {speaker:'robot', lines:["Yes sire",'my deepest apologies sire']},
                 {speaker:'man', lines:["This isn't the first time you've done this","What if someone kidnapped me?"]},
                 {speaker:'robot', lines:["Based on your location, the time of day, and mostly your estimated ransom value, there was a 0.054% chance of being abducted. I consi-"]},
                 {speaker:'man', lines:["Nevermind"]},
                 {speaker:'robot', lines:["Will that be all?"]},
-                {speaker:'man', lines:["Prepare my projects gallery for a showing"]},
+                {speaker:'man', lines:["Prepare the gallery for a showing"]},
                 {speaker:'robot', lines:["Yes sire"]},
                 {speaker:'man', lines:["So sorry about that! He's an older model.. Now let's get going."]},
             ]

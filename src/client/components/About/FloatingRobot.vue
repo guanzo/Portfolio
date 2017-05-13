@@ -69,18 +69,6 @@
         <ellipse rx="104" ry="12" cy="495" cx="254" fill="#91C6C2"/>
         </svg>
 
-
-<!--<div class="robot-intro robot-text flow-text">
-                    <floating-robot class="scrollfire-to-right" data-scrollfire-delay="1000" />
-                    <span class="scrollfire-appear" data-scrollfire-delay="1500">
-                        <span class="speech-bubble">Welcome Guest!</span>
-                        <br>
-                        <span class="speech-bubble">I am the Sire's automated butler robot, or <b>ABR</b> Robot.</span>
-                        <br>
-                        <span class="speech-bubble">He's not in at the moment. Allow me to make an introduction.</span>
-                    </span>
-            </div>-->
-
 </template>
 
 <script>

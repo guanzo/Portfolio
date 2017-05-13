@@ -56,11 +56,11 @@ export default {
                     "It's not feasible to list every single item, nor would it be appropriate.",
                     `As it is, I choose to list the tools I most enjoy using, in the hopes that I can find a job I want to do, 
                     instead of a job that I can do.`,
-                    'Thanks for your concern though, ABR. I appreciate it.'
+                    'Thanks for your concern though, Egg. I appreciate it.'
                     ]},
                 {speaker:'robot', lines:["Y-yes SIRE!"]},
-                {speaker:'man', lines:["How's my project gallery coming along?"]},
-                {speaker:'robot', lines:["All done"]},
+                {speaker:'man', lines:["Is the gallery ready?"]},
+                {speaker:'robot', lines:["indubitably"]},
                 {speaker:'man', lines:["Excellent. Onwards! Err, I mean downwards!"]},
                 {speaker:'robot', lines:["Haha. Jolly good sire"]},
             ],

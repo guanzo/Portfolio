@@ -151,7 +151,7 @@ export default new Vuex.Store({
                 },
                 {
                     imgSrc:'/images/robot.svg', 
-                    name:'ABR',
+                    name:'Egg',
                     text:'A somewhat reliable robot butler.',
                     class:'',
                 },
