@@ -84,7 +84,8 @@ export default {
             })
         },
         nextLine(){
-            this.index++;
+            if(this.index + 1 < this.script.length)
+                this.index++;
         }
     },
 }

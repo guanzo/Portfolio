@@ -19,6 +19,7 @@ export default new Vuex.Store({
             ['#da7352','#d64759'],//red/orange
             ['#38aecc','#2E3192'],//blue
             ['#030303','#030303'],///black, replaced by green during projects intro
+            ['#faf0cd','#fab397']
         ],
         organizations:[
 

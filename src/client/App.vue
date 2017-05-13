@@ -3,6 +3,7 @@
 		<about></about>
 		<technologies></technologies>
 		<projects></projects>
+		<guestbook></guestbook>
 		<!--<navbar></navbar>
 		<intro></intro>-->
 		<iconCredits></iconCredits>
@@ -14,6 +15,7 @@ import navbar from './components/Navbar.vue';
 import about from './components/About/About.vue'
 import technologies, {scrollfire} from './components/Technologies.vue';
 import projects from './components/Projects.vue'
+import guestbook from './components/Guestbook.vue'
 import iconCredits from './components/IconCredit.vue'
 import smoothScroll from 'smoothscroll-polyfill'
 import {easeCubicInOut,interpolate} from 'd3'
@@ -35,6 +37,7 @@ export default {
 		about,
 		technologies,
 		projects,
+		guestbook,
 		iconCredits
 	},
 	created(){

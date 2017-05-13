@@ -1,6 +1,6 @@
 {
   "name": "portfolio",
-  "description": "Website that showcases my work and provides social media links",
+  "description": "Website that showcases my work",
   "author": "Eric Guan",
   "private": true,
   "scripts": {

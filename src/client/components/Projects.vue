@@ -1,8 +1,8 @@
 <template>
     <div id="projects" class="app-section" :class="{'lights-off': !lightsOn}">
         <v-waypoint :position="'fill'" @waypoint="waypoint"></v-waypoint>
-        <v-waypoint @waypoint="start"></v-waypoint>
         <div class="container">
+            <v-waypoint :position="'top' "@waypoint="start"></v-waypoint>
             <h2 class="app-section-title scrollfire-to-right">The Gallery</h2>
             <dynamic-dialogue :script="script" :startDialogue="startDialogue"></dynamic-dialogue>
 
@@ -36,7 +36,7 @@ export default {
 	data () {
 		return {
             gradientIndex: 2,
-            gradient:['#265744 ','#083023 '],//green
+            gradient:['#265744','#083023'],//green
 			projects: this.$store.state.projects,
             startDialogue:false,
             lightsOn: false,
@@ -59,6 +59,7 @@ export default {
                 {speaker:'man', line:"...", duration: 1000},
                 this.fixRotatedPortrait,
                 {speaker:'robot', line:"so sorry sire"},
+                {speaker:'man', line:"Please Guest, feel free to browse around."},
                ]
 		}
 	},
@@ -102,7 +103,7 @@ export default {
                     })
                 .transition()
                     .duration(1500)
-                    .delay(750)
+                    .delay(950)
                     .style('transform',null)
                     .on('end',resolve)
             })
