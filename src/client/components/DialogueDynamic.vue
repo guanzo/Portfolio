@@ -34,6 +34,7 @@ BASIC RULES:
     -a function that returns a promise
 
 -Then call promises sequentially, synchronously
+
 */
 import isFunction from 'lodash/isFunction'
 import Promise from 'bluebird'
@@ -67,7 +68,7 @@ export default {
     watch:{
         startDialogue(){
             this.initiate()
-        }
+        },
     },
     methods:{
         initiate(){
@@ -94,7 +95,7 @@ export default {
 <style lang="less" scoped>
 
 
-@import '/public/less/custom.less';
+@import (reference) '/public/less/custom.less';
 
 
 .dialogue-section {
@@ -105,9 +106,6 @@ export default {
     p{
         display: inline-block;
         margin: 0;
-        box-shadow: 0.2em 0 0 @speech-bg, -0.2em 0 0 @speech-bg;
-        background-color: @speech-bg;
-        border-radius: 5px;
     }   
     .speech-portrait{
         //for w/e reason i need all 3 widths

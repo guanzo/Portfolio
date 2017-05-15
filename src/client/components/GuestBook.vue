@@ -1,8 +1,7 @@
 <template>
     <div id="guestbook" class="app-section" >
-        <v-waypoint :position="'fill'" @waypoint="waypoint"></v-waypoint>
         <div class="container">
-            <h2 class="app-section-title scrollfire-to-right">Guestbook</h2> 
+            <div class="app-section-title scrollfire-to-right">Guestbook</div> 
             <sup class="under-construction">under construction</sup>
             
             <persistent-dialogue :script="script"></persistent-dialogue>
@@ -12,12 +11,10 @@
 
 <script>
 
-import waypoint from '../waypoint.js'
 import persistentDialogue from './DialoguePersistent.vue'
 
 export default {
     name:'guestbook',
-    mixins:[waypoint],
     data(){
         return {
             gradientIndex: 3,

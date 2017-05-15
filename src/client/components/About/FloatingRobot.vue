@@ -99,29 +99,29 @@ svg{
 }
 
 .right-arm{
-    transform-origin: 10% 10%;
+    transform-origin: 414px 166px;
     animation: wave 3s ease 1.75s;
 }
 
 @keyframes wave{
     0% {
-		transform: rotate(0deg)
+		transform: rotate(0deg);
 	}
     55%{
-        transform: rotate(-125deg)
+        transform: rotate(-125deg);
     }
     65%{
-        transform: rotate(-140deg)
+        transform: rotate(-140deg);
     }
     70%{
-        transform: rotate(-125deg)
+        transform: rotate(-125deg);
     }
     80%{
-        transform: rotate(-140deg)
+        transform: rotate(-140deg);
     }
 
 	0% {
-		transform: rotate(0deg)
+		transform: rotate(0deg);
 	}
 }
 

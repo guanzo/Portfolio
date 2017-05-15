@@ -1,8 +1,7 @@
 <template>
     <div id="technologies" class="app-section">
-        <v-waypoint :position="'fill'" @waypoint="waypoint"></v-waypoint>
         <div class="container">
-            <div class="app-section-title scrollfire-to-right">The Toolshed</div>
+            <div class="app-section-title scrollfire-to-right">The Workshop</div>
             <div class="tech-intro flow-text scrollfire-to-top">
                 <p>I pride myself on being a versatile and competent programmer. Being proficient in Javascript, Java, and SQL means that
                     I can contribute to the 3 major pillars of web development: <b>frontend</b>, <b>backend</b>, and the <b>database</b>.
@@ -39,11 +38,9 @@
 //import shuffle from './lodash/shuffle'
 import shuffle from 'lodash/shuffle'
 import persistentDialogue from './DialoguePersistent.vue'
-import waypoint from '../waypoint.js'
 
 export default {
     name:'technology-section',
-    mixins:[waypoint],
     data () {
         return {
             gradientIndex: 1,
@@ -94,7 +91,7 @@ export default {
 
 <style lang="less" scoped>
 
-@import '/public/less/custom.less';
+@import (reference) '/public/less/custom.less';
 
 @tech-size: 125px;
 @small-tech-size: 85px;

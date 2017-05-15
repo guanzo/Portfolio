@@ -4,18 +4,17 @@ import Vuex from 'vuex'
 Vue.use(Vuex)
 
 export const SELECT_PROJECT = 'SELECT_PROJECT';
-export const SELECT_IMAGE = 'SELECT_IMAGE';
+export const CLOSE_PROJECT = 'CLOSE_PROJECT';
 export const CHANGE_BACKGROUND = 'CHANGE_BACKGROUND'
 export const CHANGE_PROJECTS_BACKGROUND = 'CHANGE_PROJECTS_BACKGROUND'
 
+
 let store = new Vuex.Store({
 	state: {
-        scrollfireBelowTitleDelay:1000,
         selectedProject:0,
         selectedImage:0,
         navbarBackground:'',
         gradientIndex: 0,
-        waypointsAreActive:false,
         gradients:[
             ['#da7352','#d64759'],//red/orange
             ['#38aecc','#2E3192'],//blue
@@ -28,9 +27,10 @@ let store = new Vuex.Store({
         projects:[
             {
                 name:'Blue Edge',
-                tagline:'Predictive Analytics',
+                tag:'Predictive Analytics',
                 startDate: 'April 2017',
                 background:'linear-gradient(to right, #007dcc , #005C97)',
+                mainColor:'#007dcc',
                 color:'white',
                 selectedImage:0,
                 imgs:['be_splash.png','be_profile.png','be_scenario.png'],
@@ -40,15 +40,21 @@ let store = new Vuex.Store({
                 tag:'Business Intelligence',
                 startDate: 'March 2016',
                 background:'linear-gradient(to bottom, #354835 , #779377)',
+                mainColor:'#354835',
                 color:'white',
                 tagline:0,
-                imgs:['nbg_choropleth.png','nbg_customer.png','nbg_platform.png','nbg_region.png']
+                imgs:['nbg_choropleth.png','nbg_customer.png','nbg_platform.png','nbg_region.png'],
+                script:[
+                    {speaker:'man', line:"This project was my first full fledged web application, built by myself.", duration:3000},
+                
+                ]
             },
             {
                 name:'Relevance Engine',
                 tag:'News Aggregator',
                 startDate: 'May 2015',
                 background:'linear-gradient(to right, #02488e , #118bef)',
+                mainColor:'#02488e',
                 color:'white',
                 tagline:0,
                 imgs:['re_dashboard.png','re_docspace.png','re_cdd.png','re_email.png']
@@ -181,7 +187,7 @@ let store = new Vuex.Store({
 		[SELECT_PROJECT] (state, payload){
 			state.selectedProject = payload.index
 		},
-        [SELECT_IMAGE] (state, payload){
+        [CLOSE_PROJECT] (state){
 			state.selectedImage = payload.index
 		}
 	},

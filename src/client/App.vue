@@ -16,7 +16,7 @@
 import navbar from './components/Navbar.vue';
 import about from './components/About/About.vue'
 import technologies, {scrollfire} from './components/Technologies.vue';
-import projects from './components/Projects.vue'
+import projects from './components/Projects/Projects.vue'
 import guestbook from './components/Guestbook.vue'
 import iconCredits from './components/IconCredit.vue'
 import smoothScroll from 'smoothscroll-polyfill'
@@ -24,21 +24,19 @@ import throttle from 'lodash/throttle'
 import {easeCubicInOut,interpolate} from 'd3'
 import {CHANGE_BACKGROUND} from './store.js'
 
-//import jQuery from 'jquery'
-
-;(function($, win) {
-  $.fn.inViewport = function(cb) {
-     return this.each(function(i,el) {
-       let fn = throttle(function(){
-         var elH = $(el).outerHeight(),
-             H = $(win).height(),
-             r = el.getBoundingClientRect(), t=r.top, b=r.bottom;
-         return cb.call(el, Math.max(0, t>0? Math.min(elH, H-t) : (b<H?b:H)),i);  
-       },250)
-       fn();
-       $(win).on("resize scroll", fn);
-     });
-  };
+;(function($, window) {
+	$.fn.inViewport = function(cb) {
+		return this.each((i,el)=>{
+			let fn = throttle(()=>{
+				var elH = $(el).outerHeight(),
+					H = window.innerHeight,
+					r = el.getBoundingClientRect(), t=r.top, b=r.bottom;
+					return cb.call(el, Math.max(0, t>0 ? Math.min(elH, H-t) : (b<H?b:H)),i);  
+				},100)
+			fn();
+			$(window).on("resize scroll", fn);
+		});
+	};
 }(jQuery, window));
 
 export default {
@@ -68,11 +66,6 @@ export default {
 
 	},
 	mounted(){
-		window.onload = ()=>{
-			//console.log(arguments)
-			this.isLoaded = true
-			this.$store.state.waypointsAreActive = true
-		};
 		var self = this;
 		$('#app > .app-section').inViewport(function( pixelsOnScreen, index ){
 			var isMoreThanHalf = pixelsOnScreen >= window.innerHeight/2;
@@ -100,12 +93,11 @@ export default {
 		}
 	},
 	watch:{
-		currentGradient(newGradient, oldGradient){
-			console.log(newGradient)
-			console.log(oldGradient)
+		//transition from the current gradient, to handle mid-transition changes
+		currentGradient(newGradient){
 			this.startTime = new Date();
-			this.interpolator1 = interpolate(oldGradient[0],newGradient[0])
-			this.interpolator2 = interpolate(oldGradient[1],newGradient[1])
+			this.interpolator1 = interpolate(this.color1,newGradient[0])
+			this.interpolator2 = interpolate(this.color2,newGradient[1])
 			
 			requestAnimationFrame(this.draw)
 		},

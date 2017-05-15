@@ -42,19 +42,16 @@ export default {
 
 <style lang="less" scoped>
 
-@import '/public/less/custom.less';
+@import (reference) '/public/less/custom.less';
 
 
 .dialogue-section {
     display: flex;
     align-items: flex-start;
-    margin: 1em 0;
+    margin: 0.8em 0;
     p{
         display: inline-block;
         margin: 0.5em 0;
-        box-shadow: 0.2em 0 0 @speech-bg, -0.2em 0 0 @speech-bg;
-        background-color: @speech-bg;
-        border-radius: 5px;
         &:first-child{
             margin-top: 1em;
         }

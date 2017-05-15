@@ -1,6 +1,5 @@
 <template>
     <div id="about" class="app-section">
-        <v-waypoint :position="'fill'" @waypoint="waypoint"></v-waypoint>
         <div class="container">
             <div class="app-section-title scrollfire-appear">The Entrance Hall</div>
             <div class="robot-intro robot-text flow-text">
@@ -72,18 +71,16 @@ import links from '../Links.vue'
 import {OFFER_CANDY} from '../../store.js'
 import floatingRobot from './FloatingRobot.vue'
 import persistentDialogue from '../DialoguePersistent.vue'
-import waypoint from '../../waypoint.js'
 import {mapState} from 'vuex'
 
 export default{
     name:'about',
-    mixins:[waypoint],
     data(){
         return {
             gradientIndex:0,
             birthYear: 1991,
             robotIntro:[
-                'Welcome Guest, to <b>Guanzo manor</b>!',
+                'Welcome Guest, to <b class="raleway">Guanzo manor</b>!',
                 "I am the estates caretaker, you may call me <b>Egg</b>",
                 "Please excuse the construction, the Sire always has new ideas.",
                 "He's not in at the moment. Allow me to make an introduction."
