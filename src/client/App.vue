@@ -103,7 +103,7 @@ export default {
 		},
 	},
 	methods:{
-		draw(timestamp){
+		draw(){
 			var elapsed = new Date() - this.startTime;
 			var normalizedTime = Math.min(elapsed,this.duration)/this.duration
 			var easedTime = easeCubicInOut(normalizedTime);

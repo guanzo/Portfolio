@@ -1,5 +1,6 @@
 <template>
     <div id="projects" class="app-section" :class="{'lights-off': !lightsOn}">
+        <flourish :galleryIndex="gradientIndex" :firstFlourishDone="firstFlourishDone"></flourish>
         <div class="container">
             <v-waypoint :position="'top' "@waypoint="start"></v-waypoint>
             <div class="app-section-title">The Gallery</div>
@@ -10,12 +11,12 @@
                     <dynamic-dialogue :script="script" :startDialogue="startDialogue"></dynamic-dialogue>
 
                     <div class="portraits">
-                        <project-preview @click.native="onClickProject(project)" v-for="(project,i) in projects" ref="frame" :project="project" :class="[i==0 ? 'rotated':'']" >
-                        </project-preview>
+                        <project-portrait @click.native="onClickProject(i)" v-for="(project,i) in projects" ref="frame" :project="project" :class="[i==0 ? 'rotated':'']" >
+                        </project-portrait>
                     </div>
                 </div>
                 <transition name="project">
-                    <project-view v-if="activeProject" :project="activeProject"></project-view>
+                    <project-view v-if="activeProject" :project="activeProject" :showDelay="showDelay" :key="activeProject.name"></project-view>
                 </transition>
             </div>
         </div>
@@ -25,11 +26,12 @@
 <script>
 
 import projectView from './ProjectView.vue'
-import projectPreview from './ProjectPreview.vue'
+import projectPortrait from './ProjectPortrait.vue'
 import dynamicDialogue from '../DialogueDynamic.vue'
 import Promise from 'bluebird'
 import * as d3 from 'd3'
-import {CHANGE_PROJECTS_BACKGROUND} from '../../store.js'
+import {CHANGE_PROJECTS_BACKGROUND,SELECT_PROJECT} from '../../store.js'
+import flourish from './Flourish.vue'
 
 export default {
     name:'projects',
@@ -38,10 +40,10 @@ export default {
             gradientIndex: 2,
             gradient:['#fafafa','#fafafa'],//green
 			projects: this.$store.state.projects,
-            activeProject: null,
             startDialogue:false,
             lightsOn: false,
             lightsDuration: 2000,
+            showDelay: 500,
             script:[
                 {speaker:'man', line:"", duration: 1000},
                 {speaker:'man', line:"Lights please, Egg"},
@@ -53,21 +55,24 @@ export default {
                 {speaker:'robot', line:"so sorry sire. it won't happen again"},
                 {speaker:'man', line:"It happens everytime.."},
                 {speaker:'man', line:"Please Guest, feel free to browse around."},
-               ]
+            ],
+            
 		}
 	},
     computed:{
         portraits(){
             return this.projects.map(project=>project.imgs[0])
-        }
+        },
+        activeProject(){
+            return this.$store.getters.activeProject;
+        },
     },
     methods:{
         start(){
            this.startDialogue = true
         },
-        onClickProject(project){
-            this.activeProject = project;
-            //this.script = project.script
+        onClickProject(index){
+            this.$store.commit(SELECT_PROJECT, { index })
         },
         turnLightsOn(){
             return new Promise(resolve => {
@@ -77,7 +82,10 @@ export default {
                     gradientIndex: this.gradientIndex,
                     gradient: this.gradient 
                 })
+                this.firstFlourishDone = true;
+
                 setTimeout(resolve,this.lightsDuration)
+                
             })
         },
         fixRotatedPortrait(){
@@ -104,12 +112,13 @@ export default {
                     .style('transform',null)
                     .on('end',resolve)
             })
-        }
+        },
     },
     components:{
         'dynamic-dialogue':dynamicDialogue,
-        'project-preview':projectPreview,
-        'project-view':projectView
+        'project-portrait':projectPortrait,
+        'project-view':projectView,
+        flourish
     }
 }
 
@@ -161,12 +170,12 @@ export default {
     position: relative;
 }
 
-.project-enter-active{
-    transition: 1s;
+.project-enter-active, .project-leave-active{
+    transition: .5s;
 }
 
-.project-enter{
-    transform: translateX(100%);
+.project-enter, .project-leave-to{
+    transform: translateY(10%) scale(.9);
     opacity: 0;
 }
 

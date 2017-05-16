@@ -11,7 +11,7 @@ export const CHANGE_PROJECTS_BACKGROUND = 'CHANGE_PROJECTS_BACKGROUND'
 
 let store = new Vuex.Store({
 	state: {
-        selectedProject:0,
+        selectedProject:-1,
         selectedImage:0,
         navbarBackground:'',
         gradientIndex: 0,
@@ -34,6 +34,10 @@ let store = new Vuex.Store({
                 color:'white',
                 selectedImage:0,
                 imgs:['be_splash.png','be_profile.png','be_scenario.png'],
+                script:[
+                    {speaker:'man', line:"My first project with Vue.js. I fell in love.", duration:3000},
+                    {speaker:'robot', line:"fun fact: guanzo manor was built with vue!"},
+                ]
             },
             {
                 name:'New Business Generator',
@@ -46,7 +50,7 @@ let store = new Vuex.Store({
                 imgs:['nbg_choropleth.png','nbg_customer.png','nbg_platform.png','nbg_region.png'],
                 script:[
                     {speaker:'man', line:"This project was my first full fledged web application, built by myself.", duration:3000},
-                
+                    {speaker:'robot', line:"fun fact: jquery leads to spaghetti code!"},
                 ]
             },
             {
@@ -57,7 +61,12 @@ let store = new Vuex.Store({
                 mainColor:'#02488e',
                 color:'white',
                 tagline:0,
-                imgs:['re_dashboard.png','re_docspace.png','re_cdd.png','re_email.png']
+                imgs:['re_dashboard.png','re_docspace.png','re_cdd.png','re_email.png'],
+                script:[
+                    {speaker:'man', line:"I inherited this as my first project at my first job."},
+                    {speaker:'man', line:"It taught me to stay away from GWT"},
+                    {speaker:'robot', line:"fun fact: building ui with java is no fun!"},
+                ]
             }
         ],
         links: [
@@ -188,7 +197,7 @@ let store = new Vuex.Store({
 			state.selectedProject = payload.index
 		},
         [CLOSE_PROJECT] (state){
-			state.selectedImage = payload.index
+			state.selectedProject = -1;
 		}
 	},
     getters:{
@@ -202,11 +211,17 @@ let store = new Vuex.Store({
             return state.gradients[index]
         },
         activeProject: state => {
-            return state.projects[state.selectedProject]
+            if(state.selectedProject !== -1)
+                return state.projects[state.selectedProject]
+            else
+                return null;
         },
         activeImage: (state, getters) => {
             let project = getters.activeProject
-            return project.imgs[state.selectedImage]
+            if(state.selectedProject !== -1)
+                return project.imgs[state.selectedImage]
+            else
+                return null;
         },
     }
 })
