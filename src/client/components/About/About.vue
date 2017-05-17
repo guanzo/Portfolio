@@ -67,7 +67,7 @@
 
 <script>
 import manPortrait from './ManPortrait.vue'
-import links from '../Links.vue'
+import links from './Links.vue'
 import {OFFER_CANDY} from '../../store.js'
 import floatingRobot from './FloatingRobot.vue'
 import persistentDialogue from '../DialoguePersistent.vue'

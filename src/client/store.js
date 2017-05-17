@@ -91,8 +91,9 @@ let store = new Vuex.Store({
             0:'All',
             1:'Frontend',
             2:'Backend',
-            3:'Language',
-            4:'Tool'
+            3:'Languages',
+            4:'Tools',
+            5:'Favorites'
         },
         technologies:[
                 {
@@ -121,14 +122,14 @@ let store = new Vuex.Store({
                     name:'D3.js',
                     text:'Bring data to life. Limited only by your imagination, and some math.',
                     class:'',
-                    category:[1]
+                    category:[1,5]
                 },
                 {
                     imgSrc:'https://vuejs.org/images/logo.png', 
                     name:'Vue.js',
                     text:'Expressive.<br>Performant.<br>Simple. <br>Fun!',
                     class:'',
-                    category:[1]
+                    category:[1,5]
                 },
                 {
                     imgSrc:'/images/technologies/lodash.png', 
@@ -175,7 +176,7 @@ let store = new Vuex.Store({
                 {
                     imgSrc:'/images/technologies/browserify.png', 
                     name:'Browserify',
-                    text:"Don't write spaghetti, write modules!",
+                    text:"Don't write spaghetti, write modules",
                     class:'',
                     category:[4]
                 },
@@ -211,7 +212,7 @@ let store = new Vuex.Store({
                     name:'Egg',
                     text:'A somewhat reliable robot butler.',
                     class:'',
-                    category:[4]
+                    category:[5]
                 },
                 {
                     imgSrc:'/images/technologies/tomcat.png', 
@@ -225,7 +226,7 @@ let store = new Vuex.Store({
                     name:'Flux',
                     text:'Vuex is my current go-to flux implementation',
                     class:'',
-                    category:[1]
+                    category:[1,5]
                 },
 
         ],

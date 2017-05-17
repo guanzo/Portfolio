@@ -23,6 +23,8 @@ export default {
 
 <style lang="less" scoped>
 
+@import '/public/less/custom.less';
+
 .links{
     padding:5vh 0;
     @media (min-width: 400px) {
@@ -57,7 +59,7 @@ a{
         font-size: 4em;
     }
     &:hover{
-        text-shadow: 0px 0px 10px white;
+        text-shadow: 0px 0px 5px @offwhite, -5px 5px 5px #333;
     }
 }
 
