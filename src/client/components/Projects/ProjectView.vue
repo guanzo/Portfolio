@@ -57,8 +57,8 @@ export default {
 
 .close{
     position: absolute;
-    top: 5px;
-    right: 5px;
+    top: 10px;
+    right: 10px;
     width:25px;
     height:25px;
 }

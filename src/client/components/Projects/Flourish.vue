@@ -8,7 +8,7 @@
 
 //the very first flourish will wait for the gallery lights to turn on
 //subsequent flourishes will occur on background gradient changes
-
+import isEqual from 'lodash/isEqual'
 import * as d3 from 'd3'
 export default {
     name:'flourish',
@@ -37,9 +37,9 @@ export default {
                     p3: 84
                 }
             },
-            flourishDuration: 2500,
+            duration: 2500,
             startTime: null,
-            interpolators:{}
+            interpolators:{},
         }
     },
     computed:{
@@ -75,7 +75,9 @@ export default {
     methods:{
         gradientFlourish(){
             this.startTime = new Date();
+            this.isInterrupted = false;
             this.interpolators = {};
+
             var values = this.values;
             var from = values.current;
             var to = this.galleryIsInView ? values.show : values.hide;
@@ -89,14 +91,16 @@ export default {
         },
         draw(){
 			var elapsed = new Date() - this.startTime;
-			var normalizedTime = Math.min(elapsed,this.flourishDuration)/this.flourishDuration
+			var normalizedTime = Math.min(elapsed,this.duration)/this.duration
 			var easedTime = d3.easeCubicInOut(normalizedTime);
 
-            Object.keys(this.values.current).forEach(key=>{
-                this.values.current[key] = this.interpolators[key](easedTime);
+            Object.keys(this.values.current).forEach((key,i)=>{
+                setTimeout(()=>{
+                    this.values.current[key] = this.interpolators[key](easedTime);
+                },i*200)
             })
 
-			if(elapsed < this.flourishDuration)
+			if(elapsed < this.duration)
 				requestAnimationFrame(this.draw)
 		},
     }

@@ -87,101 +87,145 @@ let store = new Vuex.Store({
                 iconClass:'fa-codepen'
             }
         ],
+        technologyCategories:{
+            0:'All',
+            1:'Frontend',
+            2:'Backend',
+            3:'Language',
+            4:'Tool'
+        },
         technologies:[
                 {
-                    imgSrc:'/images/technologies/htmlcssjs.png', 
-                    name:'HTML, CSS, JS',
+                    imgSrc:'/images/technologies/html.png', 
+                    name:'HTML',
                     text:'',
                     class:'',
+                    category:[1]
+                },
+                {
+                    imgSrc:'/images/technologies/css.png', 
+                    name:'CSS',
+                    text:'',
+                    class:'',
+                    category:[1]
+                },
+                {
+                    imgSrc:'/images/technologies/js.png', 
+                    name:'Javascript',
+                    text:'',
+                    class:'',
+                    category:[1,2,3]
                 },
                 {
                     imgSrc:'https://avatars1.githubusercontent.com/u/1562726?v=3&s=400', 
                     name:'D3.js',
                     text:'Bring data to life. Limited only by your imagination, and some math.',
                     class:'',
+                    category:[1]
                 },
                 {
                     imgSrc:'https://vuejs.org/images/logo.png', 
                     name:'Vue.js',
                     text:'Expressive.<br>Performant.<br>Simple. <br>Fun!',
                     class:'',
+                    category:[1]
                 },
                 {
                     imgSrc:'/images/technologies/lodash.png', 
                     name:'Lodash.js',
                     text:'Useful for<br>any project',
                     class:'',
+                    category:[1]
                 },
                 {
                     imgSrc:'https://www.codeforest.net/wp-content/uploads/2013/05/backbone.png', 
                     name:'Backbone.js',
                     text:'My first javascript framework',
                     class:'',
+                    category:[1]
                 },
                 {
                     imgSrc:'https://zeroc.com/images/logos/languages/java-b48c6193e3.svg', 
                     name:'Java',
                     text:'It\'s not "cool" anymore, but still reliable!',
                     class:'',
+                    category:[2,3]
                 },
                 {
                     imgSrc:'/images/technologies/less.png', 
                     name:'Less',
                     text:'Okay, this one is a gimme',
                     class:'',
+                    category:[4]
                 },
                 {
                     imgSrc:'/images/technologies/leaflet.jpg', 
                     name:'Leaflet.js',
                     text:'Makes mapping a breeze',
                     class:'',
+                    category:[1]
                 },
                 {
                     imgSrc:'/images/technologies/grunt.png', 
                     name:'Grunt',
                     text:'My first build tool',
                     class:'',
+                    category:[4]
+                },
+                {
+                    imgSrc:'/images/technologies/browserify.png', 
+                    name:'Browserify',
+                    text:"Don't write spaghetti, write modules!",
+                    class:'',
+                    category:[4]
                 },
                 {
                     imgSrc:'/images/technologies/npm.png', 
                     name:'npm',
                     text:'Welcome to dependency hell',
                     class:'',
+                    category:[4]
                 },
                 {
                     imgSrc:'https://git-scm.com/images/logos/logomark-orange@2x.png', 
                     name:'git',
                     text:'Essential for any application',
                     class:'',
+                    category:[4]
                 },
                 {
                     imgSrc:'https://upload.wikimedia.org/wikipedia/commons/thumb/e/ea/Boostrap_logo.svg/2000px-Boostrap_logo.svg.png', 
                     name:'Bootstrap',
                     text:'',
                     class:'',
+                    category:[1]
                 },
                 {
                     imgSrc:'/images/technologies/sql-server.png', 
                     name:'SQL Server',
                     class:'',
+                    category:[2,3]
                 },
                 {
                     imgSrc:'/images/robot.svg', 
                     name:'Egg',
                     text:'A somewhat reliable robot butler.',
                     class:'',
+                    category:[4]
                 },
                 {
                     imgSrc:'/images/technologies/tomcat.png', 
                     name:'Apache Tomcat',
                     text:'I have 2 cats',
                     class:'',
+                    category:[2]
                 },
                 {
                     imgSrc:'/images/technologies/flux-logo.png', 
                     name:'Flux',
                     text:'Vuex is my current go-to flux implementation',
                     class:'',
+                    category:[1]
                 },
 
         ],

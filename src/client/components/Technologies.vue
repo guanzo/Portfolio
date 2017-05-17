@@ -3,31 +3,32 @@
         <div class="container">
             <div class="app-section-title scrollfire-to-right">The Workshop</div>
             <div class="tech-intro flow-text scrollfire-to-top">
-                <p>I pride myself on being a versatile and competent programmer. Being proficient in Javascript, Java, and SQL means that
-                    I can contribute to the 3 major pillars of web development: <b>frontend</b>, <b>backend</b>, and the <b>database</b>.
-                </p>
-                <p>As the state of web development trends more towards complex frontends, 
-                    so has my focus increased on staying up to date on modern frontend practices. 
-                </p>
-                <p>Can you guess the technology by the logo?</p>
+                <p v-for="text in intro" v-html="text"></p>
             </div>
             <div class="interactions">
-                <span @click="onShuffle">Shuffle</span> |
+                <span v-for="(category,i) in categories" @click="onFilter(i)">
+                    {{category}}
+                </span>
+                <span @click="onShuffle">Shuffle</span>
                 <span @mouseover="onReveal" @mouseout="onHide">Reveal</span>
             </div>
-            
-            <transition-group tag="div" class="technology-list flow-text scrollfire-to-top">
-                <div class="technology z-depth-2" v-for="tech in technologies" :key="tech.name" :class="tech.class" 
-                            @mouseover="tech.class = 'reveal'" @mouseout="tech.class = ''" >
-                    <div class="img-wrapper">
-                        <img :src="tech.imgSrc" :alt="tech.name" >
+
+            <div ref="wrapper" class="technology-list-wrapper"> 
+                <transition-group tag="div" name="tech" class="technology-list flow-text scrollfire-to-top">
+                    <div v-for="tech in filteredTech" :key="tech.name">
+                        <div class="technology z-depth-2"  :class="tech.class" 
+                                    @mouseover="tech.class = 'reveal'" @mouseout="tech.class = ''" >
+                            <div class="img-wrapper">
+                                <img :src="tech.imgSrc" :alt="tech.name" >
+                            </div>
+                            <div class="description-overlay">
+                                <b>{{ tech.name }}</b>
+                                <span v-html="tech.text"></span>
+                            </div>
+                        </div>
                     </div>
-                    <div class="description-overlay">
-                        <b>{{ tech.name }}</b>
-                        <span v-html="tech.text"></span>
-                    </div>
-                </div>
-            </transition-group>
+                </transition-group>
+            </div>
             <persistent-dialogue :script="script"></persistent-dialogue>
             
         </div>
@@ -38,13 +39,21 @@
 //import shuffle from './lodash/shuffle'
 import shuffle from 'lodash/shuffle'
 import persistentDialogue from './DialoguePersistent.vue'
-
 export default {
-    name:'technology-section',
+    name:'technologies',
     data () {
         return {
             gradientIndex: 1,
             technologies: this.$store.state.technologies,
+            categories: this.$store.state.technologyCategories,
+            category: 0,
+            intro:[
+                `I pride myself on being a versatile and competent programmer. Being proficient in Javascript, Java, and SQL means that
+                    I can contribute to the 3 major pillars of web development: <b>frontend</b>, <b>backend</b>, and the <b>database</b>.`,
+                `As the state of web development trends more towards complex frontends, 
+                    so has my focus increased on staying up to date on modern frontend practices.`,
+                `Can you guess the technology by the logo?`
+            ],
             script:[
                 {speaker:'robot', lines:["But sire! You know more than that!!"]},
                 {speaker:'man', lines:[
@@ -64,13 +73,27 @@ export default {
         }
     },
     computed:{
+        filteredTech(){
+            if(this.category == 0)
+                return this.technologies
+            else
+                return this.technologies.filter(d=>d.category.includes(this.category))
+        },
         timeSincejQuery(){
             var milliseconds = new Date() - new Date('3-1-2017'.replace(/-/g, "/"));
             var days = Math.round(milliseconds / (1000*60*60*24));
             return days;
         }
     },
+    watch:{
+        filteredTech(){
+            this.animateContainerHeight();
+        }
+    },
     methods:{
+        onFilter(index){
+            this.category = parseInt(index);
+        },
         onReveal(){
             this.technologies.forEach(d=>d.class = 'reveal')
         },
@@ -79,6 +102,17 @@ export default {
         },
         onShuffle(){
             this.technologies = shuffle(this.technologies)
+        },
+        animateContainerHeight(){
+            let el = this.$refs.wrapper
+            let beforeHeight = el.clientHeight
+            this.$nextTick(()=>{
+                let afterHeight = el.clientHeight
+                el.style.height = beforeHeight+'px'
+                el.offsetHeight
+                el.style.height = afterHeight+'px'
+                setTimeout(()=>el.style.height = 'auto',1000)
+            })
         }
     },
     components:{
@@ -105,11 +139,16 @@ export default {
 .interactions{
     text-align:right;
     span{
+        padding:0px 0.5em;
         cursor: pointer;
     }
     span:last-child{
         cursor: default;
     }
+}
+
+.technology-list-wrapper{// to animate height change due to filtering content
+    transition: 1s;
 }
 
 .technology-list {
@@ -120,35 +159,34 @@ export default {
     text-align: center;
     font-size: 0.8rem;
     color: #333;
-    .technology{
-        position: relative;
-        overflow: hidden;
-        align-self: stretch;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        background: white;
-        transition: box-shadow 0.75s, transform 1s;
-        border-radius: 50%;
-        max-width: @small-tech-size;
-        max-height: @small-tech-size;
-        padding: 5px;
-        margin: 5px;
-        &.reveal div.description-overlay{
-            opacity: 1;
-        }
-        &.reveal img{
-            filter: blur(3px);
-        }   
-    }
 }
 
+.technology{
+    position: relative;
+    overflow: hidden;
+    align-self: stretch;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: white;
+    border-radius: 50%;
+    width: @small-tech-size;
+    height: @small-tech-size;
+    padding: 5px;
+    margin: 5px;
+    &.reveal div.description-overlay{
+        opacity: 1;
+    }
+    &.reveal img{
+        filter: blur(3px);
+    }   
+}
 @media (min-width: 400px){
     .technology-list {
         font-size: 0.85rem;
         .technology{
-            max-width: @tech-size;
-            max-height: @tech-size;
+            width: @tech-size;
+            height: @tech-size;
         }
     }
 }
@@ -162,23 +200,41 @@ div.description-overlay{
     padding: 5px;
     border-radius: 50%;
     display: flex;
+    z-index: 5;
     flex-direction: column;
     justify-content: center;
 }
 .img-wrapper{
+    position: relative;
     width: 100%;
     height: 100%;
     border-radius: 50%;
     overflow: hidden;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
 img{
-    max-width: 100%;
-    width: 100%;
-    border-radius: 50%;
-    height:auto;
+    max-width:100%;
+    max-height:100%;
     transition: 0.75s;
     will-change: filter;
 }
+
+.tech-enter-active, .tech-leave-active, .tech-move{
+    transition: 1s;
+}
+
+.tech-leave-active{
+    position: absolute;
+}
+
+.tech-enter, .tech-leave-to{
+    opacity: 0;
+    transform: scale(0.5);
+}
+
+
 
 
 </style>
