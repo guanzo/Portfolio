@@ -99,7 +99,9 @@ export default{
                 {speaker:'robot', lines:["Will that be all?"]},
                 {speaker:'man', lines:["Prepare the gallery for a showing"]},
                 {speaker:'robot', lines:["Yes sire"]},
-                {speaker:'man', lines:["So sorry about that! He's an older model.. Now let's get going."]},
+                {speaker:'man', lines:["Well hello there Guest! Sorry if Egg bothered you, he's an older model..",
+                    "Let's get this tour started",
+                ]},
             ]
         }
     },
@@ -136,7 +138,6 @@ export default{
 
 #about{
     position: relative;
-    padding-bottom: 50px;
 }
 
 .robot-intro{

@@ -8,9 +8,8 @@
             <div class="interactions scrollfire-to-top">
                 <span :class="activeCategory == i ? 'active':''" 
                     class="tech-filter" @click="onFilter(i)" 
-                    v-for="(category,i) in categories" >
-                    {{category}}
-                </span>
+                    v-for="(category,i) in categories" 
+                    >{{category}}</span>
                 <span class="line">|</span>
                 <span @click="onShuffle">Shuffle</span>
                 <span @mouseover="onReveal" @mouseout="onHide">Reveal</span>
@@ -204,13 +203,11 @@ div.description-overlay{
     transition: 0.75s;
     padding: 5px;
     border-radius: 50%;
-    z-index: 5;
     display: flex;
     flex-direction: column;
     justify-content: center;
 }
 .img-wrapper{
-    position: relative;
     width: 100%;
     height: 100%;
     border-radius: 50%;

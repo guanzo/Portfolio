@@ -7,16 +7,16 @@
             <sup class="under-construction">under construction</sup>
             
             <div class="gallery-wrapper">
-                <div>
-                    <dynamic-dialogue :script="script" :startDialogue="startDialogue"></dynamic-dialogue>
+                <transition :name="projectTransition" mode="out-in">
+                    <div v-if="!activeProject" key="preview">
+                        <dynamic-dialogue :script="script" :startDialogue="startDialogue"></dynamic-dialogue>
 
-                    <div class="portraits">
-                        <project-portrait @click.native="onClickProject(i)" v-for="(project,i) in projects" ref="frame" :project="project" :class="[i==0 ? 'rotated':'']" >
-                        </project-portrait>
+                        <div class="portraits">
+                            <project-portrait @click.native="onClickProject(i)" v-for="(project,i) in projects" ref="frame" :project="project" :class="[i==0 ? 'rotated':'']" >
+                            </project-portrait>
+                        </div>
                     </div>
-                </div>
-                <transition name="project">
-                    <project-view v-if="activeProject" :project="activeProject" :showDelay="showDelay" :key="activeProject.name"></project-view>
+                    <project-view v-else key="view" :project="activeProject" :showDelay="showDelay" :key="activeProject.name"></project-view>
                 </transition>
             </div>
         </div>
@@ -43,7 +43,7 @@ export default {
             startDialogue:false,
             lightsOn: false,
             lightsDuration: 2000,
-            showDelay: 500,
+            showDelay: 1500,
             script:[
                 {speaker:'man', line:"", duration: 1000},
                 {speaker:'man', line:"Lights please, Egg"},
@@ -66,6 +66,9 @@ export default {
         activeProject(){
             return this.$store.getters.activeProject;
         },
+		projectTransition(){
+			return this.activeProject ? 'from-preview' : 'to-preview'
+		}
     },
     methods:{
         start(){
@@ -142,6 +145,7 @@ export default {
 
 #projects{
     color: #333;
+	overflow: hidden;
 }
 
 #projects.lights-off{
@@ -170,13 +174,41 @@ export default {
     position: relative;
 }
 
-.project-enter-active, .project-leave-active{
-    transition: .5s;
+.to-preview-enter-active{
+	animation: project-from-left 1.5s;
+}
+.to-preview-leave-active{
+	animation: project-from-right 1.5s reverse;
+}
+.from-preview-enter-active {
+	animation: project-from-right 1.5s;
+}
+.from-preview-leave-active {
+	animation: project-from-left 1.5s reverse;
 }
 
-.project-enter, .project-leave-to{
-    transform: translateY(10%) scale(.9);
-    opacity: 0;
+@keyframes project-from-right {
+	0% {
+		transform: scale(.5) translateX(100%);
+		opacity: 0;
+	}
+	40% {
+		transform: scale(.5);
+	}
+	100% {
+		transform: scale(1);
+	}
 }
-
+@keyframes project-from-left {
+	0% {
+		transform: scale(.5) translateX(-100%);
+		opacity: 0;
+	}
+	40% {
+		transform: scale(.5);
+	}
+	100% {
+		transform: scale(1);
+	}
+}
 </style>

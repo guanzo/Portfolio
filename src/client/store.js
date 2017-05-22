@@ -29,9 +29,8 @@ let store = new Vuex.Store({
                 name:'Blue Edge',
                 tag:'Predictive Analytics',
                 startDate: 'April 2017',
-                background:'linear-gradient(to right, #007dcc , #005C97)',
-                mainColor:'#007dcc',
-                color:'white',
+                color1:'#007dcc',
+                color2:'#005C97',
                 selectedImage:0,
                 imgs:['be_splash.png','be_profile.png','be_scenario.png'],
                 script:[
@@ -43,10 +42,8 @@ let store = new Vuex.Store({
                 name:'New Business Generator',
                 tag:'Business Intelligence',
                 startDate: 'March 2016',
-                background:'linear-gradient(to bottom, #354835 , #779377)',
-                mainColor:'#354835',
-                color:'white',
-                tagline:0,
+                color1:'#354835',
+                color2:'#779377',
                 imgs:['nbg_choropleth.png','nbg_customer.png','nbg_platform.png','nbg_region.png'],
                 script:[
                     {speaker:'man', line:"This project was my first full fledged web application, built by myself.", duration:3000},
@@ -57,10 +54,8 @@ let store = new Vuex.Store({
                 name:'Relevance Engine',
                 tag:'News Aggregator',
                 startDate: 'May 2015',
-                background:'linear-gradient(to right, #02488e , #118bef)',
-                mainColor:'#02488e',
-                color:'white',
-                tagline:0,
+                color1:'#02488e',
+                color2:'#118bef',
                 imgs:['re_dashboard.png','re_docspace.png','re_cdd.png','re_email.png'],
                 script:[
                     {speaker:'man', line:"I inherited this as my first project at my first job."},
@@ -188,7 +183,7 @@ let store = new Vuex.Store({
                     category:[4]
                 },
                 {
-                    imgSrc:'https://git-scm.com/images/logos/logomark-orange@2x.png', 
+                    imgSrc:'/images/technologies/git.png', 
                     name:'git',
                     text:'Essential for any application',
                     class:'',

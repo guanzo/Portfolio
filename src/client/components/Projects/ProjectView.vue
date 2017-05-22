@@ -1,8 +1,11 @@
 <template>
-    <div class="project-view z-depth-4">
+    <div class="project-view">
         <x @click.native="onClose" :showDelay="showDelay" class="close"></x>
         <dynamic-dialogue :script="project.script" :startDialogue="startDialogue"></dynamic-dialogue>
         <h4>{{ project.name }}</h4>
+        <div class="images">
+            <img v-for="img in project.imgs" :src="'/images/projects/'+img">
+        </div>
     </div>
 </template>
 
@@ -45,14 +48,23 @@ export default {
 @import (reference) '/public/less/custom.less';
 
 .project-view{
-    position: absolute;
+    /*position: absolute;
     top:0;
     left:0;
     width:100%;
-    height:100%;
+    height:100%;*/
     background: @offwhite;
     padding: 5px;
     color:#333;
+}
+
+.images{
+    display: flex;
+    align-items: flex-start;
+    img{
+        max-width:350px;
+        height:auto;
+    }
 }
 
 .close{

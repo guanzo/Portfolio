@@ -2,10 +2,10 @@
     <div ref="frame" class="portrait-wrapper frame">
         <img ref="image" class="portrait" :src="'/images/projects/'+project.imgs[0]">
         <div class="overlay">
-            <div class="title">{{ project.name }}</div>
-            <div class="description">
-                <div class="tag"><i class="fa fa-tag"></i>{{ project.tag }}</div>
-                <div class="date"><i class="fa fa-calendar"></i>{{ project.startDate }}</div>
+            <div class="title raleway">
+                <div :style="gradient1" class="line line-top"></div>
+                {{ project.name }}
+                <div :style="gradient2" class="line line-bot"></div>
             </div>
         </div>
     </div>
@@ -14,11 +14,18 @@
 <script>
 
 export default  {
-    name:'project-preview',
+    name:'project-portrait',
     props:['project'],
     computed:{
-        nameArray(){
-            return this.project.name.split(' ')
+        gradient1(){
+            return {
+                background: `linear-gradient(to right, ${this.project.color1},${this.project.color2})`
+            }
+        },
+        gradient2(){
+            return {
+                background: `linear-gradient(to left, ${this.project.color1},${this.project.color2})`
+            }
         }
     },
 }
@@ -47,13 +54,11 @@ export default  {
     &:hover{
         .overlay{
             opacity: 1;
-            .description{
-                transform: translateY(0);
-            }
         }
-        .title:before{
+        .title .line{
             visibility: visible;
-            transform: scaleX(1);
+            &.line-top{ left:0; }
+            &.line-bot{ right:0; }
         }
     }
 }
@@ -65,41 +70,38 @@ export default  {
 
 .overlay{
     position: absolute;
-    background: rgba(0,0,0,0.5);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: rgba(0,0,0,0.6);
     left:0;
     top:0;
     width:100%;
     height:100%;
-    padding: 2px 4px;
-    text-align: center;
-    font-weight: 300;
     opacity:0;
     color: @offwhite;
-    overflow: hidden;
     .title{
-        font-size: 1.2rem;
+        font-size: 1.5rem;
         position: relative;
-        margin-bottom: 5px;
-        &:before{
-            content: "";
+        line-height: 2;
+        .line{
             position: absolute;
-            width: 100%;
-            height: 2px;
-            bottom: 0;
-            left: 0;
             background-color: #fff;
             visibility: hidden;
-            transform: scaleX(0);
-            transition: all 0.3s ease-in-out 0s;
+            transition: 0.5s ease-in-out 0.5s;
+            height: 2px;
         }
-    }
-    .description{
-        transform: translateY(50%);
-    }
-    .fa {
-        margin-right:5px;
-    }
-    
+        .line-bot{
+            bottom: 0;
+            left: 0;
+            right:100%;
+        }
+        .line-top{
+            top: 0;
+            right: 0;
+            left:100%;
+        }
+    }    
 }
 
 img.portrait{
@@ -117,11 +119,9 @@ img.portrait{
     }
 }
 
-
-
 .frame {
     background-color:#333;
-    border:solid 3.5vmin #333;
+    border:solid 2vmin #333;
     border-bottom-color:#444;
     border-left-color:#333;
     border-radius:2px;
@@ -154,47 +154,6 @@ img.portrait{
         top:-1.75vmin;
     }
 }
-
-
-/*
-.frame-0 {
-    background-color:#ddc;
-    border:solid 3em #333;
-
-    &:before {
-        background: #ecebe9;
-        box-shadow: 0 2px 5px 0 rgba(0,0,0,.25) inset, 0px 6px .5em rgba(0,0,0,.25) inset;
-        bottom: -1.5em;
-        left: -1.5em;
-        right: -1.5em;
-        top: -1.5em;
-    }
-}*/
-
-/*
-
-.frame-1 {
-    background-color:#ddc;
-    border:solid 3em #e0b555;
-    
-    &:before {
-        border: 10px solid #e0b555;
-        border-image: repeating-linear-gradient( 45deg, #C79830, #9E7316 1%, #896023 1%, #896023 8%) 10;
-        box-shadow: 0 2px 5px 0 rgba(0,0,0,.25) inset, 0px 6px .5em rgba(0,0,0,.25) inset;
-        bottom: -2.5em;
-        left: -2.5em;
-        right: -2.5em;
-        top: -2.5em;
-    }
-    &:after {
-        background: #ffe;
-        box-shadow:0 2px 5px 0 rgba(0,0,0,.25) inset, 0px 3px .5em rgba(0,0,0,.25) inset;
-        bottom: -1em;
-        left: -1em;
-        right: -1em;
-        top: -1em;
-    }
-}*/
 
 
 </style>

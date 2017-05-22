@@ -32,9 +32,9 @@ export default {
                     a1: 120,//angle
                     a2: 110,
                     a3: 103,
-                    p1: 87,//percent
-                    p2: 85,
-                    p3: 84
+                    p1: 91,//percent
+                    p2: 89,
+                    p3: 88
                 }
             },
             duration: 2500,
@@ -44,15 +44,15 @@ export default {
     },
     computed:{
         flourish(){
-            var {a1,a2,a3,p1,p2,p3} = this.values.current
+            var {a1,a2,a3,a4,a5,a6,p1,p2,p3} = this.values.current
             return {
                 'background-image':`
-                    linear-gradient(-${a1}deg, rgba(255, 255, 255, 0) ${p1}%, rgba(0,0,0,.06) 15%), 
-					linear-gradient(-${a2}deg, rgba(255, 255, 255, 0) ${p2}%, rgba(0,0,0,0.03) 15%), 
-					linear-gradient(-${a3}deg, rgba(255, 255, 255, 0) ${p3}%, rgba(0,0,0,0.02) 15%),
-					linear-gradient(${a1}deg, rgba(255, 255, 255, 0) ${p1}%, rgba(0,0,0,.06) 15%), 
-					linear-gradient(${a2}deg, rgba(255, 255, 255, 0) ${p2}%, rgba(0,0,0,0.03) 15%), 
-					linear-gradient(${a3}deg, rgba(255, 255, 255, 0) ${p3}%, rgba(0,0,0,0.02) 15%), 
+                    linear-gradient(-${a1}deg, rgba(255, 255, 255, 0) ${p1}%, rgba(0,0,0,.08) 15%), 
+					linear-gradient(-${a2}deg, rgba(255, 255, 255, 0) ${p2}%, rgba(0,0,0,0.06) 15%), 
+					linear-gradient(-${a3}deg, rgba(255, 255, 255, 0) ${p3}%, rgba(0,0,0,0.04) 15%),
+					linear-gradient(${a1}deg, rgba(255, 255, 255, 0) ${p1}%, rgba(0,0,0,.08) 15%), 
+					linear-gradient(${a2}deg, rgba(255, 255, 255, 0) ${p2}%, rgba(0,0,0,0.06) 15%), 
+					linear-gradient(${a3}deg, rgba(255, 255, 255, 0) ${p3}%, rgba(0,0,0,0.04) 15%), 
 					linear-gradient(rgba(255, 255, 255, 0) 0%, rgba(0,0,0,0) 100%)`
             }
         },
@@ -116,6 +116,7 @@ div{
     left:0;
     width:100%;
     height:100%;
+    pointer-events: none;
 }
 
 </style>
