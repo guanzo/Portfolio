@@ -1,10 +1,14 @@
 <template>
     <div class="project-view">
-        <x @click.native="onClose" :showDelay="showDelay" class="close"></x>
-        <dynamic-dialogue :script="project.script" :startDialogue="startDialogue"></dynamic-dialogue>
-        <h4>{{ project.name }}</h4>
-        <div class="images">
-            <img v-for="img in project.imgs" :src="'/images/projects/'+img">
+        <div ref="portraits" class="portraits-carousel">
+            <div class="project-intro">
+                <div class="z-depth-2">
+                    <h4>{{ project.name }}</h4>
+                    <div>{{ project.tag }}</div>
+                    <div>{{ project.startDate }}</div>
+                </div>
+            </div>
+            <project-portrait v-for="(screen,i) in project.screens" :screen="screen" :key="i"></project-portrait>
         </div>
     </div>
 </template>
@@ -13,22 +17,28 @@
 
 import dynamicDialogue from '../DialogueDynamic.vue'
 import x from './X.vue'
-import {CLOSE_PROJECT} from '../../store.js'
+import projectPortrait from './ProjectPortrait.vue'
 
 export default {
     name:'project-view',
-    props:['project','showDelay'],
+    props:['project'],
     data(){
         return {
             theme:{
                 background: this.project.background,
                 color: this.project.color,
             },
-            startDialogue: false
         }
     },
     mounted(){
-        setTimeout(()=>this.startDialogue = true, this.showDelay)
+        var el = this.$refs.portraits
+        new Flickity(el,{
+            percentPosition: false,
+            freeScroll: true,
+            imagesLoaded: true,
+            lazyLoad: false,
+            cellAlign: 'left'
+        })
     },
     methods:{
         onClose(){
@@ -37,42 +47,56 @@ export default {
     },
     components:{
         'dynamic-dialogue':dynamicDialogue,
+        'project-portrait':projectPortrait,
         x
     }
 }
 
 </script>
 
+<style>
+
+</style>
+
 <style lang="less" scoped>
 
 @import (reference) '/public/less/custom.less';
 
 .project-view{
-    /*position: absolute;
-    top:0;
-    left:0;
-    width:100%;
-    height:100%;*/
-    background: @offwhite;
-    padding: 5px;
-    color:#333;
-}
+    margin-bottom: 4em;
 
-.images{
-    display: flex;
-    align-items: flex-start;
-    img{
-        max-width:350px;
-        height:auto;
+    &:nth-child(odd){
+        .project-intro > div{
+            color: @offwhite;
+            background: #333;
+        }
+    }
+    &:nth-child(even){
+        .project-intro > div{
+            color: #333;
+            background: @offwhite;
+        }
     }
 }
 
-.close{
-    position: absolute;
-    top: 10px;
-    right: 10px;
-    width:25px;
-    height:25px;
+@height: calc(~'100% - 2em');
+
+.project-intro{
+    margin: 1em; 
+    padding: 0em .5em;
+    height: @height;
+    > div{
+        padding: .5em 1em;
+        height: 100%;
+    }
 }
+
+.portraits-carousel{
+
+   /* > * {
+        margin: 1em; 
+    }*/
+}
+
 
 </style>

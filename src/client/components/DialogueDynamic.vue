@@ -102,7 +102,7 @@ export default {
     display: flex;
     align-items: center;
     min-height: 50px;
-    padding: 1em 0;
+    padding: .5em 0;
     p{
         display: inline-block;
         margin: 0;

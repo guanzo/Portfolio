@@ -5,20 +5,11 @@
             <v-waypoint :position="'top' "@waypoint="start"></v-waypoint>
             <div class="app-section-title">The Gallery</div>
             <sup class="under-construction">under construction</sup>
-            
-            <div class="gallery-wrapper">
-                <transition :name="projectTransition" mode="out-in">
-                    <div v-if="!activeProject" key="preview">
-                        <dynamic-dialogue :script="script" :startDialogue="startDialogue"></dynamic-dialogue>
+            <dynamic-dialogue class="project-dialogue" :script="script" :startDialogue="startDialogue">
+            </dynamic-dialogue>
 
-                        <div class="portraits">
-                            <project-portrait @click.native="onClickProject(i)" v-for="(project,i) in projects" ref="frame" :project="project" :class="[i==0 ? 'rotated':'']" >
-                            </project-portrait>
-                        </div>
-                    </div>
-                    <project-view v-else key="view" :project="activeProject" :showDelay="showDelay" :key="activeProject.name"></project-view>
-                </transition>
-            </div>
+            <project-view class="project-list" v-for="project in projects" :project="project" :key="project.name">
+            </project-view>
         </div>
     </div>
 </template>
@@ -26,7 +17,6 @@
 <script>
 
 import projectView from './ProjectView.vue'
-import projectPortrait from './ProjectPortrait.vue'
 import dynamicDialogue from '../DialogueDynamic.vue'
 import Promise from 'bluebird'
 import * as d3 from 'd3'
@@ -70,6 +60,10 @@ export default {
 			return this.activeProject ? 'from-preview' : 'to-preview'
 		}
     },
+    mounted(){
+        //joke: egg said gallery was ready but the first portrait is fucked up.
+        this.$el.querySelector('.frame').classList.add('rotated')
+    },
     methods:{
         start(){
            this.startDialogue = true
@@ -95,7 +89,7 @@ export default {
             return new Promise(resolve => {
                 var robot = this.$el.querySelector('.robot-text img')
                 var robotBbox = robot.getBoundingClientRect()
-                var rotatedPortrait = this.$refs.frame[0].$el
+                var rotatedPortrait = this.$el.querySelector('.frame.rotated')
                 var portraitBbox = rotatedPortrait.getBoundingClientRect()
 
                 var x = Math.round(portraitBbox.left - robotBbox.left)
@@ -119,7 +113,6 @@ export default {
     },
     components:{
         'dynamic-dialogue':dynamicDialogue,
-        'project-portrait':projectPortrait,
         'project-view':projectView,
         flourish
     }
@@ -153,62 +146,18 @@ export default {
     .app-section-title{
         color: #030303;
     }
-    .portraits{
+    .project-list{
         opacity:0
     }
 }
 
 .app-section-title,
-.portraits{
+.project-list{
     transition: 2s;
 }
 
-.portraits{
-    display: flex;
-    align-items: flex-start;
-    justify-content: space-around;
-    flex-wrap: wrap;
+.project-dialogue{
+    
 }
 
-.gallery-wrapper{
-    position: relative;
-}
-
-.to-preview-enter-active{
-	animation: project-from-left 1.5s;
-}
-.to-preview-leave-active{
-	animation: project-from-right 1.5s reverse;
-}
-.from-preview-enter-active {
-	animation: project-from-right 1.5s;
-}
-.from-preview-leave-active {
-	animation: project-from-left 1.5s reverse;
-}
-
-@keyframes project-from-right {
-	0% {
-		transform: scale(.5) translateX(100%);
-		opacity: 0;
-	}
-	40% {
-		transform: scale(.5);
-	}
-	100% {
-		transform: scale(1);
-	}
-}
-@keyframes project-from-left {
-	0% {
-		transform: scale(.5) translateX(-100%);
-		opacity: 0;
-	}
-	40% {
-		transform: scale(.5);
-	}
-	100% {
-		transform: scale(1);
-	}
-}
 </style>

@@ -32,7 +32,20 @@ let store = new Vuex.Store({
                 color1:'#007dcc',
                 color2:'#005C97',
                 selectedImage:0,
-                imgs:['be_splash.png','be_profile.png','be_scenario.png'],
+                screens:[
+                        {
+                            img:'be_splash.png',
+                            desc:'this is a test this is a test this is a test'
+                        },
+                        {
+                            img:'be_profile.png',
+                            desc:'this is a test this is a test this is a test'
+                        },
+                        {
+                            img:'be_scenario.png',
+                            desc:'this is a test this is a test this is a test'
+                        }
+                    ],
                 script:[
                     {speaker:'man', line:"My first project with Vue.js. I fell in love.", duration:3000},
                     {speaker:'robot', line:"fun fact: guanzo manor was built with vue!"},
@@ -44,7 +57,20 @@ let store = new Vuex.Store({
                 startDate: 'March 2016',
                 color1:'#354835',
                 color2:'#779377',
-                imgs:['nbg_choropleth.png','nbg_customer.png','nbg_platform.png','nbg_region.png'],
+                screens:[
+                        {
+                            img:['nbg_region.png','nbg_choropleth.png'],
+                            desc:'this is a test this is a test this is a test'
+                        },
+                        {
+                            img:'nbg_customer.png',
+                            desc:'this is a test this is a test this is a test'
+                        },
+                        {
+                            img:'nbg_platform.png',
+                            desc:'this is a test this is a test this is a test'
+                        },
+                    ],
                 script:[
                     {speaker:'man', line:"This project was my first full fledged web application, built by myself.", duration:3000},
                     {speaker:'robot', line:"fun fact: jquery leads to spaghetti code!"},
@@ -56,7 +82,24 @@ let store = new Vuex.Store({
                 startDate: 'May 2015',
                 color1:'#02488e',
                 color2:'#118bef',
-                imgs:['re_dashboard.png','re_docspace.png','re_cdd.png','re_email.png'],
+                screens:[
+                        {
+                            img:'re_dashboard.png',
+                            desc:'this is a test this is a test this is a test'
+                        },
+                        {
+                            img:'re_docspace.png',
+                            desc:'this is a test this is a test this is a test'
+                        },
+                        {
+                            img:'re_cdd.png',
+                            desc:'this is a test this is a test this is a test'
+                        },
+                        {
+                            img:'re_email.png',
+                            desc:'this is a test this is a test this is a test'
+                        }
+                    ],
                 script:[
                     {speaker:'man', line:"I inherited this as my first project at my first job."},
                     {speaker:'man', line:"It taught me to stay away from GWT"},

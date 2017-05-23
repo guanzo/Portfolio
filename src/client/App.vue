@@ -62,7 +62,7 @@ export default {
 		iconCredits
 	},
 	created(){
-		smoothScroll.polyfill();
+		//smoothScroll.polyfill();
 
 	},
 	mounted(){

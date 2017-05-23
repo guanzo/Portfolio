@@ -75,7 +75,6 @@ export default {
     methods:{
         gradientFlourish(){
             this.startTime = new Date();
-            this.isInterrupted = false;
             this.interpolators = {};
 
             var values = this.values;
