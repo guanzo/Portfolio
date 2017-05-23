@@ -85,19 +85,21 @@ let store = new Vuex.Store({
                 screens:[
                         {
                             img:'re_dashboard.png',
-                            desc:'this is a test this is a test this is a test'
+                            desc:`Create a customized news dashboard from a variety of sources.`
                         },
                         {
                             img:'re_docspace.png',
-                            desc:'this is a test this is a test this is a test'
+                            desc:`Visualize the industry conversation through a self organizing map. 
+                                  Dots represent clusters of articles, placed onto the map according to article concept.`
                         },
                         {
                             img:'re_cdd.png',
-                            desc:'this is a test this is a test this is a test'
+                            desc:`News articles are reduced to core words that define the content. 
+                                    Dive deep into a concept through a directed graph.`
                         },
                         {
                             img:'re_email.png',
-                            desc:'this is a test this is a test this is a test'
+                            desc:'Subscribe to the automated email blasts to stay up to date on the latest industry news.'
                         }
                     ],
                 script:[

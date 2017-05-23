@@ -3,7 +3,7 @@
         <div ref="portraits" class="portraits-carousel">
             <div class="project-intro">
                 <div class="z-depth-2">
-                    <h4>{{ project.name }}</h4>
+                    <h5 class="raleway">{{ project.name }}</h5>
                     <div>{{ project.tag }}</div>
                     <div>{{ project.startDate }}</div>
                 </div>
@@ -37,7 +37,7 @@ export default {
             freeScroll: true,
             imagesLoaded: true,
             lazyLoad: false,
-            cellAlign: 'left'
+            contain: true,
         })
     },
     methods:{
