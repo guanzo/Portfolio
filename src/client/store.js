@@ -29,46 +29,67 @@ let store = new Vuex.Store({
                 name:'Blue Edge',
                 tag:'Predictive Analytics',
                 startDate: 'April 2017',
+                desc:`A tool that attempts to predict aircraft acquisitions and         retirements based on historical economic conditions. As Aviall is an aviation products distributor, knowing when a customer might make changes to their fleet can give Aviall the competitive edge.
+                <br><br>
+                My first project with Vue. I fell in love.
+                Guanzo Manor was built with Vue!`,
                 color1:'#007dcc',
                 color2:'#005C97',
                 selectedImage:0,
                 screens:[
                         {
                             img:'be_splash.png',
-                            desc:'this is a test this is a test this is a test'
                         },
                         {
                             img:'be_profile.png',
-                            desc:'this is a test this is a test this is a test'
+                            label: { 
+                                title:'The Economic Landscape', 	
+                                desc:'GDP, fuel price, yearly income, public relations, and much more. How is it all connected?' 
+                            }
                         },
                         {
                             img:'be_scenario.png',
-                            desc:'this is a test this is a test this is a test'
+                            label: { 
+                                title:'Learning from the Past', 	
+                                desc:'Can we predict behavior by modeling historic values?' 
+                            }
                         }
                     ],
                 script:[
-                    {speaker:'man', line:"My first project with Vue.js. I fell in love.", duration:3000},
-                    {speaker:'robot', line:"fun fact: guanzo manor was built with vue!"},
+                    {speaker:'man', line:"", duration:3000},
+                    {speaker:'robot', line:""},
                 ]
             },
             {
                 name:'New Business Generator',
                 tag:'Business Intelligence',
                 startDate: 'March 2016',
+                desc:`The NBG provides a high level overview of the state of Avialls business. It analyzes millions of invoices, aviation products, customer fleets, and other data points to infer sales opportunities for Aviall. Users are given a sensible starting point for their sales strategies.
+                <br><br>
+                I created this application from the ground up. Many mistakes were made, and many more lessons were learned. Writing this application taught me a lot about web development.`,
                 color1:'#354835',
                 color2:'#779377',
                 screens:[
                         {
                             img:['nbg_region.png','nbg_choropleth.png'],
-                            desc:'this is a test this is a test this is a test'
+                            label: { 
+                                title:'Around the World', 	
+                                desc:'A global company must maintain a high level view of their position. ' 
+                            }
                         },
                         {
                             img:'nbg_customer.png',
-                            desc:'this is a test this is a test this is a test'
+                            label: { 
+                                title:'Customer Profile', 	
+                                desc:`The classic customer profile page. Supplemented by a beautiful streamgraph to visualize the aggregate sales over time.` 
+                            }
                         },
                         {
                             img:'nbg_platform.png',
-                            desc:'this is a test this is a test this is a test'
+                            label: { 
+                                title:'Slice and Dice', 	
+                                desc:`Sales for an aircraft platform presented through different levels of aggregation.` 
+                            }
                         },
                     ],
                 script:[
@@ -80,26 +101,40 @@ let store = new Vuex.Store({
                 name:'Relevance Engine',
                 tag:'News Aggregator',
                 startDate: 'May 2015',
+                desc:`Relevant aviation industry news is collected and displayed in real time. The Relevance Engine continues to improve the sales and cost savings of Aviall by millions of dollars. 
+                <br><br>
+                This was an existing application that I inherited.`,
                 color1:'#02488e',
                 color2:'#118bef',
                 screens:[
                         {
                             img:'re_dashboard.png',
-                            desc:`Create a customized news dashboard from a variety of sources.`
+                            label: { 
+                                title:'The Dashboard', 	
+                                desc:'Create a customized news dashboard from a variety of sources.' 
+                            }
                         },
                         {
                             img:'re_docspace.png',
-                            desc:`Visualize the industry conversation through a self organizing map. 
-                                  Dots represent clusters of articles, placed onto the map according to article concept.`
+                            label: { 
+                                title:'Document Space', 	
+                                desc:`Visualize the industry conversation through a self organizing map.` 
+                            }
                         },
                         {
                             img:'re_cdd.png',
-                            desc:`News articles are reduced to core words that define the content. 
-                                    Dive deep into a concept through a directed graph.`
+                            label: { 
+                                title:'Concept Deep Dive', 	
+                                desc:`News articles are reduced to core words that define the content. 
+                                    Dive deep into a concept through a directed graph.` 
+                            }
                         },
                         {
                             img:'re_email.png',
-                            desc:'Subscribe to the automated email blasts to stay up to date on the latest industry news.'
+                            label: { 
+                                title:'Email Blast', 	
+                                desc:`Subscribers to the automated email system stay up to date on the latest industry news.` 
+                            }
                         }
                     ],
                 script:[

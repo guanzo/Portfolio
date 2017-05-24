@@ -1,7 +1,8 @@
 <template>
     <div class="exhibit">
-        <div class="portrait-label z-depth-2">
-            {{ screen.desc }}
+        <div v-if="label" class="portrait-label z-depth-2">
+            <div class="title raleway">{{ label.title }}</div>
+            <div class="desc">{{ label.desc }}</div>
         </div>
         <div class="img-container">
             <div v-for="img in images" class="frame">
@@ -17,6 +18,9 @@ export default  {
     name:'project-portrait',
     props:['screen'],
     computed:{
+        label(){
+            return this.screen.label
+        },
         gradient1(){
             return {
                 background: `linear-gradient(to right, ${this.project.color1},${this.project.color2})`
@@ -46,41 +50,43 @@ export default  {
 @easeOutBack: cubic-bezier(0.175, 0.885, 0.620, 1.650);
 
 .exhibit{
-    margin: 1em;    
+    padding: 1em 3em;    
     display: flex;
     align-items: center;
     //height: 100%;
 }
 
 .portrait-label{
-    background: #333;
-    color: @offwhite;
+    flex:1;
     margin-right: 1.5em;
-    max-width:100px;
-    min-width: 75px;
+    min-width: 150px;
+    width: 200px;
+    max-width: 100%;
     padding: 1vmin;
+    .title{
+        font-weight: bold;
+        font-size: 1.1em;
+        margin-bottom: 0.25em;
+    }
+    .desc{
+        font-weight: 300;
+    }
 }
 
 .img-container{
-
+    width: 350px;
+    max-width: 100%;
 }
 
 .frame {
     position: relative;
     margin-bottom: .5em;
-    width: 350px;
     height: auto;
-    cursor: pointer;
     transition: transform 1s @easeOutBack;
     box-shadow:0 0 5px 0 rgba(0,0,0,.25) inset, 0 5px 10px 5px rgba(0,0,0,.25);
-
-    background-color:#333;
-    border:solid 2vmin #333;
-    border-radius:2px;
-    border-bottom-color:#444;
-    border-left-color:#333;
-    border-right-color:#333;
-    border-top-color:#222;
+    border-style: solid;
+    border-width: 2vmin;
+    border-radius: 2px;
     
     &.rotated{
         transform: rotate(10deg);
@@ -90,10 +96,6 @@ export default  {
         max-width:100%;
         height:auto;
         display:block;
-        border-bottom-color:#443;
-        border-left-color:#332;
-        border-right-color:#332;
-        border-top-color:#110;
     }
 
     &:before, 
@@ -120,4 +122,37 @@ export default  {
 }
 
 
+</style>
+
+
+<style lang="less">
+
+@import (reference) '/public/less/custom.less';
+
+.project-view{
+    .portrait-label{
+        color: @offwhite;
+        background: #333;
+    }
+    &:nth-child(odd) .frame{
+        background-color:#333;
+        border-bottom-color:#444;
+        border-left-color:#333;
+        border-right-color:#333;
+        border-top-color:#222;
+    }
+    &:nth-child(even){
+        .portrait-label{
+            color: #333;
+            background: @offwhite;
+        }
+        .frame{
+            background-color: @offwhite;
+            border-bottom-color: #fcfcfc;
+            border-left-color: @offwhite;
+            border-right-color: @offwhite;
+            border-top-color: #e1e1e1;
+        }
+    }
+}
 </style>

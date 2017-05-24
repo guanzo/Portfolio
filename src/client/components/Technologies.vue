@@ -16,7 +16,7 @@
             </div>
             <div class="scrollfire-to-top">
                 <transition-group ref="wrapper" tag="div" name="tech" class="technology-list flow-text scrollfire-to-top">
-                    <div v-for="tech in filteredTech" :key="tech.name" class="technology z-depth-2"  :class="tech.class" 
+                    <div v-for="tech in filteredTech" :key="tech.name" class="technology z-depth-2-inset"  :class="tech.class" 
                                     @mouseover="tech.class = 'reveal'" @mouseout="tech.class = ''" >
                         <div class="img-wrapper">
                             <img :src="tech.imgSrc" :alt="tech.name" >
@@ -132,6 +132,12 @@ export default {
     position: relative;
     display:flex;
     justify-content: space-between;
+}
+
+.z-depth-2-inset{
+    box-shadow: 0 4px 5px 0 rgba(0,0,0,0.14) inset, 
+                0 1px 10px 0 rgba(0,0,0,0.12) inset, 
+                0 2px 4px -1px rgba(0,0,0,0.3) inset;
 }
 
 .interactions{

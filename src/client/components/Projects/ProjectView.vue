@@ -6,6 +6,7 @@
                     <h5 class="raleway">{{ project.name }}</h5>
                     <div>{{ project.tag }}</div>
                     <div>{{ project.startDate }}</div>
+                    <div class="desc" v-html="project.desc"></div>
                 </div>
             </div>
             <project-portrait v-for="(screen,i) in project.screens" :screen="screen" :key="i"></project-portrait>
@@ -54,11 +55,7 @@ export default {
 
 </script>
 
-<style>
-
-</style>
-
-<style lang="less" scoped>
+<style lang="less">
 
 @import (reference) '/public/less/custom.less';
 
@@ -66,36 +63,36 @@ export default {
     margin-bottom: 4em;
 
     &:nth-child(odd){
+        color: @offwhite;
         .project-intro > div{
-            color: @offwhite;
             background: #333;
         }
     }
     &:nth-child(even){
+        color: #333;
         .project-intro > div{
-            color: #333;
             background: @offwhite;
         }
     }
 }
+</style>
 
-@height: calc(~'100% - 2em');
+<style lang="less" scoped>
+@import (reference) '/public/less/custom.less';
 
 .project-intro{
     margin: 1em; 
     padding: 0em .5em;
-    height: @height;
+    min-width: 200px;
+    width:350px;
+    max-width: 100%;
     > div{
         padding: .5em 1em;
-        height: 100%;
     }
 }
 
-.portraits-carousel{
-
-   /* > * {
-        margin: 1em; 
-    }*/
+.desc{
+    margin-top: 1em;
 }
 
 

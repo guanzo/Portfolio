@@ -28,7 +28,7 @@ export default {
 	data () {
 		return {
             gradientIndex: 2,
-            gradient:['#fafafa','#fafafa'],//green
+            gradient:['#fafafa','#fafafa'],
 			projects: this.$store.state.projects,
             startDialogue:false,
             lightsOn: false,
