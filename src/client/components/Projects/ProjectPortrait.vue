@@ -61,8 +61,8 @@ export default  {
     margin-right: 1.5em;
     min-width: 150px;
     width: 200px;
-    max-width: 100%;
-    padding: 1vmin;
+    max-width: 100%;    
+    padding: .5em;
     .title{
         font-weight: bold;
         font-size: 1.1em;

@@ -1,13 +1,13 @@
 import Vue from 'vue'
 import Vuex from 'vuex'
+import axios from 'axios'
 
 Vue.use(Vuex)
 
 export const SELECT_PROJECT = 'SELECT_PROJECT';
 export const CLOSE_PROJECT = 'CLOSE_PROJECT';
 export const CHANGE_BACKGROUND = 'CHANGE_BACKGROUND'
-export const CHANGE_PROJECTS_BACKGROUND = 'CHANGE_PROJECTS_BACKGROUND'
-
+export const POST_COMMENT = 'POST_COMMENT'
 
 let store = new Vuex.Store({
 	state: {
@@ -18,12 +18,28 @@ let store = new Vuex.Store({
         gradients:[
             ['#da7352','#d64759'],//red/orange
             ['#38aecc','#2E3192'],//blue
-            ['#030303','#030303'],///black, replaced by green during projects intro
+            ['#fafafa','#fafafa'],///black, replaced by green during projects intro
             ['#faf0cd','#fab397']
         ],
         organizations:[
 
         ],
+        guestbook:[/*
+            {
+                name:'Joe schemo',
+                date:'',
+                comment:`Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam interdum euismod nunc ut lacinia. 
+                Mauris tincidunt lorem et quam placerat, id fringilla dolor consectetur. Donec non condimentum metus, sit amet porta ligula. Mauris ut massa sapien. Vestibulum vestibulum arcu vitae massa aliquet vehicula. Vivamus quam dolor, sodales finibus malesuada non, feugiat in odio. Donec lacinia molestie velit, sed malesuada arcu maximus sit amet. Sed at dolor sit amet tortor ornare consequat. Morbi gravida ut dolor nec finibus.`
+            },{
+                name:'Babby biash',
+                date:'',
+                comment:'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam interdum '
+            },{
+                name:'erioc dododo',
+                date:'',
+                comment:'Lorem ipsum dolor sit amet, '
+            },
+        */],
         projects:[
             {
                 name:'Blue Edge',
@@ -66,7 +82,7 @@ let store = new Vuex.Store({
                 startDate: 'March 2016',
                 desc:`The NBG provides a high level overview of the state of Avialls business. It analyzes millions of invoices, aviation products, customer fleets, and other data points to infer sales opportunities for Aviall. Users are given a sensible starting point for their sales strategies.
                 <br><br>
-                I created this application from the ground up. Many mistakes were made, and many more lessons were learned. Writing this application taught me a lot about web development.`,
+                This was my first full fledged SPA, and I created it from the ground up. Many mistakes were made, and many more lessons were learned. Writing this application taught me a lot about web development.`,
                 color1:'#354835',
                 color2:'#779377',
                 screens:[
@@ -310,9 +326,6 @@ let store = new Vuex.Store({
         [CHANGE_BACKGROUND] (state, payload){
             state.gradientIndex = payload.index
         },
-        [CHANGE_PROJECTS_BACKGROUND] (state, {gradientIndex, gradient}){
-            state.gradients.splice(gradientIndex, 1, gradient)
-        },
 		[SELECT_PROJECT] (state, payload){
 			state.selectedProject = payload.index
 		},
@@ -320,6 +333,19 @@ let store = new Vuex.Store({
 			state.selectedProject = -1;
 		}
 	},
+    actions:{
+        [POST_COMMENT] ({commit, state}, {data}){
+            axios.post('/comment', {
+                    data
+                })
+                .then(function (response) {
+                    console.log(response);
+                })
+                .catch(function (error) {
+                    console.log(error);
+                });
+        }
+    },
     getters:{
         defaultGradient: state => {
             return state.gradients[0]

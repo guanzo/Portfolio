@@ -17,7 +17,7 @@ import navbar from './components/Navbar.vue';
 import about from './components/About/About.vue'
 import technologies, {scrollfire} from './components/Technologies.vue';
 import projects from './components/Projects/Projects.vue'
-import guestbook from './components/Guestbook.vue'
+import guestbook from './components/Guestbook/GuestBook.vue'
 import iconCredits from './components/IconCredit.vue'
 import smoothScroll from 'smoothscroll-polyfill'
 import throttle from 'lodash/throttle'

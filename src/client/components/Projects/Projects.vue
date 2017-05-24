@@ -1,10 +1,9 @@
 <template>
-    <div id="projects" class="app-section" :class="{'lights-off': !lightsOn}">
+    <div id="projects" class="app-section">
         <flourish :galleryIndex="gradientIndex" :firstFlourishDone="firstFlourishDone"></flourish>
         <div class="container">
             <v-waypoint :position="'top' "@waypoint="start"></v-waypoint>
             <div class="app-section-title">The Gallery</div>
-            <sup class="under-construction">under construction</sup>
             <dynamic-dialogue class="project-dialogue" :script="script" :startDialogue="startDialogue">
             </dynamic-dialogue>
 
@@ -20,7 +19,6 @@ import projectView from './ProjectView.vue'
 import dynamicDialogue from '../DialogueDynamic.vue'
 import Promise from 'bluebird'
 import * as d3 from 'd3'
-import {CHANGE_PROJECTS_BACKGROUND,SELECT_PROJECT} from '../../store.js'
 import flourish from './Flourish.vue'
 
 export default {
@@ -28,17 +26,11 @@ export default {
 	data () {
 		return {
             gradientIndex: 2,
-            gradient:['#fafafa','#fafafa'],
 			projects: this.$store.state.projects,
             startDialogue:false,
-            lightsOn: false,
-            lightsDuration: 2000,
             showDelay: 1500,
             script:[
                 {speaker:'man', line:"", duration: 1000},
-                {speaker:'man', line:"Lights please, Egg"},
-                {speaker:'robot', line: "*clap clap*",duration: 1250},
-                this.turnLightsOn,
                 {speaker:'man', line:"Welcome... to the gallery"},
                 {speaker:'man', line:"...", duration: 1000},
                 this.fixRotatedPortrait,
@@ -56,9 +48,6 @@ export default {
         activeProject(){
             return this.$store.getters.activeProject;
         },
-		projectTransition(){
-			return this.activeProject ? 'from-preview' : 'to-preview'
-		}
     },
     mounted(){
         //joke: egg said gallery was ready but the first portrait is fucked up.
@@ -75,11 +64,10 @@ export default {
             return new Promise(resolve => {
                 this.lightsOn = true
                 
-                this.$store.commit(CHANGE_PROJECTS_BACKGROUND, { 
+                /*this.$store.commit(CHANGE_PROJECTS_BACKGROUND, { 
                     gradientIndex: this.gradientIndex,
                     gradient: this.gradient 
-                })
-                this.firstFlourishDone = true;
+                })*/
 
                 setTimeout(resolve,this.lightsDuration)
                 
@@ -139,16 +127,6 @@ export default {
 #projects{
     color: #333;
 	overflow: hidden;
-}
-
-#projects.lights-off{
-    color: @offwhite;
-    .app-section-title{
-        color: #030303;
-    }
-    .project-list{
-        opacity:0
-    }
 }
 
 .app-section-title,
