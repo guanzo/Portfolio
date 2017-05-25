@@ -18,28 +18,9 @@ let store = new Vuex.Store({
         gradients:[
             ['#da7352','#d64759'],//red/orange
             ['#38aecc','#2E3192'],//blue
-            ['#fafafa','#fafafa'],///black, replaced by green during projects intro
-            ['#faf0cd','#fab397']
+            ['#fafafa','#fafafa'],//white
+            ['#faf0cd','#fab397']//peach
         ],
-        organizations:[
-
-        ],
-        guestbook:[/*
-            {
-                name:'Joe schemo',
-                date:'',
-                comment:`Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam interdum euismod nunc ut lacinia. 
-                Mauris tincidunt lorem et quam placerat, id fringilla dolor consectetur. Donec non condimentum metus, sit amet porta ligula. Mauris ut massa sapien. Vestibulum vestibulum arcu vitae massa aliquet vehicula. Vivamus quam dolor, sodales finibus malesuada non, feugiat in odio. Donec lacinia molestie velit, sed malesuada arcu maximus sit amet. Sed at dolor sit amet tortor ornare consequat. Morbi gravida ut dolor nec finibus.`
-            },{
-                name:'Babby biash',
-                date:'',
-                comment:'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam interdum '
-            },{
-                name:'erioc dododo',
-                date:'',
-                comment:'Lorem ipsum dolor sit amet, '
-            },
-        */],
         projects:[
             {
                 name:'Blue Edge',
@@ -117,7 +98,7 @@ let store = new Vuex.Store({
                 name:'Relevance Engine',
                 tag:'News Aggregator',
                 startDate: 'May 2015',
-                desc:`Relevant aviation industry news is collected and displayed in real time. The Relevance Engine continues to improve the sales and cost savings of Aviall by millions of dollars. 
+                desc:`Relevant aviation industry news is collected and displayed in real time. The Relevance Engine continues to improve the sales and cost savings of Aviall. 
                 <br><br>
                 This was an existing application that I inherited.`,
                 color1:'#02488e',
@@ -335,16 +316,8 @@ let store = new Vuex.Store({
 	},
     actions:{
         [POST_COMMENT] ({commit, state}, {data}){
-            axios.post('/comment', {
-                    data
-                })
-                .then(function (response) {
-                    console.log(response);
-                })
-                .catch(function (error) {
-                    console.log(error);
-                });
-        }
+            return axios.post('/api/comments', { data })
+        },
     },
     getters:{
         defaultGradient: state => {
@@ -355,19 +328,6 @@ let store = new Vuex.Store({
         },
         gradient: state => index => {
             return state.gradients[index]
-        },
-        activeProject: state => {
-            if(state.selectedProject !== -1)
-                return state.projects[state.selectedProject]
-            else
-                return null;
-        },
-        activeImage: (state, getters) => {
-            let project = getters.activeProject
-            if(state.selectedProject !== -1)
-                return project.imgs[state.selectedImage]
-            else
-                return null;
         },
     }
 })

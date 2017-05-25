@@ -2,24 +2,16 @@
     <div id="guestbook" class="app-section" >
         <div class="container">
             <div class="app-section-title scrollfire-to-right">Guestbook</div> 
-            <sup class="under-construction">under construction. form is inactive.</sup>
             
             <persistent-dialogue :script="script"></persistent-dialogue>
 
             <book-form></book-form>
-
-            <div class="book flow-text">
-                <div v-for="guest in guestbook" class="page">
-                    <div class="name">{{ guest.name }}</div>
-                    <div class="comment">{{ guest.comment }}</div>
-                </div>
-            </div>
         </div>
     </div>
 </template>
 
 <script>
-
+import {GET_COMMENTS} from '../../store.js'
 import persistentDialogue from '../DialoguePersistent.vue'
 import form from './Form.vue';
 export default {
@@ -28,7 +20,7 @@ export default {
         return {
             gradientIndex: 3,
             script:[
-                {speaker:'man', lines:["I hope you found this visit enjoyable. I encourage you to sign the guestbook."]},
+                {speaker:'man', lines:["I hope you enjoyed this visit. Please feel free to sign the guestbook."]},
                 {speaker:'robot', lines:["Bye-bye! Don't forget about egg!"]},
             ],
         }
@@ -37,9 +29,6 @@ export default {
         guestbook(){
             return this.$store.state.guestbook;
         }
-    },
-    mounted(){
-
     },
     components:{
         'persistent-dialogue':persistentDialogue,
@@ -60,14 +49,5 @@ export default {
     overflow: hidden;
 }
 
-.page{
-    margin-bottom: 2em;
-    
-    .name{
-        font-weight: bold;
-    }
-    .comment{
-    }
-}
 
 </style>

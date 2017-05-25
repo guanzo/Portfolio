@@ -1,41 +1,32 @@
 <template>
-    <form v-on:submit.prevent class="guestbook-form">
-        <div class="input-field">
-            <input v-model="name" id="name" type="text" autocomplete="off" class="validate" required>
-            <label class="active" data-error="You got a name?" for="name">Name</label>
-        </div>
-
-        <div class="private-inputs" :class="privateClass">
-            <div class="input-field">
-                <input id="email" type="email" class="validate" autocomplete="off" :required="isPrivate">
-                <label for="email" data-error="Invalid email">Email</label>
-            </div>
-            <div class="input-field">
-                <input id="subject" type="text">
-                <label for="subject">Subject</label>
-            </div>
-        </div>
-
-        <div class="input-field">
-            <textarea v-model="comment" maxlength="500" id="comment" class="materialize-textarea validate" required></textarea>
-            <label for="comment" data-error="What do you have to say?">Comment</label>
-        </div>
-        <div class="submit-row">
-            <div>
-                <div>
-                    <input v-model="visibility" value="public" class="with-gap" name="visibility" type="radio" id="public"/>
-                    <label for="public">Sign Guestbook</label>
+    <div class="form-wrapper clearfix">
+        <transition name="form">
+            <form v-if="!sent" @submit.prevent="onSubmit" class="form">
+                <div class="input-field">
+                    <input v-model="name" id="name" type="text" autocomplete="off" class="validate" required>
+                    <label class="active" data-error="You got a name?" for="name">Name</label>
                 </div>
-                <div>
-                    <input v-model="visibility" value="private" class="with-gap" name="visibility" type="radio" id="private" />
-                    <label for="private">Contact Me</label>
+
+                <div class="input-field">
+                    <input id="email" type="email" class="validate" autocomplete="off" required>
+                    <label for="email" data-error="Invalid email">Email</label>
                 </div>
+                <div class="input-field">
+                    <input id="subject" type="text">
+                    <label for="subject">Subject</label>
+                </div>
+
+                <div class="input-field">
+                    <textarea v-model="comment" maxlength="500" id="comment" class="materialize-textarea validate" required></textarea>
+                    <label for="comment" data-error="What do you have to say?">Comment</label>
+                </div>
+                <button type="submit" class="waves-effect waves-dark btn">Sign</button>
+            </form>
+            <div v-else class="msg-sent flow-text">
+                Your message has been sent.
             </div>
-            <div>
-                <button @click="onSubmit" type="submit" class="waves-effect waves-dark btn" disabled>Submit</button>
-            </div>
-        </div>
-    </form>
+        </transition>
+    </div>
 </template>
 
 <script>
@@ -46,19 +37,11 @@ export default{
     name:'form',
     data(){
         return {
-            visibility: 'public',
             name:'',
             email:'',
             subject:'',
             comment:'',
-        }
-    },
-    computed:{
-        isPrivate(){
-            return this.visibility === 'private'
-        },
-        privateClass(){
-            return this.isPrivate ? 'visible' : '';
+            sent: false
         }
     },
     methods:{
@@ -66,12 +49,14 @@ export default{
             this.$store.dispatch({
                 type: POST_COMMENT,
                 data:{
-                    visibility: this.visibility,
                     name: this.name,
                     email: this.email,
                     subject: this.subject,
                     comment: this.comment
                 }
+            })
+            .then(()=>{
+                this.sent = true;
             })
         }
     }
@@ -83,24 +68,25 @@ export default{
 
 @import '/public/less/custom.less';
 
-.guestbook-form{
+.form-wrapper{
     margin: 3em 0em;
     padding: .5em 1em;
     background: rgba(0,0,0,0.1);
 }
 
-.submit-row{
-    display: flex;
-    justify-content: flex-end;
-    align-items: center;
-    > div{
-        margin: 0em 1em;
-    }
+.form{
+    max-height:800px;
+    overflow: hidden;
 }
 
 button[type="submit"]{
+    float: right;
     background: #FAD097;
     color: #333;
+}
+
+.msg-sent{
+    text-align: center;
 }
 
 label{
@@ -127,14 +113,17 @@ textarea.materialize-textarea:focus{
     box-shadow: 0 1px 0 0 #333;
 }
 
-.private-inputs{
-    max-height: 0;
-    overflow: hidden;
-    transition: 1s;
-    opacity: 0;
-    &.visible {
-        max-height: 200px;
-        opacity: 1;
-    }
+.form-enter-active, .form-leave-active{
+    transition: 1.5s;
 }
+
+.form-leave-to{
+    opacity: 0;
+    max-height: 0;
+}
+
+.form-enter{
+    opacity: 0;
+}
+
 </style>

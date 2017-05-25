@@ -7,11 +7,7 @@ app.use(bodyParser.json());
 
 var comments = require('./comments')
 
-// respond with "hello world" when a GET request is made to the homepage
-app.post('/comment', function (req, res) {
-	comments.processComment(req.body.data)
-	res.sendStatus(200)
-})
+app.post('/api/comments', comments.processComment)
 
 app.use(express.static('public'))
 

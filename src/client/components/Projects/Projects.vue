@@ -45,9 +45,6 @@ export default {
         portraits(){
             return this.projects.map(project=>project.imgs[0])
         },
-        activeProject(){
-            return this.$store.getters.activeProject;
-        },
     },
     mounted(){
         //joke: egg said gallery was ready but the first portrait is fucked up.
