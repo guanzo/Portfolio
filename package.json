@@ -7,9 +7,8 @@
     "delete-bundle": "del-cli public/dist/bundle.*.js",
     "watchify": "watchify -vd -p browserify-hmr -e src/client/main.js -o public/dist/bundle.js",
     "server": "nodemon src/server/app.js --ignore public/ --ignore src/client/",
-    "database": "mongod --dbpath=/data --port 27017",
     "predev": "npm run delete-bundle && node predev.js",
-    "dev": "npm-run-all --parallel watchify server database",
+    "dev": "npm-run-all --parallel watchify server",
     "prebuild": "npm run delete-bundle",
     "build": "cross-env NODE_ENV=production browserify -g envify src/client/main.js | uglifyjs -c warnings=false -m > public/dist/bundle.js",
     "postbuild": "node postbuild.js"
@@ -23,7 +22,6 @@
     "flickity": "^2.0.6",
     "lodash": "^4.17.4",
     "materialize-css": "^0.98.2",
-    "mongodb": "^2.2.27",
     "nodemailer": "^4.0.1",
     "slick-carousel": "^1.6.0",
     "smoothscroll-polyfill": "^0.3.5",
