@@ -1,13 +1,14 @@
 
 var mailer = require("nodemailer");
+var smtpTransport = require('nodemailer-smtp-transport');
 
 var fs = require('fs');
 var obj = JSON.parse(fs.readFileSync('app.config.json', 'utf8'));
 
-var smtpTransport = mailer.createTransport({
+var smtpTransport = mailer.createTransport(smtpTransport({
     service: "gmail",
     auth: obj.apps[0].email
-});
+}));
 
 module.exports = {
     processComment (req, res) {
@@ -25,6 +26,7 @@ function emailMe(data){
         subject: "Comment posted in portfolio",
         html: `
             <p>Name: ${data.name}</p>
+            <p>Email: ${data.email}</p>
             <p>Subject: ${data.subject}</p>
             <p>Comment: ${data.comment}</p>`
     }

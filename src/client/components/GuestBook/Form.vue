@@ -8,11 +8,11 @@
                 </div>
 
                 <div class="input-field">
-                    <input id="email" type="email" class="validate" autocomplete="off" required>
+                    <input v-model="email" id="email" type="email" class="validate" autocomplete="off" required>
                     <label for="email" data-error="Invalid email">Email</label>
                 </div>
                 <div class="input-field">
-                    <input id="subject" type="text">
+                    <input v-model="subject" id="subject" type="text">
                     <label for="subject">Subject</label>
                 </div>
 
