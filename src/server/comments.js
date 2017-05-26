@@ -34,7 +34,7 @@ function emailMe(data){
     smtpTransport.sendMail(mail, function(error, response){
         if(error){ console.log(error); return; }
         
-        console.log("Message sent: " + response.message);
+        console.log("Message sent!");
         smtpTransport.close();
     });
     

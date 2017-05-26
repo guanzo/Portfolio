@@ -187,7 +187,7 @@ let store = new Vuex.Store({
                     name:'Javascript',
                     text:'',
                     class:'',
-                    category:[1,2,3]
+                    category:[1,3,5]
                 },
                 {
                     imgSrc:'https://avatars1.githubusercontent.com/u/1562726?v=3&s=400', 
@@ -222,7 +222,7 @@ let store = new Vuex.Store({
                     name:'Java',
                     text:'It\'s not "cool" anymore, but still reliable!',
                     class:'',
-                    category:[2,3]
+                    category:[3]
                 },
                 {
                     imgSrc:'/images/technologies/less.png', 
@@ -249,6 +249,13 @@ let store = new Vuex.Store({
                     imgSrc:'/images/technologies/browserify.png', 
                     name:'Browserify',
                     text:"Don't write spaghetti, write modules",
+                    class:'',
+                    category:[4]
+                },
+                {
+                    imgSrc:'/images/technologies/webpack.jpg', 
+                    name:'Webpack',
+                    text:"The ultimate one stop shop",
                     class:'',
                     category:[4]
                 },
@@ -290,6 +297,13 @@ let store = new Vuex.Store({
                     imgSrc:'/images/technologies/tomcat.png', 
                     name:'Apache Tomcat',
                     text:'I have 2 cats',
+                    class:'',
+                    category:[2]
+                },
+                {
+                    imgSrc:'/images/technologies/node.png', 
+                    name:'Node.js',
+                    text:'',
                     class:'',
                     category:[2]
                 },
