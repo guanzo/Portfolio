@@ -192,7 +192,7 @@ let store = new Vuex.Store({
                 {
                     imgSrc:'https://avatars1.githubusercontent.com/u/1562726?v=3&s=400', 
                     name:'D3.js',
-                    text:'Bring data to life. Limited only by your imagination, and some math.',
+                    text:'Bring data to life. Limited only by your imagination.',
                     class:'',
                     category:[1,5]
                 },
@@ -220,16 +220,23 @@ let store = new Vuex.Store({
                 {
                     imgSrc:'https://zeroc.com/images/logos/languages/java-b48c6193e3.svg', 
                     name:'Java',
-                    text:'It\'s not "cool" anymore, but still reliable!',
+                    text:'Same thing as Javascript, right?',
                     class:'',
                     category:[3]
-                },
+                },/*
                 {
                     imgSrc:'/images/technologies/less.png', 
                     name:'Less',
                     text:'Okay, this one is a gimme',
                     class:'',
                     category:[4]
+                },*/
+                {
+                    imgSrc:'/images/technologies/sass.png', 
+                    name:'Sass/Scss',
+                    text:'',
+                    class:'',
+                    category:[1,4]
                 },
                 {
                     imgSrc:'/images/technologies/leaflet.jpg', 
@@ -255,7 +262,7 @@ let store = new Vuex.Store({
                 {
                     imgSrc:'/images/technologies/webpack.jpg', 
                     name:'Webpack',
-                    text:"The ultimate one stop shop",
+                    text:"",
                     class:'',
                     category:[4]
                 },
@@ -306,6 +313,13 @@ let store = new Vuex.Store({
                     text:'',
                     class:'',
                     category:[2]
+                },
+                {
+                    imgSrc:'/images/technologies/firebase.png', 
+                    name:'Firebase',
+                    text:'',
+                    class:'',
+                    category:[2,5]
                 },
                 {
                     imgSrc:'/images/technologies/flux-logo.png', 
