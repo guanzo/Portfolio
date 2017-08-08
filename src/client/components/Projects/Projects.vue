@@ -1,21 +1,22 @@
 <template>
     <div id="projects" class="app-section">
         <flourish :galleryIndex="gradientIndex" :firstFlourishDone="firstFlourishDone"></flourish>
-        <div class="container">
+        <div>
             <v-waypoint :position="'top' "@waypoint="start"></v-waypoint>
-            <div class="app-section-title">The Gallery</div>
-            <dynamic-dialogue class="project-dialogue" :script="script" :startDialogue="startDialogue">
-            </dynamic-dialogue>
-
-            <project-view class="project-list" v-for="project in projects" :project="project" :key="project.name">
-            </project-view>
+            <div class="container">
+                <div class="app-section-title">The Gallery</div>
+                <dynamic-dialogue class="project-dialogue" :script="script" :startDialogue="startDialogue">
+                </dynamic-dialogue>
+            </div>
+            <project-carousel class="project-list" v-for="project in projects" :project="project" :key="project.name">
+            </project-carousel>
         </div>
     </div>
 </template>
 
 <script>
 
-import projectView from './ProjectView.vue'
+import projectCarousel from './projectCarousel.vue'
 import dynamicDialogue from '../DialogueDynamic.vue'
 import Promise from 'bluebird'
 import * as d3 from 'd3'
@@ -97,8 +98,8 @@ export default {
         },
     },
     components:{
-        'dynamic-dialogue':dynamicDialogue,
-        'project-view':projectView,
+        dynamicDialogue,
+        projectCarousel,
         flourish
     }
 }
@@ -123,7 +124,6 @@ export default {
 
 #projects{
     color: #333;
-	overflow: hidden;
 }
 
 .app-section-title,

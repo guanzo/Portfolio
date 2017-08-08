@@ -1,18 +1,18 @@
 <template>
 	<div id="app" :style="background" >
-		<template v-visible="isLoaded">
-			<about></about>
-			<technologies></technologies>
-			<projects></projects>
-			<guestbook></guestbook>
-			<!--<navbar></navbar>
-			<intro></intro>-->
-			<iconCredits></iconCredits>
-		</template>
+        <!--<menu-button @click.native="toggleMenu"></menu-button>
+        <menu-view v-show="menuIsActive"></menu-view>-->
+        <about></about>
+        <technologies></technologies>
+        <projects></projects>
+        <guestbook></guestbook>
+        <iconCredits></iconCredits>
 	</div>
 </template>
 
 <script>
+import menuButton from './components/Menu/MenuButton.vue'
+import menuView from './components/Menu/MenuView.vue'
 import navbar from './components/Navbar.vue';
 import about from './components/About/About.vue'
 import technologies, {scrollfire} from './components/Technologies.vue';
@@ -44,17 +44,18 @@ export default {
 	data(){
 		var g = this.$store.getters.currentGradient
 		return {
-			isLoaded:false,
 			color1: g[0],
 			color2: g[1],
 			duration: 1500,
 			startTime: null,
 			interpolator1: null,
-			interpolator2: null
+			interpolator2: null,
+            menuIsActive: false
 		}
 	},
 	components:{
-		navbar,
+        menuButton,
+        menuView,
 		about,
 		technologies,
 		projects,
@@ -75,11 +76,6 @@ export default {
 
 		this.$nextTick(()=>{
 			this.setScrollFires();
-
-			/*var links = this.$el.querySelectorAll('a')
-			Array.from(links).forEach(link=>{
-				link.addEventListener('click',this.onClickAnchor)
-			})*/
 		})
 	},
 	computed:{
@@ -113,6 +109,9 @@ export default {
 			if(elapsed < this.duration)
 				requestAnimationFrame(this.draw)
 		},
+        toggleMenu(){
+            this.menuIsActive = !this.menuIsActive;
+        },
         /*onClickAnchor(e){
 			e.preventDefault();
             var anchor = e.currentTarget.getAttribute('href')
@@ -181,6 +180,11 @@ body{
 
 #app {
 	overflow-x: hidden;
+    position: relative;
+}
+
+.container{
+    overflow: visible !important;//quick fix to show projects carousel at full screen width
 }
 
 

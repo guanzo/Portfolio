@@ -56,10 +56,11 @@ a{
     font-size: 2em;
     
     @media (min-width: 550px) {
-        font-size: 4em;
+        font-size: 5em;
     }
     &:hover{
         text-shadow: 0px 0px 5px @offwhite, -5px 5px 5px #333;
+        transform: scale(1.75);
     }
 }
 

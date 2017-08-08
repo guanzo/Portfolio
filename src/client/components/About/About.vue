@@ -38,13 +38,6 @@
                     As of <b>{{ lastSeenTime }}</b>, Sire was last seen at a Chipotle&trade;.
                     <br>Estimated arrival time: <b>any minute now</b>.
                 </p>
-                <p class="disclaimer scrollfire-to-top">
-                    <span class="alert red darken-3">WARNING</span> 
-                    Sire has been known to "get in the zone". Avoid intermittent interruptions and asking questions that have already been answered.
-                    Sire can be temporarily pacified with medium roast coffee, Dr. Pepper<span class="trademark">&reg;</span>,
-                    or a red lollipop.
-                    Failure to follow these procedures may result in a factory reset.
-                </p>
                     <div class="sire-found">
                         <p class="scrollfire-to-top">
                             <span class="alert yellow darken-3">ALERT</span>

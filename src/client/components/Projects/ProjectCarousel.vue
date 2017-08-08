@@ -3,7 +3,7 @@
         <div ref="portraits" class="portraits-carousel">
             <div class="project-intro">
                 <div class="z-depth-2">
-                    <h5 class="raleway">{{ project.name }}</h5>
+                    <h5 class="project-name raleway">{{ project.name }}</h5>
                     <div>{{ project.tag }}</div>
                     <div>{{ project.startDate }}</div>
                     <div class="desc" v-html="project.desc"></div>
@@ -17,7 +17,6 @@
 <script>
 
 import dynamicDialogue from '../DialogueDynamic.vue'
-import x from './X.vue'
 import projectPortrait from './ProjectPortrait.vue'
 
 export default {
@@ -35,6 +34,7 @@ export default {
         var el = this.$refs.portraits
         new Flickity(el,{
             percentPosition: false,
+            cellAlign: 'left',
             freeScroll: true,
             imagesLoaded: true,
             lazyLoad: false,
@@ -48,8 +48,7 @@ export default {
     },
     components:{
         'dynamic-dialogue':dynamicDialogue,
-        'project-portrait':projectPortrait,
-        x
+        'project-portrait':projectPortrait
     }
 }
 
@@ -74,6 +73,10 @@ export default {
             background: @offwhite;
         }
     }
+}
+
+.flickity-viewport {
+    overflow: visible;
 }
 </style>
 

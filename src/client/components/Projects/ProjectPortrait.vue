@@ -4,9 +4,9 @@
             <div class="title raleway">{{ label.title }}</div>
             <div class="desc">{{ label.desc }}</div>
         </div>
-        <div class="img-container">
-            <div v-for="img in images" class="frame">
-                <img class="portrait" :src="'/images/projects/'+img">
+        <div class="img-container" :class="{ 'dual-image': images.length > 1}">
+            <div v-for="img in images" class="frame" :key="img">
+                <img class="portrait" :src="'/images/projects/'+img" />
             </div>
         </div>
     </div>
@@ -42,6 +42,16 @@ export default  {
 
 </script>
 
+<style lang="less">
+
+.img-container.dual-image{
+    img.portrait{
+        height: 40vh;
+    }
+}
+
+</style>
+
 <style lang="less" scoped>
 
 @import (reference) '/public/less/custom.less';
@@ -74,8 +84,7 @@ export default  {
 }
 
 .img-container{
-    width: 350px;
-    max-width: 100%;
+    
 }
 
 .frame {
@@ -93,8 +102,9 @@ export default  {
     }
 
     img{
-        max-width:100%;
-        height:auto;
+        max-height: 80vh;
+        width: auto;
+        max-width: 90vw;
         display:block;
     }
 
