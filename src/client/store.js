@@ -35,22 +35,31 @@ let store = new Vuex.Store({
                 selectedImage:0,
                 screens:[
                         {
-                            img:'be_splash.png',
+                            img:'boss_customergrid.png',
                         },
                         {
-                            img:'be_profile.png',
+                            img:'boss_customerprofile.png',
                             label: { 
                                 title:'The Economic Landscape', 	
-                                desc:'GDP, fuel price, yearly income, public relations, and much more. How is it all connected?' 
+                                desc:'GDP, fuel price, yearly income, public relations, and much more. Many parameters influence a customers behavior' 
                             }
                         },
                         {
-                            img:'be_scenario.png',
+                            img:'boss_scenario.png',
                             label: { 
                                 title:'Learning from the Past', 	
-                                desc:'Can we predict behavior by modeling historic values?' 
+                                desc:'Predicting aircraft retirements by modeling historic values' 
                             }
-                        }
+                        },
+                        {
+                            img:'boss_fleetgrid.png',
+                        },
+                        {
+                            img:'boss_fleetstrategy.png',
+                        },
+                        {
+                            img:'boss_partsplanning.png',
+                        },
                     ],
                 script:[
                     {speaker:'man', line:"", duration:3000},
@@ -218,7 +227,7 @@ let store = new Vuex.Store({
                     category:[1]
                 },
                 {
-                    imgSrc:'https://zeroc.com/images/logos/languages/java-b48c6193e3.svg', 
+                    imgSrc:'/images/technologies/java.png', 
                     name:'Java',
                     text:'Same thing as Javascript, right?',
                     class:'',
