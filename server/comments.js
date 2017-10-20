@@ -1,10 +1,16 @@
-require('dotenv').config()
+var path = require('path')
+
+require('dotenv').config({ path: path.join(__dirname, '.env') })
 
 var mailer = require("nodemailer");
 var smtpTransport = require('nodemailer-smtp-transport');
 
 var fs = require('fs');
-
+console.log(__dirname)
+console.log(path.join(__dirname, '.env'))
+console.log(process.cwd())
+console.log(process.env.EMAIL_USER)
+console.log(process.env.EMAIL_PASSWORD)
 var smtpTransport = mailer.createTransport(smtpTransport({
     service: "gmail",
     auth: {

@@ -3,6 +3,7 @@
 		{
 		  "name": "portfolio",
 		  "script": "server/app.js",
+		  "cwd": "server",
 		  "watch": "true",
 		  "ignore_watch": ["node_modules"]
 		}
