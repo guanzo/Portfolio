@@ -1,13 +1,16 @@
+require('dotenv').config()
 
 var mailer = require("nodemailer");
 var smtpTransport = require('nodemailer-smtp-transport');
 
 var fs = require('fs');
-var obj = JSON.parse(fs.readFileSync('app.config.json', 'utf8'));
 
 var smtpTransport = mailer.createTransport(smtpTransport({
     service: "gmail",
-    auth: obj.apps[0].email
+    auth: {
+        user: process.env.EMAIL_USER,
+        pass: process.env.EMAIL_PASSWORD
+    }
 }));
 
 module.exports = {

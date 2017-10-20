@@ -1,0 +1,16 @@
+{
+  "name": "portfolio",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+		"client": "cd client && npm run dev",
+		"server": "cd server && nodemon app.js",
+		"start": "concurrent \"npm run client\" \"npm run server\" "
+  },
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "concurrently": "^3.5.0"
+  }
+}
