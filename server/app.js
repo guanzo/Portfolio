@@ -9,7 +9,7 @@ var comments = require('./comments')
 
 app.post('/api/comments', comments.processComment)
 
-app.use(express.static('public'))
+app.use(express.static(path.join(__dirname, 'public')))
 
 app.listen(80, function(){
    console.log('Server is running on port 80...');
