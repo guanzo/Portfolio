@@ -16,7 +16,7 @@
 
 <script>
 
-import dynamicDialogue from '../DialogueDynamic'
+import dynamicDialogue from '@/components/Dialogue/DialogueDynamic'
 import projectPortrait from './ProjectPortrait'
 
 export default {

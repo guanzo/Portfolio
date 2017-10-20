@@ -109,6 +109,8 @@ $easeOutBack: cubic-bezier(0.175, 0.885, 0.620, 1.650);
         transform: rotate(10deg);
     }
     video {
+        position: relative;
+        z-index: 1;
         height: 80vh;
         width: auto;
     }

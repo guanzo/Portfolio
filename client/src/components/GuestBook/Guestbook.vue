@@ -12,7 +12,7 @@
 
 <script>
 import {GET_COMMENTS} from '@/store'
-import persistentDialogue from '../DialoguePersistent'
+import persistentDialogue from '@/components/Dialogue/DialoguePersistent'
 import form from './Form'
 export default {
     name:'guestbook',

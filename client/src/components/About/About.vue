@@ -62,7 +62,7 @@
 import manPortrait from './ManPortrait'
 import links from './Links'
 import floatingRobot from './FloatingRobot'
-import persistentDialogue from '../DialoguePersistent'
+import persistentDialogue from '@/components/Dialogue/DialoguePersistent'
 import {mapState} from 'vuex'
 
 export default{

@@ -30,6 +30,8 @@ let store = new Vuex.Store({
                 desc:`This app allows viewers to vote on characters they want the streamer to play. The difference between this
                 and other polling apps: Vote to Play is prepopulated with data, so the streamer doesn't have to set up any polls.
                 <br><br>
+                I put a lot of focus into creating a smooth UI, in order to enhance the stream experience.
+                <br><br>
                 Supports Dota 2, League of Legends, Heroes of the Storm, Hearthstone, and Overwatch.
                 <br><br>
                 <a href="https://github.com/guanzo/vote-to-play" target="_blank">Github</a>`,
@@ -38,14 +40,14 @@ let store = new Vuex.Store({
                             video:'votetoplay_demo1.mp4',
                             label: { 
                                 title:'Vote for your hero', 	
-                                desc:'' 
+                                desc:'Vote for a hero that you want to learn, or a troll hero. The streamer is at your mercy!' 
                             }
                         },
                         {
                             video:'votetoplay_demo2.mp4',
                             label: { 
                                 title:'Hope your vote wins!', 	
-                                desc:'' 
+                                desc:'Feel free to brigade the chat in order to push your vote to the top' 
                             }
                         },
                     ],
@@ -81,6 +83,10 @@ let store = new Vuex.Store({
                         },
                         {
                             img:'boss_fleetstrategy.png',
+                            label: { 
+                                title:'Retirements & Acquisitions', 	
+                                desc:"Some aircraft parts can take years to manufacturer, so knowing how a customer's fleet will change is vital to the business." 
+                            }
                         },
                         {
                             img:'boss_partsplanning.png',
@@ -216,7 +222,7 @@ let store = new Vuex.Store({
                 {
                     imgSrc:'https://vuejs.org/images/logo.png', 
                     name:'Vue.js',
-                    text:'Expressive.<br>Performant.<br>Simple. <br>Fun!',
+                    text:'<br>Simple. Expressive.<br>Fun!',
                     class:'',
                     category:[1,5]
                 },
@@ -270,16 +276,9 @@ let store = new Vuex.Store({
                     category:[4]
                 },
                 {
-                    imgSrc: require('@/assets/images/technologies/browserify.png'), 
-                    name:'Browserify',
-                    text:"Don't write spaghetti, write modules",
-                    class:'',
-                    category:[4]
-                },
-                {
                     imgSrc: require('@/assets/images/technologies/webpack.jpg'), 
                     name:'Webpack',
-                    text:"",
+                    text:"How does it even work?",
                     class:'',
                     category:[4]
                 },

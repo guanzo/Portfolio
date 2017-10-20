@@ -16,7 +16,7 @@
 <script>
 
 import projectCarousel from './projectCarousel'
-import dynamicDialogue from '../DialogueDynamic'
+import dynamicDialogue from '@/components/Dialogue/DialogueDynamic'
 import Promise from 'bluebird'
 import * as d3 from 'd3'
 

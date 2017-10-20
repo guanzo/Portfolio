@@ -38,7 +38,7 @@
 <script>
 //import shuffle from './lodash/shuffle'
 import shuffle from 'lodash/shuffle'
-import persistentDialogue from './DialoguePersistent'
+import persistentDialogue from '@/components/Dialogue/DialoguePersistent'
 export default {
     name:'technologies',
     data () {
@@ -48,8 +48,8 @@ export default {
             categories: this.$store.state.technologyCategories,
             activeCategory: 0,
             intro:[
-                `I pride myself on being a versatile and competent programmer. Being proficient in Javascript, Java, and SQL means that
-                    I can contribute to the 3 major pillars of web development: <b>frontend</b>, <b>backend</b>, and the <b>database</b>.`,
+                `I consider myself to be a versatile and competent programmer. Being proficient in Javascript, Java, and SQL means that
+                    I'm able to work in the 3 major areas of web development: <b>frontend</b>, <b>backend</b>, and the <b>database</b>.`,
                 `As the state of web development trends more towards complex frontends, 
                     so has my focus increased on staying up to date on modern frontend practices.`,
                 `Can you guess the technology by the logo?`
