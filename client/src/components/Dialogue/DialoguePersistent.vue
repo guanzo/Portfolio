@@ -5,7 +5,7 @@
             <component :is="obj.speaker" />
             <div class="lines">
                 <template v-for="line in obj.lines">
-                    <p class="speech-bubble">{{ line }}</p>
+                    <p class="speech-bubble" v-html="line"></p>
                     <br>
                 </template>
             </div>

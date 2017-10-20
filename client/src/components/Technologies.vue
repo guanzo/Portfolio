@@ -57,15 +57,15 @@ export default {
             script:[
                 {speaker:'robot', lines:["But sire! You know more than that!!"]},
                 {speaker:'man', lines:[
-                    "Well.. yes. I know jQuery,  GWT, and a bunch of other stuff.",
-                    "The thing is, web developers inevitably end up with a massive figurative toolbox.",
-                    "It's not feasible to list every single item, nor would it be appropriate.",
-                    'So I choose to list only the technologies I enjoy using',
-                    'Thanks for your concern though, Egg. I appreciate it.'
+                    "Well.. yes. I know jQuery, GWT, and a bunch of other stuff.",
+                    "The problem is web developers inevitably end up using lots of tools.",
+                    "It's not appropriate to list every single one.",
+                    'So I choose to list the technologies I enjoy using.',
+                    'Thanks for your concern though, Egg.'
                     ]},
                 {speaker:'robot', lines:["Y-yes SIRE!"]},
                 {speaker:'man', lines:["Is the gallery ready?"]},
-                {speaker:'robot', lines:["indubitably"]},
+                {speaker:'robot', lines:["Affirmative"]},
                 {speaker:'man', lines:["Excellent. Onwards! Err, I mean downwards!"]},
                 {speaker:'robot', lines:["Haha. Jolly good sire"]},
             ],

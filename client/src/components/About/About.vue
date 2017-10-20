@@ -31,27 +31,7 @@
                         </ul>
                     </div>
                 </div>
-                <links />
-
-                <div class="robot-text flow-text">
-                <p class="scrollfire-to-top">
-                    As of <b>{{ lastSeenTime }}</b>, Sire was last seen at a Chipotle&trade;.
-                    <br>Estimated arrival time: <b>any minute now</b>.
-                </p>
-                    <div class="sire-found">
-                        <p class="scrollfire-to-top">
-                            <span class="alert yellow darken-3">ALERT</span>
-                            <span>Sire has been located... Sire is behind you.</span>
-                        </p>
-                        <p class="scrollfire-to-top">
-                            <span v-if="candyTaken && !candyOffered">
-                                Please present the lollipop.
-                                <button @click="onOfferCandy" class="candy-button btn green darken-3">Offer</button>
-                            </span>
-                            <span v-else></span>
-                        </p>
-                    </div>
-                </div>
+                <links></links>
                 <persistent-dialogue :script="script"></persistent-dialogue>
             </div>
         </div>
@@ -65,7 +45,14 @@ import floatingRobot from './FloatingRobot'
 import persistentDialogue from '@/components/Dialogue/DialoguePersistent'
 import {mapState} from 'vuex'
 
-export default{
+
+function lastSeenTime(){
+    var thirtyMin = 1000*60*30
+    var date = new Date(new Date().getTime() - thirtyMin)
+    return date.toLocaleString('en-US', { hour: 'numeric',minute:'numeric', hour12: true })
+}
+
+export default {
     name:'about',
     data(){
         return {
@@ -73,27 +60,28 @@ export default{
             birthYear: 1991,
             robotIntro:[
                 'Welcome Guest, to <b class="raleway">Guanzo manor</b>!',
-                "I am the estates caretaker, you may call me <b>Egg</b>",
-                "Please excuse the construction, the Sire always has new ideas.",
-                "He's not in at the moment. Allow me to make an introduction."
+                "I am the caretaker of this estate, you may call me <b>Egg</b>",
+                "Please excuse the construction, the Sire always has new ideas",
+                "He's not in at the moment. Allow me to make an introduction"
             ],
             script:[
+                {speaker:'robot', lines:[`As of <b>${lastSeenTime()}</b>, Sire was located at a Chipotle&trade;.`]},
                 {speaker:'man', lines:["I'm home! Man they really need to give more rice..", 
-                    "Hi there! I hope my robot butler hasn't been too troublesome. Let me s-",]},
+                                        "Hi there Guest! I see you've met my-",]},
                 {speaker:'robot', lines:["Welcome home sire!"]},
                 {speaker:'man', lines:["Hi Egg.",
                                         "What did I say about interruptions..",
                                         "Also you need to stop giving out my location"]},
                 {speaker:'robot', lines:["Yes sire",'my deepest apologies sire']},
-                {speaker:'man', lines:["This isn't the first time you've done this","What if someone kidnapped me?"]},
+                {speaker:'man', lines:["This isn't the first time you've done this","What if I got kidnapped?"]},
                 {speaker:'robot', lines:["Based on your location, the time of day, and mostly your estimated ransom value, there was a 0.054% chance of being abducted. I consi-"]},
                 {speaker:'man', lines:["Nevermind"]},
                 {speaker:'robot', lines:["Will that be all?"]},
                 {speaker:'man', lines:["Prepare the gallery for a showing"]},
                 {speaker:'robot', lines:["Yes sire"]},
-                {speaker:'man', lines:["Well hello there Guest! Sorry if Egg bothered you, he's an older model..",
-                    "Let's get this tour started",
-                ]},
+                {speaker:'man', lines:["As you can probably see, Egg is an older model..",
+                                        "Let's get this tour started",
+                                        ]},
             ]
         }
     },
@@ -101,20 +89,6 @@ export default{
         ageInYears(){
             return new Date().getFullYear() - this.birthYear
         },
-        lastSeenTime(){
-            var thirtyMin = 1000*60*30
-            var date = new Date(new Date().getTime() - thirtyMin)
-            return date.toLocaleString('en-US', { hour: 'numeric',minute:'numeric', hour12: true })
-        }, ...mapState([
-            'candyTaken',
-            'candyOffered'
-        ])
-    },
-    methods:{
-        onOfferCandy(){
-            this.script[0].lines.splice(2,0,'Oooo! Thanks for the lollipop. How did you know I liked lollipops?')
-            this.$store.commit(OFFER_CANDY)    
-        }
     },
     components:{
         floatingRobot,
