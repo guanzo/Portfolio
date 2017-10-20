@@ -2,7 +2,7 @@
 	"apps" :[
 		{
 		  "name": "Portfolio",
-		  "script": "src/server/app.js",
+		  "script": "server/app.js",
 		  "watch": "true",
 		  "ignore_watch": ["node_modules"]
 		}
