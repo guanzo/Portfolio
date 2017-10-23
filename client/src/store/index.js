@@ -164,24 +164,6 @@ let store = new Vuex.Store({
                     ],
             }
         ],
-        links: [
-            {
-                url:'https://github.com/guanzo',
-                iconClass:'fa-github'
-            },
-            {
-                url:'https://www.linkedin.com/in/eric-guan-6a050547',
-                iconClass:'fa-linkedin',
-            },
-            {
-                url:'http://stackoverflow.com/users/2498782/eric-guan',
-                iconClass:'fa-stack-overflow'
-            },
-            {
-                url:'http://codepen.io/guanzo/',
-                iconClass:'fa-codepen'
-            }
-        ],
         technologyCategories:{
             0:'All',
             1:'Frontend',
