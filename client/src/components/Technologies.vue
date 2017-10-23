@@ -48,7 +48,7 @@ export default {
             categories: this.$store.state.technologyCategories,
             activeCategory: 0,
             intro:[
-                `I consider myself to be a versatile and competent programmer. Being proficient in Javascript, Java, and SQL means that
+                `I consider myself to be a versatile programmer. Having experience in Javascript, Java, and SQL means that
                     I'm able to work in the 3 major areas of web development: <b>frontend</b>, <b>backend</b>, and the <b>database</b>.`,
                 `As the state of web development trends more towards complex frontends, 
                     so has my focus increased on staying up to date on modern frontend practices.`,
@@ -57,11 +57,11 @@ export default {
             script:[
                 {speaker:'robot', lines:["But sire! You know more than that!!"]},
                 {speaker:'man', lines:[
-                    "Well.. yes. I know jQuery, GWT, and a bunch of other stuff.",
+                    "Yes. I know jQuery, GWT, and a bunch of other stuff.",
                     "The problem is web developers inevitably end up using lots of tools.",
                     "It's not appropriate to list every single one.",
                     'So I choose to list the technologies I enjoy using.',
-                    'Thanks for your concern though, Egg.'
+                    'Thanks for pointing that out though, Egg.'
                     ]},
                 {speaker:'robot', lines:["Y-yes SIRE!"]},
                 {speaker:'man', lines:["Is the gallery ready?"]},
