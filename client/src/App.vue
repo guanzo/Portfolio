@@ -15,7 +15,6 @@
 import backgroundColor from './background-color'
 import menuButton from './components/Menu/MenuButton'
 import menuView from './components/Menu/MenuView'
-import navbar from './components/Navbar'
 import about from './components/About/About'
 import technologies, {scrollfire} from './components/Technologies'
 import projects from './components/Projects/Projects'

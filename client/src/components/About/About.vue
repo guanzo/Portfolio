@@ -70,9 +70,7 @@ export default {
                 {speaker:'robot', lines:["Welcome home sire"]},
                 {speaker:'man', lines:["Hi Egg.","Prepare the gallery for a showing"]},
                 {speaker:'robot', lines:["Yes sire"]},
-                {speaker:'man', lines:["As you can probably see, Egg is an older model..",
-                                        "Let's get this tour started",
-                                        ]},
+                {speaker:'man', lines:["Let's get this tour started"]},
             ]
         }
     },

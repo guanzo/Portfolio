@@ -20,7 +20,8 @@ export default {
         return {
             gradientIndex: 3,
             script:[
-                {speaker:'man', lines:["I hope you enjoyed the tour. Please feel free to sign the guestbook.",
+                {speaker:'man', lines:["I hope you enjoyed the tour",
+                                        "Feel free to sign the guestbook to contact me or leave a comment",
                                         "Egg and I like to read it together sometimes"]},
                 {speaker:'robot', lines:["Farewell!"]},
             ],

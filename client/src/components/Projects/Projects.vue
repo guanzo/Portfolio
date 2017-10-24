@@ -107,7 +107,7 @@ export default {
 <style lang="scss">
 
 
-#projects:not(.lights-off){
+#projects{
     .speech-bubble{
         box-shadow: 0.2em 0 0 $speech-bg-dark, -0.2em 0 0 $speech-bg-dark;
         background-color: $speech-bg-dark;

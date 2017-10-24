@@ -60,18 +60,18 @@
 
 .scrollfire-to-top{
     opacity: 0;
-    transform: translateY(75px) scale(0.75);
+    transform: translateY(30px) scale(0.9);
 }
 
 .scrollfire-to-left{
     opacity: 0;
-    transform: translateX(100px);
+    transform: translateX(30px);
 }
 .scrollfire-to-right{
     opacity: 0;
-    transform: translateX(-100px);
+    transform: translateX(-30px);
 }
 
 .scrollfire-exit-to-left{
-    transform: translateX(-100px);
+    transform: translateX(-30px);
 }
