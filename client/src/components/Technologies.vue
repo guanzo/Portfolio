@@ -55,19 +55,9 @@ export default {
                 `Can you guess the technology by the logo?`
             ],
             script:[
-                {speaker:'robot', lines:["But sire! You know more than that!!"]},
-                {speaker:'man', lines:[
-                    "Yes. I know jQuery, GWT, and a bunch of other stuff",
-                    "The problem is web developers inevitably end up using lots of tools",
-                    "It's not appropriate to list every single one",
-                    'So I choose to list the technologies I enjoy using',
-                    'Thanks for pointing that out though, Egg'
-                    ]},
+                {speaker:'robot', lines:["Sire is the top developer at guanzo manor"]},
+                {speaker:'man', lines:["That is technically true","Is the gallery ready?" ]},
                 {speaker:'robot', lines:["Y-yes SIRE!"]},
-                {speaker:'man', lines:["Is the gallery ready?"]},
-                {speaker:'robot', lines:["Affirmative"]},
-                {speaker:'man', lines:["Excellent. Onwards! Err, I mean downwards!"]},
-                {speaker:'robot', lines:["Haha. Jolly good sire"]},
             ],
         }
     },

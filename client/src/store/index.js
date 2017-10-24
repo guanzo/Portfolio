@@ -18,7 +18,7 @@ let store = new Vuex.Store({
         gradients:[
             ['#da7352','#d64759'],//red/orange
             ['#38aecc','#2E3192'],//blue
-            ['#fafafa','#fafafa'],//white
+            ['#F5F5F5','#F5F5F5'],//white
             ['#faf0cd','#fab397']//peach
         ],
         projects:[
