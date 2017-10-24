@@ -66,8 +66,8 @@ export default {
         margin-bottom: 15px;
         &:hover {
             .fa{
-                text-shadow: 0px 0px 5px $offwhite, -5px 5px 5px #333;
-                transform: scale(1.25);
+                text-shadow: 0px 0px 2px $offwhite;
+                transform: scale(1.05);
             }
             & + .link-name {
                 opacity: 1;
