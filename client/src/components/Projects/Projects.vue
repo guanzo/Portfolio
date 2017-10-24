@@ -35,7 +35,7 @@ export default {
                 this.fixRotatedPortrait,
                 {speaker:'robot', line:"so sorry sire. it won't happen again"},
                 {speaker:'man', line:"It happens everytime.."},
-                {speaker:'man', line:"Please Guest, feel free to browse around."},
+                {speaker:'man', line:"Please Guest, feel free to browse around"},
             ],
             
 		}

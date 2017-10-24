@@ -60,12 +60,12 @@ export default {
             birthYear: 1991,
             robotIntro:[
                 'Welcome Guest, to <b class="raleway">Guanzo manor</b>!',
-                "I am the caretaker of this estate, you may call me <b>Egg</b>",
-                "Please excuse the construction, the Sire always has new ideas",
-                "He's not in at the moment. Allow me to make an introduction"
+                "I am the caretaker of this estate, you may call me <b>Egg</b>.",
+                "Please excuse the construction, the Sire always has new ideas.",
+                "He's not in at the moment. Allow me to make an introduction."
             ],
             script:[
-                {speaker:'robot', lines:[`As of <b>${lastSeenTime()}</b>, Sire was located at a Chipotle&trade;.`, `He should be returning shortly.`]},
+                {speaker:'robot', lines:[`As of <b>${lastSeenTime()}</b>, Sire was located at a Chipotle&trade;`, `He should be returning shortly`]},
                 {speaker:'man', lines:["I'm home! Man they really need to give more rice..", 
                                         "Hi there Guest! I see you've met my-",]},
                 {speaker:'robot', lines:["Welcome home sire!"]},

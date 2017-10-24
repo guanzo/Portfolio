@@ -57,11 +57,11 @@ export default {
             script:[
                 {speaker:'robot', lines:["But sire! You know more than that!!"]},
                 {speaker:'man', lines:[
-                    "Yes. I know jQuery, GWT, and a bunch of other stuff.",
-                    "The problem is web developers inevitably end up using lots of tools.",
-                    "It's not appropriate to list every single one.",
-                    'So I choose to list the technologies I enjoy using.',
-                    'Thanks for pointing that out though, Egg.'
+                    "Yes. I know jQuery, GWT, and a bunch of other stuff",
+                    "The problem is web developers inevitably end up using lots of tools",
+                    "It's not appropriate to list every single one",
+                    'So I choose to list the technologies I enjoy using',
+                    'Thanks for pointing that out though, Egg'
                     ]},
                 {speaker:'robot', lines:["Y-yes SIRE!"]},
                 {speaker:'man', lines:["Is the gallery ready?"]},

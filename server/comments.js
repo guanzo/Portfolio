@@ -26,13 +26,12 @@ module.exports = {
 
 function emailMe(data){
     var mail = {
-        from: "Portfolio",
+        from: data.email,
+        replyTo: data.email,
         to: "guanzo91@gmail.com",
-        subject: "Comment posted in portfolio",
+        subject: data.subject,
         html: `
             <p>Name: ${data.name}</p>
-            <p>Email: ${data.email}</p>
-            <p>Subject: ${data.subject}</p>
             <p>Comment: ${data.comment}</p>`
     }
 

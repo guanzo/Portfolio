@@ -59,7 +59,10 @@ let store = new Vuex.Store({
                 desc:`A tool that attempts to predict aircraft acquisitions and         retirements based on historical economic conditions. As Aviall is an aviation products distributor, knowing when a customer might make changes to their fleet can give Aviall the competitive edge.
                 <br><br>
                 My first project with Vue. I fell in love.
-                Guanzo Manor was built with Vue!`,
+                Guanzo Manor was built with Vue!
+                <br><br>
+                <small>Private project for Aviall</small>
+                `,
                 slides:[
                         {
                             img:'boss_customergrid.png',
@@ -97,9 +100,11 @@ let store = new Vuex.Store({
                 name:'New Business Generator',
                 tag:'Business Intelligence',
                 startDate: 'March 2016',
-                desc:`The NBG provides a high level overview of the state of Avialls business. It analyzes millions of invoices, aviation products, customer fleets, and other data points to infer sales opportunities for Aviall. Users are given a sensible starting point for their sales strategies.
+                desc:`The NBG provides a high level overview of the state of Aviall's business. It analyzes millions of invoices, aviation products, customer fleets, and other data points to infer sales opportunities for Aviall. Users are given a sensible starting point for their sales strategies.
                 <br><br>
-                This was my first full fledged SPA, and I created it from the ground up. Many mistakes were made, and many more lessons were learned. Writing this application taught me a lot about web development.`,
+                This was my first full fledged SPA, and I created it from the ground up. Many mistakes were made, and many more lessons were learned. Writing this application taught me a lot about web development.
+                <br><br>
+                <small>Private project for Aviall</small>`,
                 slides:[
                         {
                             img:['nbg_region.png','nbg_choropleth.png'],
@@ -130,7 +135,9 @@ let store = new Vuex.Store({
                 startDate: 'May 2015',
                 desc:`Relevant aviation industry news is collected and displayed in real time. The Relevance Engine continues to improve the sales and cost savings of Aviall. 
                 <br><br>
-                This was an existing application that I inherited.`,
+                This was an existing application that I inherited.
+                <br><br>
+                <small>Private project for Aviall</small>`,
                 slides:[
                         {
                             img:'re_dashboard.png',
