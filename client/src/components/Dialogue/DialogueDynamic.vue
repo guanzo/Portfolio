@@ -5,7 +5,7 @@
                 <man />
                 <div class="lines">
                     <transition name="speech" appear>
-                        <p class="speech-bubble" :key="currentManLine">{{ currentManLine }}</p>
+                        <p :class="speechBubbleClass" :key="currentManLine">{{ currentManLine }}</p>
                     </transition>
                 </div>
             </div>
@@ -13,7 +13,7 @@
                 <robot />
                 <div class="lines">
                     <transition name="speech" appear>
-                        <p class="speech-bubble" :key="currentRobotLine">{{ currentRobotLine }}</p>
+                        <p :class="speechBubbleClass" :key="currentRobotLine">{{ currentRobotLine }}</p>
                     </transition>
                 </div>
             </div>
@@ -25,7 +25,7 @@
 /*any time man talks, robot talks or both.
 2 portraits are persistent, new speech text replaces old speech text
 
-BASIC RULES:
+RULES:
 -Always has man and robot
 -Parent component controls when conversation starts, mainly by a scrollfire/waypoint
 -script is array of 
@@ -36,11 +36,13 @@ BASIC RULES:
 -Then call promises sequentially, synchronously
 
 */
+import DialogueMixin from './DialogueMixin'
 import isFunction from 'lodash/isFunction'
 import Promise from 'bluebird'
 
 export default {
     name:'dynamic-dialogue',
+    mixins:[DialogueMixin],
     props:['script','startDialogue'],
     data(){
         return {

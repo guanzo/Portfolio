@@ -1,12 +1,12 @@
 <template>
-    <div id="about" class="app-section">
+    <div id="about" class="app-section" :data-gradient-index="gradientIndex">
         <div class="container">
             <div class="app-section-title scrollfire-appear">The Entrance Hall</div>
             <div class="robot-intro robot-text flow-text">
                     <floating-robot class="scrollfire-to-right" data-scrollfire-delay="1000" />
                     <span class="scrollfire-appear" data-scrollfire-delay="1500">
                         <template v-for="line in robotIntro">
-                            <span class="speech-bubble" v-html="line" :key="line"></span>
+                            <span class="speech-bubble-light" v-html="line" :key="line"></span>
                             <br>
                         </template>
                     </span>
@@ -45,13 +45,6 @@ import floatingRobot from './FloatingRobot'
 import persistentDialogue from '@/components/Dialogue/DialoguePersistent'
 import {mapState} from 'vuex'
 
-
-function lastSeenTime(){
-    var thirtyMin = 1000*60*30
-    var date = new Date(new Date().getTime() - thirtyMin)
-    return date.toLocaleString('en-US', { hour: 'numeric',minute:'numeric', hour12: true })
-}
-
 export default {
     name:'about',
     data(){
@@ -59,16 +52,16 @@ export default {
             gradientIndex:0,
             birthYear: 1991,
             robotIntro:[
-                'Welcome Guest, to <b class="raleway">Guanzo manor</b>',
-                "I am the caretaker of this estate, you may call me <b>Egg</b>.",
-                "Please excuse the construction, the Sire always has new ideas.",
+                'Welcome to <b class="raleway">Guanzo manor</b>',
+                "I am the caretaker of this estate, my name is <b>Egg</b>.",
+                "Here you will find Guanzo's greatest software works.",
                 "He's not in at the moment. Allow me to make an introduction."
             ],
             script:[
                 {speaker:'man', lines:["I'm home!",
                                         "Hi there Guest! I see you've met my-",]},
                 {speaker:'robot', lines:["Welcome home sire"]},
-                {speaker:'man', lines:["Hi Egg.","Prepare the gallery for a showing"]},
+                {speaker:'man', lines:["Hi Egg.","Would you kindly prepare the gallery for a showing"]},
                 {speaker:'robot', lines:["Yes sire"]},
                 {speaker:'man', lines:["Let's get this tour started"]},
             ]

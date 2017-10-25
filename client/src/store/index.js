@@ -4,17 +4,15 @@ import axios from 'axios'
 
 Vue.use(Vuex)
 
-export const SELECT_PROJECT = 'SELECT_PROJECT';
-export const CLOSE_PROJECT = 'CLOSE_PROJECT';
 export const CHANGE_BACKGROUND = 'CHANGE_BACKGROUND'
 export const POST_COMMENT = 'POST_COMMENT'
 
 let store = new Vuex.Store({
 	state: {//
-        selectedProject:-1,
-        selectedImage:0,
-        navbarBackground:'',
         gradientIndex: 0,
+        //these gradients are bright, so i need to change the text color to keep it readable
+        brightGradientIndexes: [2,3],
+        scrolledToProjects: false,
         gradients:[
             ['#da7352','#d64759'],//red/orange
             ['#38aecc','#2E3192'],//blue
@@ -32,7 +30,7 @@ let store = new Vuex.Store({
                 <br><br>
                 I put a lot of focus into creating a smooth UI, in order to enhance the stream experience.
                 <br><br>
-                Supports Dota 2, League of Legends, Heroes of the Storm, Hearthstone, and Overwatch.
+                Supports: Dota 2, League of Legends, Heroes of the Storm, Hearthstone, and Overwatch.
                 <br><br>
                 <a href="https://github.com/guanzo/vote-to-play" target="_blank">Github</a>`,
                 slides:[
@@ -40,7 +38,7 @@ let store = new Vuex.Store({
                             video:'votetoplay_demo1.mp4',
                             label: { 
                                 title:'Vote for your hero', 	
-                                desc:'Vote for a hero that you want to learn, or a troll hero. The streamer is at your mercy!' 
+                                desc:'Choose a hero that you want to learn, or a troll hero. The streamer is at your mercy!' 
                             }
                         },
                         {
@@ -211,7 +209,7 @@ let store = new Vuex.Store({
                 {
                     imgSrc:'https://vuejs.org/images/logo.png', 
                     name:'Vue.js',
-                    text:'<br>Simple. Expressive.<br>Fun!',
+                    text:'Simple.<br>Expressive.<br>Fun!',
                     class:'',
                     category:[1,5]
                 },
@@ -235,14 +233,7 @@ let store = new Vuex.Store({
                     text:'Same thing as Javascript, right?',
                     class:'',
                     category:[3]
-                },/*
-                {
-                    imgSrc: require('@/assets/images/technologies/less.png', 
-                    name:'Less',
-                    text:'Okay, this one is a gimme',
-                    class:'',
-                    category:[4]
-                },*/
+                },
                 {
                     imgSrc: require('@/assets/images/technologies/sass.png'), 
                     name:'Sass/Scss',
@@ -337,15 +328,11 @@ let store = new Vuex.Store({
         ],
     },
 	mutations:{
-        [CHANGE_BACKGROUND] (state, payload){
-            state.gradientIndex = payload.index
+        [CHANGE_BACKGROUND] (state, { gradientIndex }){
+            state.gradientIndex = gradientIndex
+            if(gradientIndex == 2 && !state.scrolledToProjects)
+                state.scrolledToProjects = true;
         },
-		[SELECT_PROJECT] (state, payload){
-			state.selectedProject = payload.index
-		},
-        [CLOSE_PROJECT] (state){
-			state.selectedProject = -1;
-		}
 	},
     actions:{
         [POST_COMMENT] ({commit, state}, {data}){

@@ -1,5 +1,5 @@
 <template>
-    <div id="guestbook" class="app-section" >
+    <div id="guestbook" class="app-section" :data-gradient-index="gradientIndex">
         <div class="container">
             <div class="app-section-title scrollfire-to-right">Guestbook</div> 
             

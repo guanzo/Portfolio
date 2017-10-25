@@ -5,7 +5,7 @@
             <component :is="obj.speaker" />
             <div class="lines">
                 <template v-for="line in obj.lines">
-                    <p class="speech-bubble" v-html="line"></p>
+                    <p :class="speechBubbleClass" v-html="line"></p>
                     <br>
                 </template>
             </div>
@@ -26,8 +26,11 @@ obj = {
 }
 
 */
+import DialogueMixin from './DialogueMixin'
+
 export default {
     name:'persistent-dialogue',
+    mixins:[DialogueMixin],
     props:['script'],
     methods:{
         getSpeakerClass(speaker){
@@ -41,9 +44,6 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-
-
-
 
 .dialogue-section {
     display: flex;

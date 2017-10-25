@@ -29,16 +29,6 @@ export default  {
         label(){
             return this.slide.label
         },
-        gradient1(){
-            return {
-                background: `linear-gradient(to right, ${this.project.color1},${this.project.color2})`
-            }
-        },
-        gradient2(){
-            return {
-                background: `linear-gradient(to left, ${this.project.color1},${this.project.color2})`
-            }
-        },
         isVideo(){
             return !isUndefined(this.slide.video)
         },
@@ -64,8 +54,6 @@ export default  {
 </style>
 
 <style lang="scss" scoped>
-
-
 
 $easeInCubic: cubic-bezier(0.55, 0.055, 0.675, 0.19);
 $easeOutBack: cubic-bezier(0.175, 0.885, 0.620, 1.650);

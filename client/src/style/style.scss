@@ -38,12 +38,25 @@
     text-transform: uppercase;
 }
 
-.speech-bubble{
-    box-shadow: 0.2em 0 0 $speech-bg, -0.2em 0 0 $speech-bg;
-    background-color: $speech-bg;
+@mixin speech-bubble{
     border-radius: 5px;
     -webkit-box-decoration-break: clone;
     box-decoration-break: clone;
+    transition: $gradient-transition-duration;
+}
+
+.speech-bubble-light{
+    @include speech-bubble;
+    box-shadow: 0.2em 0 0 $speech-bg, -0.2em 0 0 $speech-bg;
+    background-color: $speech-bg;
+    color: #fafafa;
+}
+
+.speech-bubble-dark{
+    @include speech-bubble;
+    box-shadow: 0.2em 0 0 $speech-bg-dark, -0.2em 0 0 $speech-bg-dark;
+    background-color: $speech-bg-dark;
+    color: #333;
 }
 
 .under-construction{

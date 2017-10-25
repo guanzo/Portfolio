@@ -77,9 +77,6 @@
 
 export default {
     props:['script'],
-    mounted(){
-
-    }
 }
 
 </script>

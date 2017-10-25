@@ -12,7 +12,7 @@
 
 <script>
 
-import backgroundColor from './background-color'
+import backgroundGradient from './background-gradient'
 import menuButton from './components/Menu/MenuButton'
 import menuView from './components/Menu/MenuView'
 import about from './components/About/About'
@@ -24,7 +24,7 @@ import iconCredits from './components/IconCredit'
 
 export default {
 	name: 'app',
-    mixins:[backgroundColor],
+    mixins:[backgroundGradient],
 	components:{
         menuButton,
         menuView,

@@ -1,24 +1,31 @@
 <template>
-    <div id="technologies" class="app-section">
+    <div id="technologies" class="app-section" :data-gradient-index="gradientIndex">
         <div class="container">
             <div class="app-section-title scrollfire-to-right">The Workshop</div>
             <div class="tech-intro flow-text scrollfire-to-top">
-                <p v-for="text in intro" v-html="text" :key=""></p>
+                <p>I consider myself to be a versatile programmer. Having experience in Javascript, Java, and SQL means that
+                    I'm able to work in the 3 major areas of web development: <b>frontend</b>, <b>backend</b>, and the <b>database</b>.</p>
+                <p>As the state of web development trends more towards complex frontends, 
+                    so has my focus increased on staying up to date on modern frontend practices.</p>
+                <p>Can you guess the technology by the logo?</p>
             </div>
             <div class="interactions scrollfire-to-top">
                 <span :class="activeCategory == i ? 'active':''" 
-                    class="tech-filter" @click="onFilter(i)" 
+                    class="tech-action" @click="onFilter(i)" 
                     v-for="(category,i) in categories"
                     :key="category" 
                     >{{category}}</span>
-                <span class="line">|</span>
-                <span @click="onShuffle">Shuffle</span>
-                <span @mouseover="onReveal" @mouseout="onHide">Reveal</span>
+                <span class="tech-action" :class="{ active: isRevealed }" @click="toggleReveal">[ Reveal All ]</span>
             </div>
             <div class="scrollfire-to-top">
                 <transition-group ref="wrapper" tag="div" name="tech" class="technology-list flow-text scrollfire-to-top">
-                    <div v-for="tech in filteredTech" :key="tech.name" class="technology z-depth-2-inset"  :class="tech.class" 
-                                    @mouseover="tech.class = 'reveal'" @mouseout="tech.class = ''" >
+                    <div v-for="tech in filteredTech" 
+                        :class="[tech.class, { reveal: isRevealed } ]" 
+                        @mouseover="tech.class = 'reveal'" 
+                        @mouseout="tech.class = ''" 
+                        :key="tech.name" 
+                        class="technology z-depth-2-inset"  
+                    >
                         <div class="img-wrapper">
                             <img :src="tech.imgSrc" :alt="tech.name" >
                         </div>
@@ -44,18 +51,12 @@ export default {
     data () {
         return {
             gradientIndex: 1,
+            isRevealed: false,
             technologies: this.$store.state.technologies,
             categories: this.$store.state.technologyCategories,
             activeCategory: 0,
-            intro:[
-                `I consider myself to be a versatile programmer. Having experience in Javascript, Java, and SQL means that
-                    I'm able to work in the 3 major areas of web development: <b>frontend</b>, <b>backend</b>, and the <b>database</b>.`,
-                `As the state of web development trends more towards complex frontends, 
-                    so has my focus increased on staying up to date on modern frontend practices.`,
-                `Can you guess the technology by the logo?`
-            ],
             script:[
-                {speaker:'robot', lines:["Sire is the top developer at guanzo manor"]},
+                {speaker:'robot', lines:["Sire is the best developer at guanzo manor"]},
                 {speaker:'man', lines:["That is technically true","Is the gallery ready?" ]},
                 {speaker:'robot', lines:["Y-yes SIRE!"]},
             ],
@@ -68,11 +69,6 @@ export default {
             else
                 return this.technologies.filter(d=>d.category.includes(this.activeCategory))
         },
-        timeSincejQuery(){
-            var milliseconds = new Date() - new Date('3-1-2017'.replace(/-/g, "/"));
-            var days = Math.round(milliseconds / (1000*60*60*24));
-            return days;
-        }
     },
     watch:{
         filteredTech(){
@@ -83,14 +79,8 @@ export default {
         onFilter(index){
             this.activeCategory = parseInt(index);
         },
-        onReveal(){
-            this.technologies.forEach(d=>d.class = 'reveal')
-        },
-        onHide(){
-            this.technologies.forEach(d=>d.class = '')
-        },
-        onShuffle(){
-            this.technologies = shuffle(this.technologies)
+        toggleReveal(){
+            this.isRevealed = !this.isRevealed;
         },
         animateContainerHeight(){
             let el = this.$refs.wrapper.$el
@@ -132,22 +122,27 @@ $small-tech-size: 85px;
 }
 
 .interactions{
-    padding:15px 0px;
-    text-align: center;
+    padding: 15px 0px;
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
     span{
         margin:0px 0.25em;
         padding:0px 0.25em;
         cursor: pointer;
     }
-    span:last-child, span.line{
+    span.line{
         cursor: default;
     }
-    .tech-filter{
-        transition: 1s;
+    .tech-action{
+        transition: .75s;
         border-radius:4px;
         &.active{
             background: $offwhite;
             color:#333;
+        }
+        &:not(.active):hover{
+            background: rgba($offwhite,0.2);
         }
     }
 }
@@ -159,11 +154,11 @@ $small-tech-size: 85px;
     text-align: center;
     font-size: 0.8rem;
     color: #333;
-    transition: height 1s;// to animate height change due to filtering content
+    transition: height .75s;// to animate height change due to filtering content
 }
 
 .technology{
-    transition: 1s;
+    transition: .75s;
     position: relative;
     overflow: hidden;
     display: flex;
@@ -179,7 +174,7 @@ $small-tech-size: 85px;
         opacity: 1;
     }
     &.reveal img{
-        filter: blur(3px);
+        filter: blur(2px);
     }   
 }
 @media (min-width: 400px){
@@ -221,7 +216,7 @@ img{
 }
 
 .tech-leave-active{
-    transition: all 1s, opacity .5s;
+    transition: all .75s, opacity .5s;
     position: absolute;
 }
 
