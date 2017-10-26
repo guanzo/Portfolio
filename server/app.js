@@ -14,6 +14,7 @@ app.post('/api/comments', comments.processComment)
 app.use(compression())
 app.use(express.static(path.join(__dirname, 'public')))
 
-app.listen(80, function(){
-   console.log('Server is running on port 80...');
+let port = 8080
+app.listen(port, function(){
+   console.log(`Server is running on port ${port}...`);
 });
