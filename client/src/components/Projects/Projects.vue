@@ -65,7 +65,10 @@ export default {
                 var y = Math.round(portraitBbox.top - robotBbox.top)
                 var translate = `translate(${x}px,${y}px)`
                 
-                d3.select(robot)
+                robot.style.transition = '1s ease-in-out'
+                robot.style.transform = translate
+                
+                /*d3.select(robot)
                     .transition()
                     .duration(1000)
                     .style('transform',translate)
@@ -76,7 +79,7 @@ export default {
                     .duration(1500)
                     .delay(950)
                     .style('transform',null)
-                    .on('end',resolve)
+                    .on('end',resolve)*/
             })
         },
     },

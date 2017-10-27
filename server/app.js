@@ -11,8 +11,9 @@ var comments = require('./comments')
 
 app.post('/api/comments', comments.processComment)
 
-app.use(compression())
-app.use(express.static(path.join(__dirname, 'public')))
+//serving static files from nginx
+/*app.use(compression())
+app.use(express.static(path.join(__dirname, 'public')))*/
 
 let port = 8080
 app.listen(port, function(){
