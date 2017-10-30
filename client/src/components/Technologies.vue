@@ -43,7 +43,6 @@
 </template>
 
 <script>
-//import shuffle from './lodash/shuffle'
 import shuffle from 'lodash/shuffle'
 import persistentDialogue from '@/components/Dialogue/DialoguePersistent'
 export default {

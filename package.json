@@ -14,5 +14,8 @@
   "devDependencies": {
     "compression-webpack-plugin": "^1.0.1",
     "concurrently": "^3.5.0"
+  },
+  "dependencies": {
+    "lodash-es": "^4.17.4"
   }
 }

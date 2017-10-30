@@ -19,7 +19,8 @@ import projectCarousel from './projectCarousel'
 import dynamicDialogue from '@/components/Dialogue/DialogueDynamic'
 import { mapState } from 'vuex'
 import Promise from 'bluebird'
-import * as d3 from 'd3'
+import { select } from 'd3-selection';
+import 'd3-transition'; 
 
 export default {
     name:'projects',
@@ -68,7 +69,7 @@ export default {
                 robot.style.transition = '1s ease-in-out'
                 robot.style.transform = translate*/
 
-                d3.select(robot)
+                select(robot)
                     .transition()
                     .duration(1000)
                     .style('transform',translate)

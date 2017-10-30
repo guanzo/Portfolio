@@ -2,7 +2,8 @@
 
 import {CHANGE_BACKGROUND} from '@/store'
 import throttle from 'lodash/throttle'
-import {easeCubicInOut,interpolate} from 'd3'
+import { easeCubicInOut } from 'd3-ease'
+import { interpolateRgb } from 'd3-interpolate'
 
 export default {
     data(){
@@ -42,8 +43,8 @@ export default {
 		//transition from the current gradient, to handle mid-transition changes
 		currentGradient(newGradient){
 			this.startTime = new Date();
-			this.interpolator1 = interpolate(this.color1,newGradient[0])
-			this.interpolator2 = interpolate(this.color2,newGradient[1])
+			this.interpolator1 = interpolateRgb(this.color1,newGradient[0])
+			this.interpolator2 = interpolateRgb(this.color2,newGradient[1])
 			
 			requestAnimationFrame(this.draw)
 		},
