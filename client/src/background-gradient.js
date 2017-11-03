@@ -18,17 +18,6 @@ export default {
             menuIsActive: false
 		}
 	},
-	mounted(){
-		var self = this;
-		$('#app > .app-section').inViewport(function( pixelsOnScreen ){
-			var isMoreThanHalf = pixelsOnScreen >= window.innerHeight/2;
-            let gradientIndex = $(this).data('gradient-index')
-			if(isMoreThanHalf && self.$store.state.gradientIndex !== gradientIndex)
-				self.$store.commit(CHANGE_BACKGROUND, { gradientIndex })
-		});
-
-		this.$nextTick(this.setScrollFires)
-	},
 	computed:{
 		currentGradient(){
 			return this.$store.getters.currentGradient
@@ -48,6 +37,17 @@ export default {
 			
 			requestAnimationFrame(this.draw)
 		},
+	},
+	mounted(){
+		var self = this;
+		$('#app > .app-section').inViewport(function( pixelsOnScreen ){
+			var isMoreThanHalf = pixelsOnScreen >= window.innerHeight/2;
+            let gradientIndex = $(this).data('gradient-index')
+			if(isMoreThanHalf && self.$store.state.gradientIndex !== gradientIndex)
+				self.$store.commit(CHANGE_BACKGROUND, { gradientIndex })
+		});
+
+		this.$nextTick(this.setScrollFires)
 	},
 	methods:{
 		draw(){

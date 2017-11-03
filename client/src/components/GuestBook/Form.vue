@@ -3,12 +3,12 @@
         <transition name="form">
             <form v-if="!sent" @submit.prevent="onSubmit" class="form">
                 <div class="input-field">
-                    <input v-model="name" id="name" type="text" autocomplete="off" class="validate" required>
+                    <input v-model="name" id="name" name="name" type="text" autocomplete="name" class="validate" required>
                     <label class="active" data-error="You got a name?" for="name">Name</label>
                 </div>
 
                 <div class="input-field">
-                    <input v-model="email" id="email" type="email" class="validate" autocomplete="off" required>
+                    <input v-model="email" id="email" name="email" type="email" class="validate" autocomplete="email" required>
                     <label for="email" data-error="Invalid email">Email</label>
                 </div>
                 <div class="input-field">

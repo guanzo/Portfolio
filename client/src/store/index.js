@@ -311,6 +311,13 @@ let store = new Vuex.Store({
                     category:[2]
                 },
                 {
+                    imgSrc: require('@/assets/images/technologies/nginx.png'), 
+                    name:'nginx',
+                    text:'',
+                    class:'',
+                    category:[2]
+                },
+                {
                     imgSrc: require('@/assets/images/technologies/firebase.png'), 
                     name:'Firebase',
                     text:'',
