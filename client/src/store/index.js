@@ -49,7 +49,7 @@ let store = new Vuex.Store({
                             label: { 
                                 title:'Stream graphs', 	
                                 desc:`
-                                Stream graphs are one of my favorite visualizations, so I made a simple tool to create them.
+                                Stream graphs are my favorite visualizations, so I made a simple tool to create them.
                                 <br><br>
                                 <a style="text-decoration:underline;" target="_blank" href="https://streamgraphmaker.guanzo.io/">Website link</a>
                                 `

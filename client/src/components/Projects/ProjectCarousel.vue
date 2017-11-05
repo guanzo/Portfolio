@@ -50,7 +50,7 @@ export default {
                 cellAlign: 'left',
                 freeScroll: true,
                 imagesLoaded: true,
-                lazyLoad: false,
+                lazyLoad: 1,
                 contain: true,
             })
         },

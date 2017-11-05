@@ -12,7 +12,7 @@
         </div>
         <div v-else-if="displayType == 'image'" class="img-container" :class="{ 'dual-image': images.length > 1}">
             <div v-for="img in images" class="frame" :key="img">
-                <img class="portrait" :src="require('@/assets/images/projects/'+img)" />
+                <img class="portrait" :data-flickity-lazyload="require('@/assets/images/projects/'+img)" />
             </div>
         </div>
     </div>
