@@ -21,10 +21,47 @@ let store = new Vuex.Store({
         ],
         projects:[
             {
+                name:'Data Visualization',
+                displayType:'image',
+                desc:`
+                Through visualization, we can understand huge data sets with our ability to recognize patterns and relationships.<br>
+                If presented poorly, data can be hard for humans to parse, or worse, boring!<br>
+                If presented correctly, data can be intuitive, not to mention beautiful.
+                <br><br>
+                Ever since I discovered D3.js, data visualization has become one of my favorite coding pastimes. 
+                `,
+                slides:[
+                        {
+                            img:'d3showreel.jpg',
+                            label: { 
+                                title:'D3 Showreel', 	
+                                desc:`
+                                Behold the power of D3!
+                                <br><br>
+                                See a live demo <a target="_blank" href="https://bl.ocks.org/guanzo/cda716d75831841ed00a09e6630d26a6">here</a>
+                                <br><br>
+                                <a href="https://github.com/guanzo/d3-show-reel" target="_blank">Github</a>
+                                ` 
+                            }
+                        },
+                        {
+                            img:'streamgraphmaker.jpg',
+                            label: { 
+                                title:'Stream graphs', 	
+                                desc:`
+                                Stream graphs are one of my favorite visualizations, so I made a simple tool to create them.
+                                <br><br>
+                                <a style="text-decoration:underline;" target="_blank" href="https://streamgraphmaker.guanzo.io/">Website link</a>
+                                `
+                            }
+                        },
+                    ],
+            },
+            {
                 name:'Vote to Play',
                 tag:'Twitch.tv Extension',
                 startDate: 'September 2017',
-                hasVideo: true,
+                displayType:'video',
                 desc:`This app allows viewers to vote on characters they want the streamer to play. The difference between this
                 and other polling apps: Vote to Play is prepopulated with data, so the streamer doesn't have to set up any polls.
                 <br><br>
@@ -54,6 +91,7 @@ let store = new Vuex.Store({
                 name:'Boss',
                 tag:'Predictive Analytics',
                 startDate: 'April 2017',
+                displayType:'image',
                 desc:`A tool that attempts to predict aircraft acquisitions and         retirements based on historical economic conditions. As Aviall is an aviation products distributor, knowing when a customer might make changes to their fleet can give Aviall the competitive edge.
                 <br><br>
                 My first project with Vue. I fell in love.
@@ -98,6 +136,7 @@ let store = new Vuex.Store({
                 name:'New Business Generator',
                 tag:'Business Intelligence',
                 startDate: 'March 2016',
+                displayType:'image',
                 desc:`The NBG provides a high level overview of the state of Aviall's business. It analyzes millions of invoices, aviation products, customer fleets, and other data points to infer sales opportunities for Aviall. Users are given a sensible starting point for their sales strategies.
                 <br><br>
                 This was my first full fledged SPA, and I created it from the ground up. Many mistakes were made, and many more lessons were learned. Writing this application taught me a lot about web development.
@@ -131,9 +170,8 @@ let store = new Vuex.Store({
                 name:'Relevance Engine',
                 tag:'News Aggregator',
                 startDate: 'May 2015',
+                displayType:'image',
                 desc:`Relevant aviation industry news is collected and displayed in real time. The Relevance Engine continues to improve the sales and cost savings of Aviall. 
-                <br><br>
-                This was an existing application that I inherited.
                 <br><br>
                 <small>Private project for Aviall</small>`,
                 slides:[

@@ -9,7 +9,13 @@
                     <div class="desc" v-html="project.desc"></div>
                 </div>
             </div>
-            <project-portrait v-for="(slide,i) in project.slides" :slide="slide" :key="i"></project-portrait>
+            <project-portrait 
+                v-for="(slide,i) in project.slides" 
+                :displayType="project.displayType" 
+                :slide="slide" 
+                :key="i"
+            >
+            </project-portrait>
         </div>
     </div>
 </template>
@@ -26,7 +32,7 @@ export default {
     mounted(){
         this.initCarousel()
         //WebKit has a bug where changing the DOM stops autoplay. 
-        if(this.project.hasVideo)
+        if(this.project.displayType == 'video')
             this.loadVideos()
     },
     methods:{

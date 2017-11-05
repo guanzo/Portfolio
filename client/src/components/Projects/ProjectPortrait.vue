@@ -2,15 +2,15 @@
     <div class="exhibit">
         <div v-if="label" class="portrait-label z-depth-2">
             <div class="title raleway">{{ label.title }}</div>
-            <div class="desc">{{ label.desc }}</div>
+            <div class="desc" v-html="label.desc"></div>
         </div>
-        <div v-if="isVideo" class="frame">
+        <div v-if="displayType == 'video'" class="frame">
             <video autoplay loop muted controls>
                 <source :src="require('@/assets/images/projects/'+slide.video)" type='video/mp4'>
                 Your browser does not support the video tag.
             </video>
         </div>
-        <div v-else class="img-container" :class="{ 'dual-image': images.length > 1}">
+        <div v-else-if="displayType == 'image'" class="img-container" :class="{ 'dual-image': images.length > 1}">
             <div v-for="img in images" class="frame" :key="img">
                 <img class="portrait" :src="require('@/assets/images/projects/'+img)" />
             </div>
@@ -24,13 +24,10 @@ import isUndefined from 'lodash/isUndefined'
 
 export default  {
     name:'project-portrait',
-    props:['slide'],
+    props:['displayType','slide'],
     computed:{
         label(){
             return this.slide.label
-        },
-        isVideo(){
-            return !isUndefined(this.slide.video)
         },
         images(){
             if(Array.isArray(this.slide.img))
