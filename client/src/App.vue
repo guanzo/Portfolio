@@ -1,5 +1,5 @@
 <template>
-	<div id="app" :style="background" >
+	<div id="app" :style="background" v-cloak>
         <!--<menu-button @click.native="toggleMenu"></menu-button>
         <menu-view v-show="menuIsActive"></menu-view>-->
         <about></about>
