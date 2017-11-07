@@ -51,7 +51,6 @@ html, body{
 }
 
 body{
-    background: $charcoal;
 	color: $offwhite;
 	overflow-y: scroll;
 }
