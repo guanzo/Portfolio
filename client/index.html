@@ -9,6 +9,10 @@
             /* FOUC fix */
             .no-fouc {display: none;}
         </style>
+        <script type="text/javascript">
+            //FOUC fix
+            document.documentElement.className = 'no-fouc';
+        </script>
         <link href="https://unpkg.com/flickity@2/dist/flickity.min.css" rel="stylesheet" >
         <link href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.100.2/css/materialize.min.css" rel="stylesheet">
         <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
@@ -22,7 +26,6 @@
         <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.100.2/js/materialize.min.js"></script>
         <script type="text/javascript">
             //FOUC fix
-            document.documentElement.className = 'no-fouc';
             document.addEventListener("DOMContentLoaded", function(event) {
                 document.documentElement.className = '';
           });
