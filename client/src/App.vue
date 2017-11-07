@@ -33,8 +33,7 @@ export default {
 		projects,
 		guestbook,
 		iconCredits
-	},
-
+	}
 }
 
 

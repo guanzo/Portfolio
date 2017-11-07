@@ -37,11 +37,11 @@ export default {
     },
     methods:{
         loadVideos(){
-            let videos = this.$el.querySelectorAll('video')
-            videos.forEach(vid=>{
-                vid.play()
-                vid.controls = true
-            })
+            [...this.$el.querySelectorAll('video')]
+                .forEach(vid=>{
+                    vid.play()
+                    vid.controls = true
+                })
         },
         initCarousel(){
             var el = this.$refs.portraits

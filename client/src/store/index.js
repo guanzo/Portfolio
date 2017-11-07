@@ -38,7 +38,7 @@ let store = new Vuex.Store({
                                 desc:`
                                 Behold the power of D3!
                                 <br><br>
-                                See a live demo <a target="_blank" href="https://bl.ocks.org/guanzo/cda716d75831841ed00a09e6630d26a6">here</a>
+                                Live demo <a target="_blank" href="https://bl.ocks.org/guanzo/cda716d75831841ed00a09e6630d26a6">here</a>
                                 <br><br>
                                 <a href="https://github.com/guanzo/d3-show-reel" target="_blank">Github</a>
                                 ` 
