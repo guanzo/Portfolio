@@ -12,7 +12,7 @@ var comments = require('./comments')
 app.post('/api/comments', comments.processComment)
 
 //serving static files from nginx
-//app.use(express.static(path.join(__dirname, 'public')))
+app.use(express.static(path.join(__dirname, 'public')))
 
 let port = 8080
 app.listen(port, function(){
