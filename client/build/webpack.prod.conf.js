@@ -101,6 +101,7 @@ const webpackConfig = merge(baseWebpackConfig, {
         [ '/' ],
         {//phantomjs doesn't work on video tag.
             ignoreJSErrors: true,
+            captureAfterTime: 5000,
         }
       )
   ]
