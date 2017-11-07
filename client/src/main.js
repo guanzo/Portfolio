@@ -5,15 +5,11 @@ import App from './App'
 //import router from './router'
 import store from './store'
 
-import VueVisible from 'vue-visible';
-import VueWaypoint from 'vue-waypoint';
 
 import './portrait-components'
 
 Vue.config.productionTip = false
 
-Vue.use(VueVisible);
-Vue.use(VueWaypoint)
 
 /* eslint-disable no-new */
 new Vue({
