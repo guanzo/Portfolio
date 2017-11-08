@@ -2,7 +2,7 @@
     <div class="links scrollfire-appear">
         <div v-for="link in links" :key="link.url" class="link-container">
             <a :href="link.url" target="_blank" >
-                <i class="fa fa-3x" :class="link.iconClass"></i>
+                <i class="icon" :class="link.iconClass"></i>
             </a>
             <div class="link-name flow-text">{{ link.name }}</div>
         </div>
@@ -19,22 +19,22 @@ export default {
                 {
                     name: 'Resume',
                     url:'https://docs.google.com/document/d/14A90xrr3Hk7tba72hpbMB-1UKpjvQ514DjXepeN_quo/edit?usp=sharing',
-                    iconClass:'fa-file-text-o'
+                    iconClass:'icon-doc-text'
                 },
                 {
                     name: 'Github',
                     url:'https://github.com/guanzo',
-                    iconClass:'fa-github'
+                    iconClass:'icon-github-circled'
                 },
                 {
                     name: 'LinkedIn',
                     url:'https://www.linkedin.com/in/eric-guan-6a050547',
-                    iconClass:'fa-linkedin',
+                    iconClass:'icon-linkedin',
                 },
                 {
                     name: 'Stack Overflow',
                     url:'http://stackoverflow.com/users/2498782/eric-guan',
-                    iconClass:'fa-stack-overflow'
+                    iconClass:'icon-stackoverflow'
                 }
             ],
         }
@@ -65,19 +65,21 @@ export default {
         color: white;
         margin-bottom: 15px;
         &:hover {
-            .fa{
+            .icon{
                 text-shadow: 0px 0px 2px $offwhite;
-                transform: scale(1.05);
+                &:before{
+                    transform: scale(1.05);
+                }
             }
             & + .link-name {
                 opacity: 1;
             }
         }
-        .fa{
+        .icon{
             font-size: 5em;
         }
     }
-    .fa, .link-name {
+    .icon:before, .link-name {
         transition: 0.5s;
     }
     .link-name {
