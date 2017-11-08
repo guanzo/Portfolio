@@ -315,11 +315,11 @@ let store = new Vuex.Store({
                     category:[4]
                 },
                 {
-                    imgSrc:'https://upload.wikimedia.org/wikipedia/commons/thumb/e/ea/Boostrap_logo.svg/2000px-Boostrap_logo.svg.png', 
-                    name:'Bootstrap',
+                    imgSrc:require('@/assets/images/technologies/socketio.gif'), 
+                    name:'Socket.IO',
                     text:'',
                     class:'',
-                    category:[1]
+                    category:[1,2]
                 },
                 {
                     imgSrc: require('@/assets/images/technologies/sql-server.png'), 
