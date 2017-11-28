@@ -9,7 +9,7 @@
                     so has my focus increased on staying up to date on modern frontend practices.</p>
                 <p>Can you guess the technology by the logo?</p>
             </div>
-            <div class="interactions scrollfire-to-top">
+            <div class="interactions scrollfire-to-top" ref="interactions">
                 <span :class="activeCategory == i ? 'active':''" 
                     class="tech-action" @click="onFilter(i)" 
                     v-for="(category,i) in categories"
@@ -44,8 +44,11 @@
 
 <script>
 import persistentDialogue from '@/components/Dialogue/DialoguePersistent'
+import smoothHeight from 'vue-smooth-height'
+
 export default {
     name:'technologies',
+    mixins:[smoothHeight],
     data () {
         return {
             gradientIndex: 1,
@@ -54,8 +57,8 @@ export default {
             categories: this.$store.state.technologyCategories,
             activeCategory: 0,
             script:[
-                {speaker:'robot', lines:["Sire is the best developer at guanzo manor"]},
-                {speaker:'man', lines:["That is technically true","Is the gallery ready?" ]},
+                {speaker:'robot', lines:["What do you make with these tools Sire?"]},
+                {speaker:'man', lines:["I like making SPAs, real time web applications, and data visualizations!","Is the gallery ready?" ]},
                 {speaker:'robot', lines:["Y-yes SIRE!"]},
             ],
         }
@@ -68,10 +71,10 @@ export default {
                 return this.technologies.filter(d=>d.category.includes(this.activeCategory))
         },
     },
-    watch:{
-        filteredTech(){
-            this.animateContainerHeight();
-        }
+    mounted(){
+        this.$registerElement({
+            el: this.$refs.wrapper.$el,
+        })
     },
     methods:{
         onFilter(index){
@@ -79,17 +82,6 @@ export default {
         },
         toggleReveal(){
             this.isRevealed = !this.isRevealed;
-        },
-        animateContainerHeight(){
-            let el = this.$refs.wrapper.$el
-            let beforeHeight = el.clientHeight
-            this.$nextTick(()=>{
-                let afterHeight = el.clientHeight
-                el.style.height = beforeHeight+'px'
-                el.offsetHeight
-                el.style.height = afterHeight+'px'
-                setTimeout(()=>el.style.height = 'auto',1000)
-            })
         }
     },
     components:{
