@@ -67,7 +67,7 @@ let store = new Vuex.Store({
                 <br><br>
                 I put a lot of focus into creating a smooth UI, in order to enhance the stream experience.
                 <br><br>
-                Supports: Dota 2, League of Legends, Heroes of the Storm, Hearthstone, and Overwatch.
+                Supports: Dota 2, League of Legends, Heroes of the Storm, Battlerite, Hearthstone, and Overwatch. 
                 <br><br>
                 <a href="https://github.com/guanzo/vote-to-play" target="_blank">Github</a>`,
                 slides:[

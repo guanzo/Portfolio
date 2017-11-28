@@ -1,7 +1,8 @@
 <template>
     <div class="dialogue flow-text">
-        <div v-for="obj in script" :class="getSpeakerClass(obj.speaker)" 
-            class="dialogue-section scrollfire-to-top">
+        <div v-for="obj in script" 
+            :class="[getSpeakerClass(obj.speaker),{'scrollfire-to-top': setScrollfire}]" 
+            class="dialogue-section">
             <component :is="obj.speaker" />
             <div class="lines">
                 <template v-for="line in obj.lines">
@@ -31,7 +32,13 @@ import DialogueMixin from './DialogueMixin'
 export default {
     name:'persistent-dialogue',
     mixins:[DialogueMixin],
-    props:['script'],
+    props:{
+        script: Array,
+        setScrollfire:{
+            type: Boolean,
+            default: true
+        }
+    },
     methods:{
         getSpeakerClass(speaker){
             if(speaker === 'robot')

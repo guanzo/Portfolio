@@ -22,8 +22,9 @@
                 </div>
                 <button type="submit" class="waves-effect waves-dark btn">Sign</button>
             </form>
-            <div v-else class="msg-sent flow-text">
-                Your message has been sent.
+            <div v-else class="flow-text flex-center">
+                <persistent-dialogue :script="script" :setScrollfire="false">
+                </persistent-dialogue>
             </div>
         </transition>
     </div>
@@ -31,9 +32,10 @@
 
 <script>
 
+import persistentDialogue from '@/components/Dialogue/DialoguePersistent'
 import {POST_COMMENT} from '@/store'
 
-export default{
+export default {
     name:'form',
     data(){
         return {
@@ -41,7 +43,10 @@ export default{
             email:'',
             subject:'',
             comment:'',
-            sent: false
+            sent: false,
+            script:[
+                {speaker:'robot', lines:["Thanks for signing. I'll make sure the sire sees this."]},
+            ],
         }
     },
     methods:{
@@ -58,7 +63,13 @@ export default{
             .then(()=>{
                 this.sent = true;
             })
+            .catch((e)=>{
+                console.error(e)
+            })
         }
+    },
+    components:{
+        persistentDialogue
     }
 }
 
@@ -83,10 +94,6 @@ button[type="submit"]{
     float: right;
     background: #FAD097;
     color: #333;
-}
-
-.msg-sent{
-    text-align: center;
 }
 
 label{
