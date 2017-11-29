@@ -55,11 +55,10 @@ export default {
                 'Welcome to <b class="raleway">Guanzo manor</b>',
                 "I am the caretaker of this estate, my name is <b>Egg</b>.",
                 "Here you will find Guanzo's greatest software works.",
-                "He's not in at the moment. Allow me to make an introduction."
+                "Allow me to make an introduction."
             ],
             script:[
-                {speaker:'man', lines:["I'm home!",
-                                        "Hi there Guest! I see you've met my-",]},
+                {speaker:'man', lines:["Hi there Guest! I see you've met my-",]},
                 {speaker:'robot', lines:["Welcome home sire"]},
                 {speaker:'man', lines:["Hi Egg.","Would you kindly prepare the gallery for a showing"]},
                 {speaker:'robot', lines:["Yes sire"]},
@@ -89,8 +88,8 @@ export default {
 }
 
 .robot-intro{
-    padding-top: 20vh;
-    padding-bottom: 20vh;
+    padding-top: 15vh;
+    padding-bottom: 15vh;
 }
 
 .disclaimer{

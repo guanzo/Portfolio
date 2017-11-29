@@ -1,20 +1,32 @@
 <template>
-    <div class="links scrollfire-appear">
-        <div v-for="link in links" :key="link.url" class="link-container">
-            <a :href="link.url" target="_blank" >
-                <i class="icon" :class="link.iconClass"></i>
-            </a>
-            <div class="link-name flow-text">{{ link.name }}</div>
+    <div class="links">
+        <persistent-dialogue :script="script"></persistent-dialogue> 
+        <div :style="destinationStyle" class="destination flow-text">
+            Destination: <b>{{ destination }}</b>
+        </div>
+        <div class="link-container scrollfire-appear">
+            <div v-for="link in links" :key="link.url" class="link">
+                <a :href="link.url" target="_blank" >
+                    <i @mouseover="onMouseover(link.name)" @mouseout="onMouseout" class="icon" :class="link.iconClass"></i>
+                </a>
+            </div>
         </div>
     </div>
 </template>
 
 <script>
 
+import persistentDialogue from '@/components/Dialogue/DialoguePersistent'
+
 export default {
     name:'links',
     data(){
         return {
+            showDestination: false,
+            destination:'',
+            script:[
+                {speaker:'robot', lines:["we provide a speed of light transportation service to sire's other estates."]},
+            ],
             links: [
                 {
                     name: 'Resume',
@@ -39,6 +51,25 @@ export default {
             ],
         }
     },
+    computed:{
+        destinationStyle(){
+            return {
+                opacity: this.showDestination ? 1 : 0
+            }
+        }
+    },
+    methods:{
+        onMouseover(name){
+            this.showDestination = true;
+            this.destination = name;
+        },
+        onMouseout(){
+            this.showDestination = false;
+        }
+    },
+    components:{
+        persistentDialogue,
+    }
 }
 
 </script>
@@ -46,16 +77,16 @@ export default {
 <style lang="scss" scoped>
 
 .links{
-    padding:5vh 0;
-    @media (min-width: 400px) {
-        padding:10vh 0;
-    }
+    padding: 20px 0;
+}
+
+.link-container{
     display: flex;
     justify-content: space-around;
     flex-wrap: wrap;
 }
 
-.link-container{
+.link{
     display: flex;
     flex: 1;
     flex-direction: column;
@@ -63,30 +94,20 @@ export default {
     text-align: center;
     a{
         color: white;
-        margin-bottom: 15px;
-        &:hover {
-            .icon{
-                text-shadow: 0px 0px 2px $offwhite;
-                &:before{
-                    transform: scale(1.05);
-                }
-            }
-            & + .link-name {
-                opacity: 1;
-            }
+        &:hover .icon{
+            text-shadow: 0px 0px 4px $offwhite;
         }
         .icon{
             font-size: 5em;
+            transition: 0.5s;
         }
-    }
-    .icon:before, .link-name {
-        transition: 0.5s;
-    }
-    .link-name {
-        opacity: 0;
     }
 }
 
+.destination{
+    text-align: center;
+    transition: 0.5s;
+}
 
 
 
