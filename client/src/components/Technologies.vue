@@ -96,8 +96,8 @@ export default {
 
 
 
-$tech-size: 125px;
-$small-tech-size: 85px;
+$tech-size: 115px;
+$small-tech-size: 75px;
 
 .guess{
     position: relative;
@@ -150,7 +150,6 @@ $small-tech-size: 85px;
 .technology{
     transition: .75s;
     position: relative;
-    overflow: hidden;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -188,6 +187,7 @@ div.description-overlay{
     display: flex;
     flex-direction: column;
     justify-content: center;
+    font-weight: 400;
 }
 .img-wrapper{
     width: 100%;

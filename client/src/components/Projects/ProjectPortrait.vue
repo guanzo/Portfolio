@@ -5,10 +5,8 @@
             <div class="desc" v-html="label.desc"></div>
         </div>
         <div v-if="displayType == 'video'" class="frame">
-            <video autoplay loop muted controls>
-                <source :src="require('@/assets/images/projects/'+slide.video)" type='video/mp4'>
-                Your browser does not support the video tag.
-            </video>
+            <iframe :src="slide.video+'?rel=0'" frameborder="0" gesture="media" allow="encrypted-media" allowfullscreen>
+            </iframe>
         </div>
         <div v-else-if="displayType == 'image'" class="img-container" :class="{ 'dual-image': images.length > 1}">
             <div v-for="img in images" class="frame" :key="img">
@@ -93,16 +91,16 @@ $easeOutBack: cubic-bezier(0.175, 0.885, 0.620, 1.650);
     &.rotated{
         transform: rotate(10deg);
     }
-    video {
+    iframe {
         position: relative;
         z-index: 1;
-        height: 80vh;
-        width: auto;
+        height: 720px;
+        width: 1280px;
     }
     img{
-        max-height: 80vh;
+        max-height: 70vh;
         width: auto;
-        max-width: 90vw;
+        max-width: 80vw;
         display:block;
     }
 

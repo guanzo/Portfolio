@@ -25,7 +25,7 @@ export default {
             showDestination: false,
             destination:'',
             script:[
-                {speaker:'robot', lines:["we provide a speed of light transportation service to sire's other estates."]},
+                {speaker:'robot', lines:["we provide a speed of light transportation service to sire's other estates"]},
             ],
             links: [
                 {
