@@ -94,8 +94,9 @@ $easeOutBack: cubic-bezier(0.175, 0.885, 0.620, 1.650);
     iframe {
         position: relative;
         z-index: 1;
-        height: 720px;
-        width: 1280px;
+        //720p ratio
+        width: 70vw;
+        height: calc((9/16)*70vw);
     }
     img{
         max-height: 70vh;
