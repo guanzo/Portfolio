@@ -10,15 +10,16 @@
                 <p>Can you guess the technology by the logo?</p>
             </div>
             <div class="interactions scrollfire-to-top" ref="interactions">
-                <span :class="activeCategory == i ? 'active':''" 
+                <span v-for="(category,i) in categories"
+					:class="activeCategory == i ? 'active':''" 
                     class="tech-action" @click="onFilter(i)" 
-                    v-for="(category,i) in categories"
                     :key="category" 
                     >{{category}}</span>
-                <span class="tech-action" :class="{ active: isRevealed }" @click="toggleReveal">[ Reveal All ]</span>
+                <span class="tech-action" :class="{ active: isRevealed }" @click="toggleReveal">[ Reveal Names ]</span>
             </div>
             <div class="scrollfire-to-top">
-                <transition-group ref="wrapper" tag="div" name="tech" class="technology-list flow-text scrollfire-to-top">
+                <transition-group ref="wrapper" tag="div" name="tech"
+                    class="technology-list flow-text">
                     <div v-for="tech in filteredTech" 
                         :class="[tech.class, { reveal: isRevealed } ]" 
                         @mouseover="tech.class = 'reveal'" 
@@ -53,7 +54,6 @@ export default {
         return {
             gradientIndex: 1,
             isRevealed: false,
-            technologies: this.$store.state.technologies,
             categories: this.$store.state.technologyCategories,
             activeCategory: 0,
             script:[
@@ -64,6 +64,9 @@ export default {
         }
     },
     computed:{
+		technologies(){
+			return this.$store.state.technologies.sort((a,b)=>a.name.localeCompare(b.name))
+		},
         filteredTech(){
             if(this.activeCategory == 0)
                 return this.technologies
@@ -82,7 +85,7 @@ export default {
         },
         toggleReveal(){
             this.isRevealed = !this.isRevealed;
-        }
+        },
     },
     components:{
         persistentDialogue,
@@ -94,10 +97,9 @@ export default {
 
 <style lang="scss" scoped>
 
-
-
-$tech-size: 115px;
-$small-tech-size: 75px;
+$tech-size: 120px;
+$small-tech-size: 80px;
+$transition: .75s;
 
 .guess{
     position: relative;
@@ -138,6 +140,7 @@ $small-tech-size: 75px;
 }
 
 .technology-list {
+    position: relative;
     display: flex;
     flex-wrap: wrap;
     justify-content: center;
@@ -153,7 +156,8 @@ $small-tech-size: 75px;
     display: flex;
     align-items: center;
     justify-content: center;
-    background: white;
+    background: white; 
+    overflow: hidden;
     border-radius: 50%;
     width: $small-tech-size;
     height: $small-tech-size;
@@ -162,8 +166,8 @@ $small-tech-size: 75px;
     &.reveal div.description-overlay{
         opacity: 1;
     }
-    &.reveal img{
-        filter: blur(2px);
+    &.reveal .img-wrapper{
+		filter: blur(2px);
     }   
 }
 @media (min-width: 400px){
@@ -175,18 +179,20 @@ $small-tech-size: 75px;
         }
     }
 }
+
+
 div.description-overlay{
     position: absolute;
-    opacity: 0;
-    height:100%;
-    width:100%;
-    background-color:rgba(255,255,255,0.75);
-    transition: 0.75s;
-    padding: 5px;
-    border-radius: 50%;
     display: flex;
     flex-direction: column;
     justify-content: center;
+    opacity: 0;
+    height:100%;
+    width:100%;
+    background-color:rgba(255,255,255,0.8);
+    transition: $transition;
+    padding: 5px;
+    border-radius: 50%;
     font-weight: 400;
 }
 .img-wrapper{
@@ -201,8 +207,7 @@ div.description-overlay{
 img{
     max-width:100%;
     max-height:100%;
-    transition: 0.75s;
-    will-change: filter;
+    transition: $transition ease-in;
 }
 
 .tech-leave-active{

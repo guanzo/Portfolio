@@ -1,5 +1,4 @@
 export default {
-    
     technologyCategories:{
         0:'All',
         1:'Frontend',
@@ -153,19 +152,12 @@ export default {
                 name:'Firebase',
                 text:'',
                 class:'',
-                category:[2,5]
-            },
-            {
-                imgSrc: require('@/assets/images/technologies/flux-logo.png'), 
-                name:'Flux',
-                text:'In Vue land, this is Vuex',
-                class:'',
-                category:[1,5]
+                category:[2]
             },
             {
                 imgSrc: require('@/assets/images/technologies/mocha.svg'), 
                 name:'Mocha',
-                text:'I\'m referring to coffee, not the test framework ',
+                text:'',
                 class:'',
                 category:[4]
             },
@@ -176,6 +168,20 @@ export default {
                 class:'',
                 category:[4]
             },
-
+            {
+                imgSrc: 'https://cdn.worldvectorlogo.com/logos/react.svg', 
+                name:'React',
+                text:'',
+                class:'',
+                category:[1,5]
+            },
+            {
+                imgSrc: require('@/assets/images/technologies/redux.png'), 
+                name:'Redux',
+                text:'It\'s not magic (somewhat condescendingly)',
+                class:'',
+                category:[1,5]
+            },
+			
     ],
 }

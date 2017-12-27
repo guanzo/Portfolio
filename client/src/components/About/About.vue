@@ -25,7 +25,6 @@
                             <li>Age: {{ ageInYears }}</li>
                             <li>Gender: Male</li>
                             <li>Height: 5'9"</li>
-                            <li>Weight: <span class="alert grey darken-4">REDACTED</span></li>
                             <li>Location: San Diego, California</li>
                             <li>Title: Software Developer</li>
                         </ul>
