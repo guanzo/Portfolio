@@ -15,7 +15,7 @@
 <script>
 
 
-import projectCarousel from './projectCarousel'
+import projectCarousel from './ProjectCarousel'
 import dynamicDialogue from '@/components/Dialogue/DialogueDynamic'
 import { mapState } from 'vuex'
 import Promise from 'bluebird'

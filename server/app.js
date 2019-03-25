@@ -14,7 +14,7 @@ app.post('/api/comments', comments.processComment)
 //serving static files from nginx
 app.use(express.static(path.join(__dirname, 'public')))
 
-let port = 8080
+let port = 8888
 app.listen(port, function(){
    console.log(`Server is running on port ${port}...`);
 });
