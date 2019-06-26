@@ -18,7 +18,7 @@ import menuView from './components/Menu/MenuView'
 import about from './components/About/About'
 import technologies, {scrollfire} from './components/Technologies'
 import projects from './components/Projects/Projects'
-import guestbook from './components/Guestbook/GuestBook'
+import guestbook from './components/Guestbook/Guestbook'
 import iconCredits from './components/IconCredit'
 
 
