@@ -96,13 +96,13 @@ const webpackConfig = merge(baseWebpackConfig, {
         ignore: ['.*']
       }
     ]),
-    new PrerenderSpaPlugin(
-        path.resolve(__dirname, '../../server/public'),
-        [ '/' ],
-        {//phantomjs doesn't work on video tag.
-            ignoreJSErrors: true,
-        }
-      )
+    // new PrerenderSpaPlugin(
+    //     path.resolve(__dirname, '../../server/public'),
+    //     [ '/' ],
+    //     {//phantomjs doesn't work on video tag.
+    //         ignoreJSErrors: true,
+    //     }
+    //   )
   ]
 })
 
