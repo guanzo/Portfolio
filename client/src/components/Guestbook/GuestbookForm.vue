@@ -36,7 +36,7 @@ import persistentDialogue from '@/components/Dialogue/DialoguePersistent'
 import {POST_COMMENT} from '@/store'
 
 export default {
-    name:'form',
+    name:'GuestbookForm',
     data(){
         return {
             name:'',

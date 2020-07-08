@@ -13,14 +13,13 @@
 <script>
 
 import backgroundGradient from './background-gradient'
-import menuButton from './components/Menu/MenuButton'
-import menuView from './components/Menu/MenuView'
-import about from './components/About/About'
-import technologies, {scrollfire} from './components/Technologies'
-import projects from './components/Projects/Projects'
-import guestbook from './components/Guestbook/Guestbook'
-import iconCredits from './components/IconCredit'
-
+import menuButton from '@/components/Menu/MenuButton'
+import menuView from '@/components/Menu/MenuView'
+import about from '@/components/About/About'
+import technologies, {scrollfire} from '@/components/Technologies'
+import projects from '@/components/Projects/Projects'
+import guestbook from '@/components/Guestbook/Guestbook'
+import iconCredits from '@/components/IconCredit'
 
 export default {
 	name: 'app',
@@ -35,8 +34,6 @@ export default {
 		iconCredits
 	}
 }
-
-
 </script>
 
 <style lang="scss">

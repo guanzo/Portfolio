@@ -1,11 +1,11 @@
 <template>
     <div id="guestbook" class="app-section" :data-gradient-index="gradientIndex">
         <div class="container">
-            <div class="app-section-title scrollfire-to-right">Guestbook</div> 
-            
+            <div class="app-section-title scrollfire-to-right">Guestbook</div>
+
             <persistent-dialogue :script="script"></persistent-dialogue>
 
-            <book-form></book-form>
+            <GuestbookForm/>
         </div>
     </div>
 </template>
@@ -13,7 +13,7 @@
 <script>
 import {GET_COMMENTS} from '@/store'
 import persistentDialogue from '@/components/Dialogue/DialoguePersistent'
-import form from './Form'
+import GuestbookForm from './GuestbookForm'
 export default {
     name:'guestbook',
     data(){
@@ -34,7 +34,7 @@ export default {
     },
     components:{
         persistentDialogue,
-        'book-form': form
+        GuestbookForm
     }
 }
 </script>

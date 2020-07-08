@@ -5,27 +5,27 @@
             <div class="tech-intro flow-text scrollfire-to-top">
                 <p>I consider myself to be a versatile programmer. Having experience in Javascript, Java, and SQL means that
                     I'm able to work in the 3 major areas of web development: <b>frontend</b>, <b>backend</b>, and the <b>database</b>.</p>
-                <p>As the state of web development trends more towards complex frontends, 
+                <p>As the state of web development trends more towards complex frontends,
                     so has my focus increased on staying up to date on modern frontend practices.</p>
                 <p>Can you guess the technology by the logo?</p>
             </div>
             <div class="interactions scrollfire-to-top" ref="interactions">
                 <span v-for="(category,i) in categories"
-					:class="activeCategory == i ? 'active':''" 
-                    class="tech-action" @click="onFilter(i)" 
-                    :key="category" 
+					:class="activeCategory == i ? 'active':''"
+                    class="tech-action" @click="onFilter(i)"
+                    :key="category"
                     >{{category}}</span>
                 <span class="tech-action" :class="{ active: isRevealed }" @click="toggleReveal">[ Reveal Names ]</span>
             </div>
             <div class="scrollfire-to-top">
                 <transition-group ref="wrapper" tag="div" name="tech"
                     class="technology-list flow-text">
-                    <div v-for="tech in filteredTech" 
-                        :class="[tech.class, { reveal: isRevealed } ]" 
-                        @mouseover="tech.class = 'reveal'" 
-                        @mouseout="tech.class = ''" 
-                        :key="tech.name" 
-                        class="technology z-depth-2-inset"  
+                    <div v-for="tech in filteredTech"
+                        :class="[tech.class, { reveal: isRevealed } ]"
+                        @mouseover="tech.class = 'reveal'"
+                        @mouseout="tech.class = ''"
+                        :key="tech.name"
+                        class="technology z-depth-2-inset"
                     >
                         <div class="img-wrapper">
                             <img :src="tech.imgSrc" :alt="tech.name" >
@@ -38,7 +38,7 @@
                 </transition-group>
             </div>
             <persistent-dialogue :script="script"></persistent-dialogue>
-            
+
         </div>
     </div>
 </template>
@@ -65,7 +65,7 @@ export default {
     },
     computed:{
 		technologies(){
-			return this.$store.state.technologies.sort((a,b)=>a.name.localeCompare(b.name))
+			return this.$store.state.technologies.slice().sort((a,b)=>a.name.localeCompare(b.name))
 		},
         filteredTech(){
             if(this.activeCategory == 0)
@@ -75,7 +75,7 @@ export default {
         },
     },
     mounted(){
-        this.$registerElement({
+        this.$smoothElement({
             el: this.$refs.wrapper.$el,
         })
     },
@@ -108,8 +108,8 @@ $transition: .75s;
 }
 
 .z-depth-2-inset{
-    box-shadow: 0 4px 5px 0 rgba(0,0,0,0.14) inset, 
-                0 1px 10px 0 rgba(0,0,0,0.12) inset, 
+    box-shadow: 0 4px 5px 0 rgba(0,0,0,0.14) inset,
+                0 1px 10px 0 rgba(0,0,0,0.12) inset,
                 0 2px 4px -1px rgba(0,0,0,0.3) inset;
 }
 
@@ -156,7 +156,7 @@ $transition: .75s;
     display: flex;
     align-items: center;
     justify-content: center;
-    background: white; 
+    background: white;
     overflow: hidden;
     border-radius: 50%;
     width: $small-tech-size;
@@ -168,7 +168,7 @@ $transition: .75s;
     }
     &.reveal .img-wrapper{
 		filter: blur(2px);
-    }   
+    }
 }
 @media (min-width: 400px){
     .technology-list {
